@@ -1,0 +1,183 @@
+body {
+	padding: 0px;
+	margin: 0px;
+	font-family: Tahoma, Helvetica, sans-serif;
+	overflow: auto;
+	min-height: 100vh;
+}
+
+header {
+	position: relative;
+	text-align: center;
+}
+
+header div {
+	position: relative;
+	display: inline-block;
+	padding: 24px 24px 16px 24px;
+	border: 1px solid;
+	border-radius: 50%;
+	position: relative;
+	bottom: 24px;
+}
+
+header a {
+	display: inline-block;
+}
+
+.home {
+	height: 64px;
+	width: 64px;
+	background-image: url("/img/logo.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top: 8px;
+}
+
+.home:hover, .home.current {
+	background-image: url("/img/logoHover.png");
+}
+
+.booking, .account {
+	font-size: 24px;
+	vertical-align: top;
+	margin: 0px 24px;
+	text-decoration: none;
+}
+
+.booking:hover span, .account:hover span, .booking.current, .account.current {
+	opacity: 1;
+	top: 8px;
+}
+
+header span {
+	position: relative;
+	top: 0px;
+	display: block;
+	height: 4px;
+	width: 84px;
+	border-radius: 4px;
+	opacity: 0;
+	transition: all .4s;
+}
+
+footer {
+	display: inline-block;
+	width: 100%;
+	height: 320px;
+}
+
+footer img, footer div {
+	display: inline-block;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+footer img {
+	float: right;
+	margin-right: 10%;
+}
+
+footer p {
+	font-size: 18px;
+	line-height: 26px;
+}
+
+footer div {
+	margin-left: 10%;
+}
+
+
+/* INDEX.PHP */
+#mapDiv {
+	position: relative;
+	float: right;
+	display: grid;
+	grid-template-rows: 401px;
+	grid-template-columns: 400px 655px;
+	grid-gap: 50px;
+}
+
+#locationDiv, .locationPointer, #mapDiv img {
+	grid-column: 2;
+}
+
+#locationText, #locationDiv, .locationPointer, #mapDiv img {
+	grid-row: 1;
+}
+
+#locationDiv {
+	height: 100%;
+	width: 100%;
+}
+
+#locationDiv .locationBtn {
+	position: absolute;
+	z-index: 2;
+	height: 10px;
+	width: 10px;
+	padding: 0px;
+	border-radius: 50%;
+	border: 1px solid;
+	cursor: pointer;
+}
+
+#locationText {
+	grid-column: 1;
+	width: 100%;
+	height: 300px;
+	margin-top: 64px;
+	transition: opacity 2s;
+}
+
+#locationText span {
+	display: block;
+}
+
+.locationPointer {
+	justify-self: right;
+	height: 100%;
+	width: 170%;
+	max-width: 0%;
+	overflow: hidden;
+	transition: max-width 3s;
+}
+
+.locationLineAnim {
+	max-width: 170%;
+}
+
+.locationLine {
+	position: relative;
+	z-index: 1;
+	height: 4px;
+	float: right;
+	clear: both;
+	border-radius: 4px;
+	transform: var(--rotation);
+	width: var(--width);
+	top: var(--top);
+	right: var(--right);
+}
+
+#mallaig {
+	top: 120px;
+	right: 72px;
+}
+
+#eigg {
+	top: 257px;
+	right: 318px;
+}
+
+#muck {
+	top: 338px;
+	right: 374px;
+}
+
+#rum {
+	top: 88px;
+	right: 450px;
+}

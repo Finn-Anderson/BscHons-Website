@@ -1,0 +1,31 @@
+header span {
+	background-color: #034ABF;
+}
+
+footer {
+	background-color: #222;
+}
+
+#locationDiv button, .locationLine {
+	background-color: #00FF80;
+}
+
+footer p {
+	color: #707070;
+}
+
+.booking, .account {
+	color: #000;
+}
+
+.booking:hover, .account:hover .booking.current, .account.current {
+	color: #034ABF;
+}
+
+#locationDiv .locationButton, #home {
+	border-color: #222;
+}
+
+#locationDiv .locationClicked {
+	border-color: #00FF80;
+}
