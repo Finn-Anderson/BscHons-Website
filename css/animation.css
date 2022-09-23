@@ -1,0 +1,22 @@
+/* HEADER.PHP */
+.home {
+	transition: background-image .2s;
+}
+
+header span {
+	transition: all .4s;
+}
+
+
+/* INDEX.PHP */
+#locationText {
+	transition: opacity 2s;
+}
+
+#locationText a, #introTxt a {
+	transition: background-color .2s;
+}
+
+.locationPointer {
+	transition: max-width 3s;
+}

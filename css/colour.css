@@ -1,20 +1,20 @@
-header span {
-	background-color: #034ABF;
+header span, #locationText a, #introTxt a, #locationDiv button, .locationLine {
+	background-color: #ff7f50;
 }
 
 footer {
 	background-color: #222;
 }
 
-#locationDiv button, .locationLine {
-	background-color: #00FF80;
+#locationText a:hover, #introTxt a:hover {
+	background-color: #ff926a;
 }
 
-#locationText a:hover {
-	background-color: rgba(3, 74, 191, 0.2);
+#mapDiv, #companyInfo, #about {
+	background-color: #fff;
 }
 
-footer p, #locationText a {
+footer p {
 	color: #707070;
 }
 
@@ -22,30 +22,26 @@ footer p, #locationText a {
 	color: #000;
 }
 
-.booking.bright, .account.bright {
+.booking.bright, .account.bright, a {
 	color: #fff;
 }
 
-.booking:hover, .account:hover, .booking.current, .account.current, #locationText a:hover {
-	color: #034ABF;
+.booking:hover, .account:hover, .booking.current, .account.current, #companyInfo div h1, #about div h1 {
+	color: #ff7f50;
 }
 
-#locationDiv .locationButton, #home {
+#locationDiv .locationButton, #home, #companyInfo div, #locationDiv {
 	border-color: #222;
 }
 
 #locationDiv .locationClicked {
-	border-color: #00FF80;
-}
-
-#locationText a {
-	border-color: #707070;
-}
-
-#locationText a:hover {
-	border-color: #034ABF;
+	border-color: #ff7f50;
 }
 
 .bright {
 	border-color: #fff;
+}
+
+#companyInfo div, #locationDiv, #about div img {
+	border-color: #c2c2c2;
 }

@@ -17,7 +17,7 @@ header div {
 	position: relative;
 	display: inline-block;
 	padding: 24px 24px 16px 24px;
-	border: 1px solid;
+	border: 2px solid;
 	border-radius: 50%;
 	position: relative;
 	bottom: 24px;
@@ -35,7 +35,6 @@ header a {
 	background-repeat: no-repeat;
 	background-position: center;
 	margin-top: 8px;
-	transition: background-image .2s;
 }
 
 .home:hover {
@@ -43,7 +42,8 @@ header a {
 }
 
 .booking, .account {
-	font-size: 24px;
+	font-size: 22px;
+	letter-spacing: 1px;
 	vertical-align: top;
 	margin: 8px 24px;
 	text-decoration: none;
@@ -59,10 +59,9 @@ header span {
 	top: 0px;
 	display: block;
 	height: 4px;
-	width: 84px;
+	width: 100%;
 	border-radius: 4px;
 	opacity: 0;
-	transition: all .4s;
 }
 
 footer {
@@ -94,31 +93,70 @@ footer div {
 
 
 /* INDEX.PHP */
-#mapDiv {
-	position: relative;
-	float: right;
-	display: grid;
-	grid-template-rows: 612px;
-	grid-template-columns: 500px 1000px;
-	grid-gap: 10vw;
+#intro {
+	height: 65vh;
+}
+
+#intro img {
+	position: fixed;
+	z-index: -1;
+	width: 100%;
+	filter: brightness(0.66);
 }
 
 #introTxt {
 	position: absolute;
 	color: white;
-	top: calc(8vh + 100px);
-	left: 50vw;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%, -65%);
+	text-align: center;
 }
 
 #introTxt h1 {
-	font-size: 48px;
+	font-size: 72px;
 	letter-spacing: 2px;
+	margin-bottom: 24px;
 }
 
-#intro img {
-	display: block;
+#introTxt p {
+	font-size: 24px;
+	margin-bottom: 24px;
+}
+
+#introTxt a {
+	display: inline-block;
+	margin-top: 48px;
+}
+
+#companyInfo, #about {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 100px 0px;
+}
+
+#companyInfo div {
+	width: 20vw;
+	margin: 24px;
+	padding: 0px 16px 16px 16px;
+	border-radius: 4px;
+	border: 1px solid;
+	text-align: center;
+}
+
+#companyInfo div h1 {
+	margin: 24px 0px;
+}
+
+#mapDiv {
+	position: relative;
+	display: grid;
 	width: 100%;
-	filter: brightness(0.7);
+	justify-content: right;
+	grid-template-rows: 612px;
+	grid-template-columns: 500px 1000px;
+	grid-gap: 200px;
 }
 
 #locationDiv, .locationPointer, #mapDiv img {
@@ -130,14 +168,15 @@ footer div {
 }
 
 #locationDiv {
-	height: 100%;
-	width: 100%;
+	border-top: 1px solid;
+	border-left: 1px solid;
+	border-top-left-radius: 4px;
 }
 
 #locationDiv .locationBtn {
 	position: absolute;
-	height: 10px;
-	width: 10px;
+	height: 14px;
+	width: 14px;
 	padding: 0px;
 	border-radius: 50%;
 	border: 1px solid;
@@ -149,36 +188,41 @@ footer div {
 	width: 100%;
 	height: 300px;
 	margin-top: 64px;
-	transition: opacity 2s;
+}
+
+#locationText h1 span {
+	display: inline;
+	font-size: 48px;
 }
 
 #locationText span {
 	display: block;
 }
 
-#locationText a {
-	display: none;
+#locationText a, #introTxt a {
 	width: max-content;
 	padding: 12px;
-	margin-top: 24px;
-	border: 1px solid;
 	font-size: 18px;
+	letter-spacing: 1px;
 	text-decoration: none;
 	border-radius: 2px;
-	transition: color .2s, background-color .2s, border-color .2s;
+}
+
+#locationText a {
+	margin-top: 24px;
+	display: none;
 }
 
 .locationPointer {
 	justify-self: right;
 	height: 100%;
-	width: 170%;
+	width: 178%;
 	max-width: 0%;
 	overflow: hidden;
-	transition: max-width 3s;
 }
 
 .locationLineAnim {
-	max-width: 170%;
+	max-width: 178%;
 }
 
 .locationLine {
@@ -195,20 +239,63 @@ footer div {
 
 #mallaig {
 	top: 183px;
-    right: 117px;
+    right: 115px;
 }
 
 #eigg {
 	top: 380px;
-    right: 474px;
+    right: 472px;
 }
 
 #muck {
 	top: 517px;
-    right: 573px;
+    right: 571px;
 }
 
 #rum {
 	top: 178px;
-    right: 688px;
+    right: 686px;
+}
+
+
+/* ABOUT ISLANDS */
+#about div {
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: 0px auto;
+	grid-gap: 32px;
+	margin: 48px 50vw;
+}
+
+#about div h1, #about div p {
+	grid-column: 1;
+}
+
+#about div h1 {
+	grid-row: 1;
+	margin-top: 0px;
+}
+
+#about div p {
+	grid-row: 2;
+}
+
+#about div img {
+	grid-column: 2;
+	grid-row: 1 / span 2;
+}
+
+#about #reverse h1, #about #reverse p  {
+	grid-column: 2;
+}
+
+#about #reverse img {
+	grid-column: 1;
+}
+
+#about div img {
+	width: 400px;
+	height: 400px;
+	border: 1px solid;
+	border-radius: 4px;
 }

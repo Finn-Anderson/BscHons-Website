@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	var url = window.location.pathname;
 	switch(url) {
-		case "/":
+		case "/": case "/island/mallaig.php": case "/island/eigg.php": case "/island/muck.php": case "/island/rum.php": case "/island/ceilidh.php":
 			document.getElementsByClassName("home")[0].parentElement.classList.toggle("bright");
 			document.getElementsByClassName("booking")[0].classList.toggle("bright");
 			document.getElementsByClassName("account")[0].classList.toggle("bright");
