@@ -10,7 +10,11 @@ footer {
 	background-color: #00FF80;
 }
 
-footer p {
+#locationText a:hover {
+	background-color: rgba(3, 74, 191, 0.2);
+}
+
+footer p, #locationText a {
 	color: #707070;
 }
 
@@ -18,7 +22,11 @@ footer p {
 	color: #000;
 }
 
-.booking:hover, .account:hover .booking.current, .account.current {
+.booking.bright, .account.bright {
+	color: #fff;
+}
+
+.booking:hover, .account:hover, .booking.current, .account.current, #locationText a:hover {
 	color: #034ABF;
 }
 
@@ -28,4 +36,16 @@ footer p {
 
 #locationDiv .locationClicked {
 	border-color: #00FF80;
+}
+
+#locationText a {
+	border-color: #707070;
+}
+
+#locationText a:hover {
+	border-color: #034ABF;
+}
+
+.bright {
+	border-color: #fff;
 }

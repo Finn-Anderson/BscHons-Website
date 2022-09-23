@@ -10,7 +10,9 @@
 	var url = window.location.pathname;
 	switch(url) {
 		case "/":
-			document.getElementsByClassName("home")[0].classList.toggle("current");
+			document.getElementsByClassName("home")[0].parentElement.classList.toggle("bright");
+			document.getElementsByClassName("booking")[0].classList.toggle("bright");
+			document.getElementsByClassName("account")[0].classList.toggle("bright");
 			break;
 		case "/booking.php":
 			document.getElementsByClassName("booking")[0].classList.toggle("current");
