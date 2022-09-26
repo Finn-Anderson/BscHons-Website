@@ -1,4 +1,4 @@
-header span, #locationText a, #introTxt a, #locationDiv button, .locationLine {
+span, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button {
 	background-color: #ff7f50;
 }
 
@@ -6,31 +6,35 @@ footer {
 	background-color: #222;
 }
 
-#locationText a:hover, #introTxt a:hover {
+#locationText a:hover, #introTxt a:hover, #authForm:valid button:hover {
 	background-color: #ff926a;
 }
 
-#mapDiv, #companyInfo, #about {
+#companyInfo, #about, #authForm:invalid button {
 	background-color: #fff;
+}
+
+#mapDiv {
+	background-color: navajowhite;
 }
 
 footer p {
 	color: #707070;
 }
 
-.booking, .account {
+.booking, .auth, #authForm a {
 	color: #000;
 }
 
-.booking.bright, .account.bright, a {
+.booking.bright, .auth.bright, a, #authForm:valid button {
 	color: #fff;
 }
 
-.booking:hover, .account:hover, .booking.current, .account.current, #companyInfo div h1, #about div h1 {
+.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover {
 	color: #ff7f50;
 }
 
-#locationDiv .locationButton, #home, #companyInfo div, #locationDiv {
+#locationDiv .locationButton, #home, #companyInfo div {
 	border-color: #222;
 }
 
@@ -42,6 +46,22 @@ footer p {
 	border-color: #fff;
 }
 
-#companyInfo div, #locationDiv, #about div img {
+#companyInfo div, #about div img, #authForm, #authForm:invalid button {
 	border-color: #c2c2c2;
+}
+
+#authForm input[type="text"], #authForm input[type="password"] {
+	border-color: #707070;
+}
+
+#authForm input[type="text"]:valid, #authForm input[type="password"]:valid {
+	border-color: green;
+}
+
+#authForm input.invalid {
+	border-color: red;
+}
+
+#authForm input {
+	outline-color: #ff7f50;
 }

@@ -83,7 +83,7 @@
 		returnBooked BOOLEAN NOT NULL,
 		wheelchairBooked BOOLEAN NOT NULL,
 		reverse BOOLEAN NOT NULL,
-		FOREIGN KEY (userID) REFERENCES Users (userID) ON DELETE CASCADE ON UPDATE CASCADE
+		FOREIGN KEY (userID) REFERENCES User (userID) ON DELETE CASCADE ON UPDATE CASCADE
 		)";
 
 		// use exec() because no results are returned
@@ -120,8 +120,8 @@
 	try {
 		$tblR = "CREATE TABLE Route (
 		routeID MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-		from VARCHAR(20) NOT NULL,
-		to VARCHAR(20) NOT NULL
+		`from` VARCHAR(20) NOT NULL,
+		`to` VARCHAR(20) NOT NULL
 		)";
 
 		// use exec() because no results are returned
@@ -186,11 +186,11 @@
 
 		for ($i=0; $i < count($fromList); $i++) { 
 			for ($j=$i; $j < count($toList); $j++) {
-				$route = $conn->prepare('INSERT INTO Route (from, to)
-					VALUES (:from, :to)');
+				$route = $conn->prepare('INSERT INTO Route (`from`, `to`)
+					VALUES (:afrom, :ato)');
 
-				$route->bindValue(':from', $fromList[$i]);
-				$route->bindValue(':to', $toList[$j]);
+				$route->bindValue(':afrom', $fromList[$i]);
+				$route->bindValue(':ato', $toList[$j]);
 
 				$route->execute();
 			}
@@ -212,10 +212,10 @@
 
 		for ($i=0; $i < count($minList); $i++) { 
 			$route = $conn->prepare('INSERT INTO Fare (minAge, maxAge)
-				VALUES (:from, :to)');
+				VALUES (:min, :max)');
 
-			$route->bindValue(':from', $minList[$i]);
-			$route->bindValue(':to', $maxList[$i]);
+			$route->bindValue(':min', $minList[$i]);
+			$route->bindValue(':max', $maxList[$i]);
 
 			$route->execute();
 		}

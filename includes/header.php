@@ -4,7 +4,16 @@
 	<div>
 		<a class="home" href="/"></a>
 	</div>
-	<a class="account" href="account.php">Account<span></span></a>
+
+	<?php 
+		session_start();
+
+		if (isset($_SESSION["authorized"])) {
+			echo "<a class='auth' href='account.php'>Account<span></span></a>";
+		} else {
+			echo "<a class='auth' href='login.php'>Login<span></span></a>";
+		}
+	?>
 </header>
 <script type="text/javascript">
 	var url = window.location.pathname;
@@ -12,13 +21,13 @@
 		case "/": case "/island/mallaig.php": case "/island/eigg.php": case "/island/muck.php": case "/island/rum.php": case "/island/ceilidh.php":
 			document.getElementsByClassName("home")[0].parentElement.classList.toggle("bright");
 			document.getElementsByClassName("booking")[0].classList.toggle("bright");
-			document.getElementsByClassName("account")[0].classList.toggle("bright");
+			document.getElementsByClassName("auth")[0].classList.toggle("bright");
 			break;
 		case "/booking.php":
 			document.getElementsByClassName("booking")[0].classList.toggle("current");
 			break;
-		case "/account.php":
-			document.getElementsByClassName("account")[0].classList.toggle("current");
+		case "/account.php":case "/login.php":
+			document.getElementsByClassName("auth")[0].classList.toggle("current");
 			break;
 	}
 </script>

@@ -6,6 +6,10 @@ body {
 	min-height: 100vh;
 }
 
+a {
+	text-decoration: none;
+}
+
 header {
 	position: absolute;
 	z-index: 1;
@@ -41,7 +45,7 @@ header a {
 	background-image: url("/img/logoHover.png");
 }
 
-.booking, .account {
+.booking, .auth {
 	font-size: 22px;
 	letter-spacing: 1px;
 	vertical-align: top;
@@ -49,12 +53,12 @@ header a {
 	text-decoration: none;
 }
 
-.booking:hover span, .account:hover span, .booking.current, .account.current {
+.booking:hover span, .auth:hover span, .booking.current, .auth.current, #authForm a:hover span {
 	opacity: 1;
 	top: 8px;
 }
 
-header span {
+span {
 	position: relative;
 	top: 0px;
 	display: block;
@@ -167,12 +171,6 @@ footer div {
 	grid-row: 1;
 }
 
-#locationDiv {
-	border-top: 1px solid;
-	border-left: 1px solid;
-	border-top-left-radius: 4px;
-}
-
 #locationDiv .locationBtn {
 	position: absolute;
 	height: 14px;
@@ -204,7 +202,6 @@ footer div {
 	padding: 12px;
 	font-size: 18px;
 	letter-spacing: 1px;
-	text-decoration: none;
 	border-radius: 2px;
 }
 
@@ -258,7 +255,7 @@ footer div {
 }
 
 
-/* ABOUT ISLANDS */
+/* ABOUT ISLAND */
 #about div {
 	display: grid;
 	grid-template-columns: auto;
@@ -278,6 +275,7 @@ footer div {
 
 #about div p {
 	grid-row: 2;
+	width: 300px;
 }
 
 #about div img {
@@ -294,8 +292,67 @@ footer div {
 }
 
 #about div img {
-	width: 400px;
-	height: 400px;
+	width: 300px;
+	height: 300px;
 	border: 1px solid;
 	border-radius: 4px;
+}
+
+
+/* LOGIN/REGISTER */
+#authDiv {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+#authForm {
+	border: 1px solid;
+	border-radius: 4px;
+	padding: 0px 16px 16px 16px;
+}
+
+#authForm input[type="text"], #authForm input[type="password"], #authForm a, #authForm button {
+	display: block;
+	margin: 12px 0px;
+}
+
+#authForm label {
+	margin-left: 2px;
+}
+
+#authForm h1 {
+	text-align: center;
+}
+
+#authForm input[type="text"], #authForm input[type="password"] {
+	width: 250px;
+	height: 30px;
+	padding: 8px;
+	margin-top: 8px;
+	margin-bottom: 16px;
+	border: 1px solid;
+	border-radius: 24px;
+}
+
+#authForm button {
+	width: 100%;
+	padding: 8px;
+	font-size: 18px;
+	margin: 24px auto;
+	border: 1px solid;
+	border-radius: 4px;
+}
+
+#authForm:valid button {
+	border: none;
+	cursor: pointer;
+}
+
+#authForm a {
+	width: max-content;
+	margin: 12px auto;
+	margin-top: 24px;
 }

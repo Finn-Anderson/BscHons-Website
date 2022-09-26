@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php $title = "Home Page"; include $_SERVER['DOCUMENT_ROOT']."/includes/header.php" ?>
+	<?php $title = "Home Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
 	<body>
 		<div id="intro">
 			<img id="1" src="/img/eiggPanoramic.jpg">
@@ -45,11 +45,11 @@
 			</div>
 		</div>
 	</body>
-	<?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
+	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
 	<script type="text/javascript">
 		function changeBorderColour(element) {
 			if (!element.classList.contains("locationClicked")) {
-				$('.locationClicked').removeClass('locationClicked');
+				$(".locationClicked").removeClass("locationClicked");
 				element.classList.toggle("locationClicked");
 			}
 		}

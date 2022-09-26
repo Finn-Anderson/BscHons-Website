@@ -3,7 +3,7 @@
 	transition: background-image .2s;
 }
 
-header span {
+span {
 	transition: all .4s;
 }
 
@@ -13,7 +13,7 @@ header span {
 	transition: opacity 2s;
 }
 
-#locationText a, #introTxt a {
+#locationText a, #introTxt a, #authForm button {
 	transition: background-color .2s;
 }
 
