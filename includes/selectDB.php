@@ -7,15 +7,15 @@
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$pw = hash("sha512", $pw);
-
 		$email = htmlspecialchars($_POST["email"], ENT_QUOTES);
 		$password = htmlspecialchars($_POST["password"], ENT_QUOTES);
 
+		$pw = hash("sha512", $password);
+
 		// stmt to select row
 		$stmt = $conn->prepare("SELECT userID FROM Users WHERE email = :email AND password = :pwd");
-		$stmt->bindValue(":email", $email, PDO::PARAM_INT);
-		$stmt->bindValue(":pwd", $pw, PDO::STR);
+		$stmt->bindValue(":email", $email, PDO::PARAM_STR);
+		$stmt->bindValue(":pwd", $pw, PDO::PARAM_STR);
 		$stmt->execute();
 
 		// Chcek if stmt statement is valid
@@ -33,10 +33,10 @@
 					setcookie("AblaCruisesRemember", $value, time()+60*60*24*30, "/");
 				}
 
-				header("Location: "$_SERVER['DOCUMENT_ROOT']."/index.php");
+				header("Location: ../index.php");
 			}
 		} else {
-			header("Location: "$_SERVER['DOCUMENT_ROOT']."/login.php?msg=failed");
+			header("Location: ../login.php?msg=failed");
 		}
 	}
 

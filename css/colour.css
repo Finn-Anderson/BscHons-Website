@@ -1,4 +1,4 @@
-span, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button {
+span, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked {
 	background-color: #ff7f50;
 }
 
@@ -18,7 +18,7 @@ footer {
 	background-color: navajowhite;
 }
 
-footer p {
+footer p, #authForm:invalid button {
 	color: #707070;
 }
 
@@ -26,12 +26,16 @@ footer p {
 	color: #000;
 }
 
-.booking.bright, .auth.bright, a, #authForm:valid button {
+.booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before {
 	color: #fff;
 }
 
 .booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover {
 	color: #ff7f50;
+}
+
+.warning {
+	color: #ff5079;
 }
 
 #locationDiv .locationButton, #home, #companyInfo div {
@@ -42,7 +46,7 @@ footer p {
 	border-color: #ff7f50;
 }
 
-.bright {
+#homeDiv.bright {
 	border-color: #fff;
 }
 
@@ -50,16 +54,20 @@ footer p {
 	border-color: #c2c2c2;
 }
 
-#authForm input[type="text"], #authForm input[type="password"] {
+#authForm input[type="text"], #authForm input[type="password"], input[type=checkbox] {
 	border-color: #707070;
 }
 
 #authForm input[type="text"]:valid, #authForm input[type="password"]:valid {
-	border-color: green;
+	border-color: #50ff7f;
 }
 
 #authForm input.invalid {
-	border-color: red;
+	border-color: #ff5079;
+}
+
+input[type=checkbox]:checked {
+	border-color: #ff7f50;
 }
 
 #authForm input {

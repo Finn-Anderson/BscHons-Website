@@ -23,19 +23,19 @@
 		for ($i=0; $i < Count($tblList); $i++) {
 			if ((empty($tblList[$i]) AND !is_numeric($tblList[$i])) OR ($tblList[$i] == $email AND !filter_var($tblList[$i], FILTER_VALIDATE_EMAIL)) OR ($pw1 != $pw2)) {
 				if ($tblList[$i] == $email) {
-					header("Location: "$_SERVER["DOCUMENT_ROOT"]."/register.php?msg=email");
+					header("Location: ../register.php?msg=email");
 					break;
 				} elseif ($tblList[$i] == $pw1) {
-					header("Location: "$_SERVER["DOCUMENT_ROOT"]."/register.php?msg=password");
+					header("Location: ../register.php?msg=password");
 					break;
 				} else {
-					header("Location: "$_SERVER["DOCUMENT_ROOT"]."/register.php?msg=failed");
+					header("Location: ../register.php?msg=failed");
 					break;
 				}
 			} elseif ($i == 11) {
 				//Check it doesn't alread exist. Output determines whether msg is fail or success (success input register data)
 				$checkReg = $conn->prepare("SELECT 1 FROM User WHERE email = :mail");
-				$checkReg->bindValue(":mail", $email, PDO::STR);
+				$checkReg->bindValue(":mail", $email, PDO::PARAM_STR);
 				$checkReg->execute();
 				
 				$row = $checkReg->fetch(PDO::FETCH_ASSOC);
@@ -46,24 +46,22 @@
 					$stmtReg = $conn->prepare("INSERT INTO User (email, password, name, address, city, postcode)
 						VALUES (:mail, :pwd, :name, :address, :city, :post)");
 
-					$stmtReg->bindValue(":mail", $email, PDO::STR);
-					$stmtReg->bindValue(":pwd", $pw, PDO::STR);
-					$stmtReg->bindValue(":name", $forename, PDO::STR);
-					$stmtReg->bindValue(":address", $address, PDO::STR);
-					$stmtReg->bindValue(":city", $city, PDO::STR);
-					$stmtReg->bindValue(":post", $postcode, PDO::STR);
+					$stmtReg->bindValue(":mail", $email, PDO::PARAM_STR);
+					$stmtReg->bindValue(":pwd", $pw, PDO::PARAM_STR);
+					$stmtReg->bindValue(":name", $forename, PDO::PARAM_STR);
+					$stmtReg->bindValue(":address", $address, PDO::PARAM_STR);
+					$stmtReg->bindValue(":city", $city, PDO::PARAM_STR);
+					$stmtReg->bindValue(":post", $postcode, PDO::PARAM_STR);
 
 					$stmtReg->execute();
 
 					$stmt = $conn->prepare("SELECT userid FROM User WHERE email = :email AND password = :pwd");
-					$stmt->bindValue(":email", $email);
-					$stmt->bindValue(":pwd", $pw);
+					$stmt->bindValue(":email", $email, PDO::PARAM_STR);
+					$stmt->bindValue(":pwd", $pw, PDO::PARAM_STR);
 					$stmt->execute();
 
-					// Chcek if stmt statement is valid
-					if ($stmt->rowCount() == 0) {
-						header("Location: "$_SERVER["DOCUMENT_ROOT"]."/login.php");
-					} else {
+					// Chcek if stmt statement is valid (which it should be)
+					if ($stmt->rowCount() == 1) {
 						// Sets sessions to be used later on.
 						$result = $stmt->fetchAll();
 						foreach( $result as $row ) {
@@ -73,10 +71,10 @@
 							$_SESSION["id"] = $row["userid"];
 						}
 
-						header("Location: " $_SERVER["DOCUMENT_ROOT"]."/index.php");
+						header("Location: ../index.php");
 					}		
 				} else {
-					header("Location: "$_SERVER["DOCUMENT_ROOT"]."/register.php?msg=used");
+					header("Location: ../register.php?msg=used");
 				}
 			}
 		}

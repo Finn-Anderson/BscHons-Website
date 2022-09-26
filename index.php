@@ -39,8 +39,8 @@
 				<div class="locationLine"></div>
 			</div>
 			<div id="locationText">
-				<h1>Interactable Map <span>&#8594;</span></h1>
-				<span>Click one of the circles on an island to learn more about that island!</span>
+				<h1>Interactable Map &#8594;</h1>
+				<p>Click one of the circles on an island to learn more about that island!</p>
 				<a href="">Learn More</a>
 			</div>
 		</div>

@@ -1,10 +1,13 @@
 <?php include "head.php" ?>
 <header>
-	<a class="booking" href="booking.php">Booking<span></span></a>
 	<div>
+		<a class="booking" href="booking.php">Booking<span></span></a>
+	</div>
+	<div id="homeDiv">
 		<a class="home" href="/"></a>
 	</div>
 
+	<div>
 	<?php 
 		session_start();
 
@@ -14,6 +17,7 @@
 			echo "<a class='auth' href='login.php'>Login<span></span></a>";
 		}
 	?>
+	</div>
 </header>
 <script type="text/javascript">
 	var url = window.location.pathname;

@@ -3,7 +3,7 @@
 	transition: background-image .2s;
 }
 
-span {
+span, input[type=checkbox] {
 	transition: all .4s;
 }
 

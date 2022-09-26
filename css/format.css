@@ -17,18 +17,26 @@ header {
 	text-align: center;
 }
 
-header div {
+header #homeDiv {
 	position: relative;
 	display: inline-block;
+	width: max-content;
 	padding: 24px 24px 16px 24px;
 	border: 2px solid;
 	border-radius: 50%;
-	position: relative;
 	bottom: 24px;
 }
 
 header a {
 	display: inline-block;
+}
+
+header div {
+	display: inline-block;
+	vertical-align: top;
+	width: 86px;
+	margin: 8px;
+	text-align: left;
 }
 
 .home {
@@ -48,12 +56,10 @@ header a {
 .booking, .auth {
 	font-size: 22px;
 	letter-spacing: 1px;
-	vertical-align: top;
-	margin: 8px 24px;
 	text-decoration: none;
 }
 
-.booking:hover span, .auth:hover span, .booking.current, .auth.current, #authForm a:hover span {
+.booking:hover span, .auth:hover span, .booking.current, .auth.current, .booking.current span, .auth.current span, #authForm a:hover span {
 	opacity: 1;
 	top: 8px;
 }
@@ -188,15 +194,6 @@ footer div {
 	margin-top: 64px;
 }
 
-#locationText h1 span {
-	display: inline;
-	font-size: 48px;
-}
-
-#locationText span {
-	display: block;
-}
-
 #locationText a, #introTxt a {
 	width: max-content;
 	padding: 12px;
@@ -301,9 +298,11 @@ footer div {
 
 /* LOGIN/REGISTER */
 #authDiv {
+	position: relative;
+	top: 116;
 	display: flex;
 	width: 100%;
-	height: 100%;
+	min-height: calc(100% - 116px);
 	justify-content: center;
 	align-items: center;
 }
@@ -311,7 +310,7 @@ footer div {
 #authForm {
 	border: 1px solid;
 	border-radius: 4px;
-	padding: 0px 16px 16px 16px;
+	padding: 32px;
 }
 
 #authForm input[type="text"], #authForm input[type="password"], #authForm a, #authForm button {
@@ -320,28 +319,48 @@ footer div {
 }
 
 #authForm label {
-	margin-left: 2px;
+	margin-left: 4px;
+	letter-spacing: 0.5px;
 }
 
 #authForm h1 {
 	text-align: center;
+	margin: 0px;
+	margin-bottom: 48px;
 }
 
 #authForm input[type="text"], #authForm input[type="password"] {
-	width: 250px;
-	height: 30px;
+	width: 300px;
+	height: 36px;
 	padding: 8px;
-	margin-top: 8px;
-	margin-bottom: 16px;
+	margin: 24px 0px;
 	border: 1px solid;
 	border-radius: 24px;
 }
 
+input[type=checkbox] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 4px;
+	width: 20;
+	height: 20;
+	padding: 0px 4px;
+	border: 1px solid;
+	cursor: pointer;
+}
+
+input[type=checkbox]:before {
+	display: inline-block;
+	content: "\2713";
+}
+
 #authForm button {
-	width: 100%;
-	padding: 8px;
+	width: 66%;
+	padding: 12px;
 	font-size: 18px;
-	margin: 24px auto;
+	margin: 48px auto;
+	margin-bottom: 0px;
 	border: 1px solid;
 	border-radius: 4px;
 }
@@ -353,6 +372,11 @@ footer div {
 
 #authForm a {
 	width: max-content;
-	margin: 12px auto;
-	margin-top: 24px;
+	margin: 0px auto;
+	margin-top: 36px;
+	letter-spacing: 1px;
+}
+
+.warning {
+	text-align: center;
 }

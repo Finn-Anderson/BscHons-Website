@@ -1,6 +1,6 @@
 <html lang="en">
 	<?php $title = "Register Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>	
-	<body>
+	<body id="bgImg">
 		<!-- Displays register form inputs and submit -->
 		<div id="authDiv">
 			<form id="authForm" action="includes/insertDB.php" method="post">
@@ -9,13 +9,13 @@
 				<?php
 					// Displays register fail message if msg is set
 					if (isset($_GET["msg"]) && $_GET["msg"] == "failed") {
-						echo "<p class='failMsg'>Invalid values inputted</p><br>";
+						echo "<p class='warning'>Invalid values inputted</p><br>";
 					} elseif (isset($_GET["msg"]) && $_GET["msg"] == "used") {
-						echo "<p class='failMsg'>Email already in use</p><br>";
+						echo "<p class='warning'>Email already in use</p><br>";
 					} elseif (isset($_GET["msg"]) && $_GET["msg"] == "email") {
-						echo "<p class='failMsg'>Invalid email inputted</p><br>";
+						echo "<p class='warning'>Invalid email inputted</p><br>";
 					} elseif (isset($_GET["msg"]) && $_GET["msg"] == "password") {
-						echo "<p class='failMsg'>Invalid passwords inputted</p><br>";
+						echo "<p class='warning'>Invalid passwords inputted</p><br>";
 					}
 				?>
 
