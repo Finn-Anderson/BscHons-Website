@@ -13,7 +13,7 @@
 		$pw = hash("sha512", $password);
 
 		// stmt to select row
-		$stmt = $conn->prepare("SELECT userID FROM Users WHERE email = :email AND password = :pwd");
+		$stmt = $conn->prepare("SELECT userID FROM User WHERE email = :email AND password = :pwd");
 		$stmt->bindValue(":email", $email, PDO::PARAM_STR);
 		$stmt->bindValue(":pwd", $pw, PDO::PARAM_STR);
 		$stmt->execute();
@@ -28,9 +28,21 @@
 				$_SESSION["authorized"] = TRUE;
 				$_SESSION["id"] = $row["userID"];
 
+				$stmtCount = $conn->prepare("SELECT bookingID FROM Booking WHERE userID = :id");
+				$stmtCount->bindValue(':value', $value);
+				$stmtCount->bindValue(':id', $_SESSION['id']);
+				$stmtCount->execute();
+
+				$_SESSION["bookingTally"] = $stmtCount->rowCount();
+
 				if (isset($_POST["remember"])) {
 					$value = bin2hex(random_bytes(16));
 					setcookie("AblaCruisesRemember", $value, time()+60*60*24*30, "/");
+
+					$stmtRemember = $conn->prepare("UPDATE User SET rememberID = :value WHERE userID = :id");
+					$stmtRemember->bindValue(':value', $value);
+					$stmtRemember->bindValue(':id', $_SESSION['id']);
+					$stmtRemember->execute();
 				}
 
 				header("Location: ../index.php");

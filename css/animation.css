@@ -20,3 +20,9 @@ span, input[type=checkbox] {
 .locationPointer {
 	transition: max-width 3s;
 }
+
+
+/* BOOKING.PHP */
+#islandBookDiv label  {
+	transition: all .2s;
+}

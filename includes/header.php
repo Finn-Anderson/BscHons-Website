@@ -1,7 +1,7 @@
 <?php include "head.php" ?>
 <header>
 	<div>
-		<a class="booking" href="booking.php">Booking<span></span></a>
+		<a class="booking" href="/booking.php">Booking<span></span></a>
 	</div>
 	<div id="homeDiv">
 		<a class="home" href="/"></a>
@@ -9,12 +9,10 @@
 
 	<div>
 	<?php 
-		session_start();
-
 		if (isset($_SESSION["authorized"])) {
-			echo "<a class='auth' href='account.php'>Account<span></span></a>";
+			echo "<a class='auth' href='/account.php'>Account<span></span></a>";
 		} else {
-			echo "<a class='auth' href='login.php'>Login<span></span></a>";
+			echo "<a class='auth' href='/login.php'>Login<span></span></a>";
 		}
 	?>
 	</div>
@@ -22,7 +20,7 @@
 <script type="text/javascript">
 	var url = window.location.pathname;
 	switch(url) {
-		case "/": case "/island/mallaig.php": case "/island/eigg.php": case "/island/muck.php": case "/island/rum.php": case "/island/ceilidh.php":
+		case "/": case "/island/mallaig.php": case "/island/eigg.php": case "/island/muck.php": case "/island/rum.php": case "/island/ceilidh.php": case "/login.php": case "/register.php":
 			document.getElementsByClassName("home")[0].parentElement.classList.toggle("bright");
 			document.getElementsByClassName("booking")[0].classList.toggle("bright");
 			document.getElementsByClassName("auth")[0].classList.toggle("bright");

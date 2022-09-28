@@ -64,7 +64,7 @@ header div {
 	top: 8px;
 }
 
-span {
+header span, #authDiv span {
 	position: relative;
 	top: 0px;
 	display: block;
@@ -150,13 +150,13 @@ footer div {
 	width: 20vw;
 	margin: 24px;
 	padding: 0px 16px 16px 16px;
-	border-radius: 4px;
-	border: 1px solid;
 	text-align: center;
 }
 
 #companyInfo div h1 {
-	margin: 24px 0px;
+	margin: 0px;
+	padding-bottom: 12px;
+	border-bottom: 4px solid;
 }
 
 #mapDiv {
@@ -309,7 +309,8 @@ footer div {
 
 #authForm {
 	border: 1px solid;
-	border-radius: 4px;
+	border-radius: 8px;
+	box-shadow: 0px 0px 16px -8px #000;
 	padding: 32px;
 }
 
@@ -379,4 +380,104 @@ input[type=checkbox]:before {
 
 .warning {
 	text-align: center;
+}
+
+
+/* BOOKING.PHP */
+#bookingIntro {
+	display: grid;
+	grid-template-rows: auto auto auto;
+	grid-template-columns: 200px 200px;
+	justify-content: center;
+	justify-items: center;
+	padding: 148px 0px 64px 0px;
+}
+
+#bookingIntro h1, #bookingIntro #dashLine {
+	grid-column: 1 / span 2;
+}
+
+#bookingIntro > .status, #bookingIntro > .statusBlurb {
+	grid-column: 1;
+}
+
+#bookingIntro > .status ~ .status, #bookingIntro > .statusBlurb ~ .statusBlurb {
+	grid-column: 2;
+}
+
+#bookingIntro h1 {
+	grid-row: 1;
+	font-size: 36px;
+}
+
+#bookingIntro .status, #bookingIntro #dashLine {
+	grid-row: 2;
+	margin: 0px;
+	margin-top: 8px;
+}
+
+#bookingIntro .statusBlurb {
+	grid-row: 3;
+}
+
+#bookingIntro .status {
+	width: 36px;
+	height: 36px;
+	text-align: center;
+	line-height: 34px;
+	border: 1px solid;
+	border-radius: 24px;
+}
+
+#dashLine {
+	height: 4px;
+	width: 132px;
+	align-self: center;
+	background-image: linear-gradient(to right, #222 50%, rgba(255,255,255,0) 0%);
+	background-position: left;
+	background-size: 24px 4px;
+	background-repeat: repeat-x;
+}
+
+#islandBookDiv {
+	display: flex;
+	text-align: center;
+	padding: 0px 8px;
+}
+
+#islandBookDiv div {
+	margin: 8px;
+}
+
+#islandBookDiv h1, #islandBookDiv p {
+	margin: 0px;
+}
+
+#islandBookDiv h1 {
+	padding: 21px 0px;
+	border-top-right-radius: 2px;
+	border-top-left-radius: 2px;
+}
+
+#islandBookDiv p {
+	padding: 8px;
+	padding-bottom: 88px;
+	border: 1px solid;
+	border-top: none;
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
+#islandBookDiv input {
+	display: none;
+}
+
+#islandBookDiv label {
+	display: inline-block;
+	position: relative;
+	bottom: 66px;
+	padding: 12px 48px;
+	border: 1px solid;
+	border-radius: 2px;
+	cursor: pointer;
 }

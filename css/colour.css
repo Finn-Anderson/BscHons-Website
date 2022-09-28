@@ -1,4 +1,4 @@
-span, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked {
+header span, #authDiv span, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid {
 	background-color: #ff7f50;
 }
 
@@ -6,11 +6,15 @@ footer {
 	background-color: #222;
 }
 
+#bgImg {
+	background: linear-gradient(135deg, #ff5079, #7f50ff);
+}
+
 #locationText a:hover, #introTxt a:hover, #authForm:valid button:hover {
 	background-color: #ff926a;
 }
 
-#companyInfo, #about, #authForm:invalid button {
+#companyInfo, #about, #authForm:invalid button, #authForm {
 	background-color: #fff;
 }
 
@@ -18,19 +22,39 @@ footer {
 	background-color: navajowhite;
 }
 
-footer p, #authForm:invalid button {
+#islandBookEigg h1, #islandBookEigg label:hover {
+	background-color: #50d0ff;
+}
+
+#islandBookMuck h1, #islandBookMuck label:hover {
+	background-color: #36B13A;
+}
+
+#islandBookRum h1, #islandBookRum label:hover {
+	background-color: #ff5079;
+}
+
+#islandBookMallaig h1, #islandBookMallaig label:hover {
+	background-color: #7f50ff;
+}
+
+#islandBookCeilidh h1, #islandBookCeilidh label:hover {
+	background-color: #ffd750;
+}
+
+footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .status {
 	color: #707070;
 }
 
-.booking, .auth, #authForm a {
+.booking, .auth, #authForm a, #calendar a {
 	color: #000;
 }
 
-.booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before {
+.booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before, #islandBookDiv h1, #islandBookDiv label:hover, #bookingIntro .status.valid {
 	color: #fff;
 }
 
-.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover {
+.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1 {
 	color: #ff7f50;
 }
 
@@ -50,11 +74,11 @@ footer p, #authForm:invalid button {
 	border-color: #fff;
 }
 
-#companyInfo div, #about div img, #authForm, #authForm:invalid button {
+#about div img, #authForm, #authForm:invalid button {
 	border-color: #c2c2c2;
 }
 
-#authForm input[type="text"], #authForm input[type="password"], input[type=checkbox] {
+#authForm input[type="text"], #authForm input[type="password"], input[type=checkbox], #bookingIntro .status {
 	border-color: #707070;
 }
 
@@ -66,10 +90,30 @@ footer p, #authForm:invalid button {
 	border-color: #ff5079;
 }
 
-input[type=checkbox]:checked {
+input[type=checkbox]:checked, #bookingIntro .status.valid {
 	border-color: #ff7f50;
 }
 
+#islandBookEigg label:hover {
+	border-color: #50d0ff;
+}
+
+#islandBookMuck label:hover {
+	border-color: #36B13A;
+}
+
+#islandBookRum label:hover {
+	border-color: #ff5079;
+}
+
+#islandBookMallaig label:hover {
+	border-color: #36B13A;
+}
+
+#islandBookCeilidh label:hover {
+	border-color: #7f50ff;
+}
+
 #authForm input {
-	outline-color: #ff7f50;
+	outline-color: #ffd750;
 }

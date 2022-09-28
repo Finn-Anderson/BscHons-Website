@@ -10,17 +10,17 @@
 		</div>
 		<div id="about">
 			<div>
-				<h1>Location</h1>
+				<h1>About</h1>
 				<p></p>
 				<img src="">
 			</div>
 			<div id="reverse">
-				<h1>History</h1>
+				<h1>Local Services</h1>
 				<p></p>
 				<img src="">
 			</div>
 			<div>
-				<h1>Local Services</h1>
+				<h1>Cruise Times</h1>
 				<p></p>
 				<img src="">
 			</div>
