@@ -1,4 +1,4 @@
-header span, #authDiv span, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid {
+header span, #authDiv span, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover {
 	background-color: #ff7f50;
 }
 
@@ -22,44 +22,52 @@ footer {
 	background-color: navajowhite;
 }
 
-#islandBookEigg h1, #islandBookEigg label:hover {
+#calendar td:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+#islandBookEigg h1, #islandBookEigg label:hover, #islandBookEigg input:checked + label, #calendar td.eiggColour {
 	background-color: #50d0ff;
 }
 
-#islandBookMuck h1, #islandBookMuck label:hover {
+#islandBookMuck h1, #islandBookMuck label:hover, #islandBookMuck input:checked + label, #calendar td.muckColour {
 	background-color: #36B13A;
 }
 
-#islandBookRum h1, #islandBookRum label:hover {
+#islandBookRum h1, #islandBookRum label:hover, #islandBookRum input:checked + label, #calendar td.rumColour {
 	background-color: #ff5079;
 }
 
-#islandBookMallaig h1, #islandBookMallaig label:hover {
+#islandBookMallaig h1, #islandBookMallaig label:hover, #islandBookMallaig input:checked + label, #calendar td.mallaigColour {
 	background-color: #7f50ff;
 }
 
-#islandBookCeilidh h1, #islandBookCeilidh label:hover {
+#islandBookCeilidh h1, #islandBookCeilidh label:hover, #islandBookCeilidh input:checked + label, #calendar td.ceilidhColour {
 	background-color: #ffd750;
 }
 
-footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .status {
-	color: #707070;
+footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .status, #calendar td {
+	color: #777;
 }
 
-.booking, .auth, #authForm a, #calendar a {
+.booking, .auth, #authForm a, #calendar a, #bookingIntro .statusBlurb.focus {
 	color: #000;
 }
 
-.booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before, #islandBookDiv h1, #islandBookDiv label:hover, #bookingIntro .status.valid {
+.booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before, #islandBookDiv h1, #islandBookDiv label:hover, #bookingIntro .status.valid, #islandBookDiv input:checked + label, #calendar td.validDate  {
 	color: #fff;
 }
 
-.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1 {
+.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1, #monthHeader button:hover {
 	color: #ff7f50;
 }
 
 .warning {
 	color: #ff5079;
+}
+
+#calendar td.outsideColour {
+	color: #c2c2c2;
 }
 
 #locationDiv .locationButton, #home, #companyInfo div {
@@ -78,42 +86,48 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	border-color: #c2c2c2;
 }
 
-#authForm input[type="text"], #authForm input[type="password"], input[type=checkbox], #bookingIntro .status {
-	border-color: #707070;
+#authForm input[type="text"], #authForm input[type="password"], input[type=checkbox], #bookingIntro .status, #calendar td {
+	border-color: #777;
 }
 
-#authForm input[type="text"]:valid, #authForm input[type="password"]:valid {
-	border-color: #50ff7f;
+#authForm input[type="text"]:valid, #authForm input[type="password"]:valid, #islandBookMuck label:hover, #islandBookMuck input:checked + label, #calendar td.muckColour {
+	border-color: #36B13A;
 }
 
 #authForm input.invalid {
 	border-color: #ff5079;
 }
 
-input[type=checkbox]:checked, #bookingIntro .status.valid {
+input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover {
 	border-color: #ff7f50;
 }
 
-#islandBookEigg label:hover {
+#islandBookEigg label:hover, #islandBookEigg input:checked + label, #calendar td.eiggColour {
 	border-color: #50d0ff;
 }
 
-#islandBookMuck label:hover {
-	border-color: #36B13A;
-}
-
-#islandBookRum label:hover {
+#islandBookRum label:hover, #islandBookRum input:checked + label, #calendar td.rumColour {
 	border-color: #ff5079;
 }
 
-#islandBookMallaig label:hover {
-	border-color: #36B13A;
-}
-
-#islandBookCeilidh label:hover {
+#islandBookMallaig label:hover, #islandBookMallaig input:checked + label, #calendar td.mallaigColour {
 	border-color: #7f50ff;
 }
 
+#islandBookCeilidh label:hover, #islandBookCeilidh input:checked + label, #calendar td.ceilidhColour {
+	border-color: #7f50ff;
+}
+
+#monthHeader > button, #monthHeader > button ~ button {
+	border-top-color: #aaa;
+	border-bottom-color: #aaa;
+}
+
+#monthHeader > button:hover, #monthHeader > button ~ button:hover {
+	border-top-color: #ff7f50;
+	border-bottom-color: #ff7f50;
+}
+
 #authForm input {
-	outline-color: #ffd750;
+	outline-color: #ff7f50;
 }

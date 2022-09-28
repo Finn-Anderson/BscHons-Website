@@ -1,7 +1,7 @@
 body {
 	padding: 0px;
 	margin: 0px;
-	font-family: Tahoma, Helvetica, sans-serif;
+	font-family: Open Sans, Helvetica, sans-serif;
 	overflow: auto;
 	min-height: 100vh;
 }
@@ -336,18 +336,18 @@ footer div {
 	padding: 8px;
 	margin: 24px 0px;
 	border: 1px solid;
-	border-radius: 24px;
+	border-radius: 4px;
 }
 
 input[type=checkbox] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	border-radius: 4px;
 	width: 20;
 	height: 20;
 	padding: 0px 4px;
 	border: 1px solid;
+	border-radius: 4px;
 	cursor: pointer;
 }
 
@@ -420,6 +420,10 @@ input[type=checkbox]:before {
 	grid-row: 3;
 }
 
+#bookingIntro .statusBlurb.focus {
+	font-weight: 600;
+}
+
 #bookingIntro .status {
 	width: 36px;
 	height: 36px;
@@ -433,7 +437,7 @@ input[type=checkbox]:before {
 	height: 4px;
 	width: 132px;
 	align-self: center;
-	background-image: linear-gradient(to right, #222 50%, rgba(255,255,255,0) 0%);
+	background-image: linear-gradient(to right, #777 50%, rgba(255,255,255,0) 0%);
 	background-position: left;
 	background-size: 24px 4px;
 	background-repeat: repeat-x;
@@ -479,5 +483,76 @@ input[type=checkbox]:before {
 	padding: 12px 48px;
 	border: 1px solid;
 	border-radius: 2px;
+	cursor: pointer;
+}
+
+#checkoutDiv {
+	height: max-content;
+	max-height: 0px;
+	padding: 0 10%;
+	margin-bottom: 56px;
+	overflow: hidden;
+	opacity: 0;
+}
+
+#calendarDiv {
+	display: inline-block;
+	width: max-content;
+	border: 1px solid;
+	border-radius: 8px;
+}
+
+#monthHeader {
+	display: grid;
+	grid-template-columns: 84% auto auto;
+	justify-content: center;
+	align-items: center;
+	padding: 8px;
+	border-bottom: 1px solid;
+}
+
+#monthHeader button {
+	height: 0;
+	width: 0;
+	padding: 0;
+	margin: 4px;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+#monthHeader > button {
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 16px solid;
+}
+
+#monthHeader > button ~ button {
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 16px solid;
+	border-bottom: none;
+}
+
+#monthHeader h1 {
+	font-size: 24px;
+	text-align: center;
+	margin: 0px;
+}
+
+#calendar {
+	border-spacing: 32px 16px;
+}
+
+#calendar td {
+	height: 24px;
+	width: 24px;
+	border-radius: 50%;
+	text-align: center;
+	cursor: default;
+}
+
+#calendar .validDate {
+	border: 1px solid;
 	cursor: pointer;
 }
