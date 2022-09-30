@@ -125,10 +125,19 @@
 							</tr>
 						</tbody>
 					</table>
-					<input type="hidden" name="dateChosen">
-
-
+					<input type="hidden" name="dateChosen" required>
 				</div>
+				<p class="departureTime"></p>
+				<p class="departureTime"></p>
+				<select id="fromSelect" name="departure" onchange="displayCalendarDays(document.getElementById('monthHeader').querySelector('button').id)" required>
+						
+				</select>
+
+				<label>Yes</label>
+				<input type="radio" name="return" value="yes" onchange="displayDepartureTimes()">
+
+				<label>No</label>
+				<input type="radio" name="return" value="no" checked="checked" onchange="displayDepartureTimes()">
 			</div>
 		</form>
 	</body>
@@ -140,11 +149,11 @@
 				document.getElementsByClassName("statusBlurb")[0].classList.remove("focus");
 				document.getElementsByClassName("statusBlurb")[1].classList.add("focus");
 
+				var month = 8;
 				if (document.getElementById("monthHeader").querySelector("button").id) {
-					var month = parseInt(document.getElementById("monthHeader").querySelector("button").id);
-				} else {
-					var month = 8;
+					month = parseInt(document.getElementById("monthHeader").querySelector("button").id);
 				}
+
 				displayCalendarDays(month);
 			} else {
 				document.getElementsByClassName("status")[1].classList.add("valid");
@@ -157,49 +166,57 @@
 
 		function displayCalendarDays(month) {
 			if (month > 3 && month < 10) {
-				var table = document.getElementById("calendar");
+				const table = document.getElementById("calendar");
 
 				for (var i = 1; i < 7; i++) {
 					for (var j = 0; j < 7; j++) {
 						table.rows[i].cells[j].innerHTML = "";
-						table.rows[i].cells[j].classList.remove("eiggColour", "muckColour", "rumColour", "mallaigColour", "ceilidhColour", "validDate", "outsideColour");
+						table.rows[i].cells[j].classList.remove("eiggColour", "muckColour", "rumColour", "mallaigColour", "ceilidhColour", "validDate", "outsideColour", "selectedDate");
 					}
 				}
+				document.querySelector("[name='dateChosen']").value = "";
+
 
 				var island = document.querySelector("input[name='island']:checked").value;
-
-				var dayList = getDayList(island);
 
 				if (island == "ceilidh") {
 					month = 9;
 				}
 
-				var day = new Date(2022, month, 1);
+				const year = new Date().getFullYear();
+				var day = new Date(year, month, 1);
 
 				const monthName = day.toLocaleString('default', { month: 'long' });
-				document.getElementById("monthHeader").querySelector("h1").innerHTML = monthName +", 2022";
+				document.getElementById("monthHeader").querySelector("h1").innerHTML = monthName + ", " + year;
 
 				if (day.getDay() != 1) {
-					day = new Date(2022, month, 2 - day.getDay());
+					day = new Date(year, month, 2 - day.getDay());
 				}
-				var row = 1;
 
-				var buttons = document.getElementById("monthHeader").querySelectorAll("button");
+				populateSelect(island);
+				checkReturn();
+				const dayList = getDayList(island);
+
+				const buttons = document.getElementById("monthHeader").querySelectorAll("button");
 				for (var i = 0; i < buttons.length; i++) {
 					buttons[i].id = month;
 				}
 
+				var row = 1;
 				while (!table.rows[6].cells[6].innerHTML) {
 
+					var cell;
 					if (day.getDay() == 0) {
-						var cell = 6;
+						cell = 6;
 					} else {
-						var cell = day.getDay() - 1;
+						cell = day.getDay() - 1;
 					}
 
 					table.rows[row].cells[cell].innerHTML = day.getDate();
 
 					if (day.getMonth() == month) {
+						const targetDate = new Date(2022, 9, 27);
+
 						if (dayList && dayList.includes(day.getDay())) {
 							if (day.getDay() == 0 || day.getDay() == 6) {
 								if (day.getMonth() == 5 || day.getMonth() == 6 || day.getMonth() == 7) {
@@ -208,12 +225,9 @@
 							} else {
 								applyCalendarColours(island, table.rows[row].cells[cell]);
 							}
-						} else {
-							var targetDate = new Date(2022, 9, 27);
-							if (day.toDateString() == targetDate.toDateString()) {
-								table.rows[row].cells[cell].classList.add("ceilidhColour");
-								table.rows[row].cells[cell].classList.add("validDate");
-							}
+						} else if (day.toDateString() == targetDate.toDateString() && island == "ceilidh") {
+							table.rows[row].cells[cell].classList.add("ceilidhColour");
+							table.rows[row].cells[cell].classList.add("validDate");
 						}
 					} else {
 						table.rows[row].cells[cell].classList.add("outsideColour");
@@ -228,8 +242,63 @@
 			}
 		}
 
+		var destinationCheck;
+		function populateSelect(destination) {
+			if (destinationCheck != destination) {
+				destinationCheck = destination;
+
+				var list = document.getElementById("fromSelect");
+				for (var i = list.options.length; i >= 0; i--) {
+					list.remove(i);
+				}
+
+				if (destination == "eigg" || destination == "ceilidh") {
+					var option = document.createElement("option");
+					option.text = "Mallaig";
+					option.value = "mallaig";
+					list.add(option);
+
+					var option = document.createElement("option");
+					option.text = "Muck";
+					option.value = "muck";
+					list.add(option);
+					
+					var option = document.createElement("option");
+					option.text = "Rum";
+					option.value = "rum";
+					list.add(option);
+				} else if (destination == "muck" || destination == "rum") {
+					var option = document.createElement("option");
+					option.text = "Mallaig";
+					option.value = "mallaig";
+					list.add(option);
+
+					var option = document.createElement("option");
+					option.text = "Eigg";
+					option.value = "eigg";
+					list.add(option);
+				} else if (destination == "mallaig") {
+					var option = document.createElement("option");
+					option.text = "Eigg";
+					option.value = "eigg";
+					list.add(option);
+
+					var option = document.createElement("option");
+					option.text = "Muck";
+					option.value = "muck";
+					list.add(option);
+					
+					var option = document.createElement("option");
+					option.text = "Rum";
+					option.value = "rum";
+					list.add(option);
+				}
+			} 
+		}
+
 		function getDayList(destination) {
-			var from = document.querySelector("input[name='island']:checked").value;
+			var from = document.getElementById("fromSelect").value;
+			var returnBooked = document.querySelector("input[name='return']:checked").value;
 			var list = [];
 			var index = 0;
 
@@ -296,6 +365,54 @@
 			return list;
 		}
 
+		function displayDepartureTimes() {
+			var from = document.getElementById("fromSelect").value;
+			var to = document.querySelector("input[name='island']:checked").value;
+
+			var paragraphs = document.querySelectorAll(".departureTime");
+			var time;
+
+			paragraphs[0].innerHTML = "";
+			paragraphs[1].innerHTML = "";
+
+			if (from == "mallaig") {
+				time = "11:00";
+			} if (from == "eigg") {
+				if (to == "mallaig") {
+					time = "16:30";
+				} else {
+					time = "12:30";
+				}
+			} else if (from == "muck") {
+				time = "15:30";
+			} else if (from == "rum") {
+				if (to == "mallaig") {
+					time = "15:45";
+				} else {
+					time = "15:30";
+				}
+			}
+
+			paragraphs[0].innerHTML = from + " Departure: " + time;
+
+			if (document.querySelector("input[name='return']:checked").value == "yes") {
+				if (to == "eigg") {
+					time = "16:30";
+				} else if (to == "muck") {
+					time = "15:30";
+				} else if (to == "rum") {
+					var date = new Date(2022, parseInt(document.getElementById("monthHeader").querySelector("button").id), document.querySelector("[name='dateChosen']").value);
+
+					if (date.getDay() == 4) {
+						time = "15:45";
+					} else {
+						time = "15:30";
+					}
+				}
+				paragraphs[1].innerHTML = to + " Departure: " + time;
+			}
+		}
+
 		function applyCalendarColours(island, elem) {
 			if (island == "eigg") {
 				elem.classList.add("eiggColour");
@@ -313,8 +430,20 @@
 		}
 
 		function inputDate(day) {
-			if (day.classList.contains("validDate"))
-				document.querySelector("[name='dateChosen']").value = day.innerHTML;
+			if (day.classList.contains("validDate")) {
+				var d = day.innerHTML;
+				if (d < 10) {
+					d = "0" + d;
+				}
+
+				var month = parseInt(document.getElementById("monthHeader").querySelector("button").id) + 1;
+				if (month < 10) {
+					month = "0" + month;
+				}
+
+				var year = new Date().getFullYear();
+
+				document.querySelector("[name='dateChosen']").value = d + "/" + month + "/" + year;
 
 				var dates = document.querySelectorAll(".selectedDate");
 				for (var i = 0; i < dates.length; i++) {
@@ -322,6 +451,24 @@
 				}
 
 				day.classList.add("selectedDate");
+
+				displayDepartureTimes();
+			}
+		}
+
+		function checkReturn() {
+			var from = document.getElementById("fromSelect").value;
+			var to = document.querySelector("input[name='island']:checked").value;
+			var returnInputs = document.querySelectorAll("input[name='return']");
+
+			if ((from != "mallaig" && from != "eigg") || to == "mallaig") {
+				returnInputs[0].disabled = true;
+				returnInputs[1].checked = true;
+			} else {
+				returnInputs[0].disabled = false;
+			}
+
+			displayDepartureTimes();
 		}
 	</script>
 </html>

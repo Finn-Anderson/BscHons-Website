@@ -115,7 +115,7 @@ input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDat
 }
 
 #islandBookCeilidh label:hover, #islandBookCeilidh input:checked + label, #calendar td.ceilidhColour {
-	border-color: #7f50ff;
+	border-color: #ffd750;
 }
 
 #monthHeader > button, #monthHeader > button ~ button {
