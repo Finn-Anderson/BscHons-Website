@@ -119,12 +119,12 @@ footer div {
 	color: white;
 	top: 35%;
 	left: 50%;
-	transform: translate(-50%, -65%);
+	transform: translate(-50%, -55%);
 	text-align: center;
 }
 
 #introTxt h1 {
-	font-size: 72px;
+	font-size: 100px;
 	letter-spacing: 2px;
 	margin-bottom: 24px;
 }
@@ -137,6 +137,7 @@ footer div {
 #introTxt a {
 	display: inline-block;
 	margin-top: 48px;
+	font-size: 30px;
 }
 
 #companyInfo, #about {
@@ -196,15 +197,15 @@ footer div {
 
 #locationText a, #introTxt a {
 	width: max-content;
-	padding: 12px;
-	font-size: 18px;
 	letter-spacing: 1px;
 	border-radius: 2px;
+	padding: 12px;
 }
 
 #locationText a {
 	margin-top: 24px;
 	display: none;
+	font-size: 20px;
 }
 
 .locationPointer {
@@ -427,6 +428,7 @@ input[type=checkbox]:before {
 #bookingIntro .status {
 	width: 36px;
 	height: 36px;
+	font-size: 24px;
 	text-align: center;
 	line-height: 34px;
 	border: 1px solid;
@@ -458,16 +460,13 @@ input[type=checkbox]:before {
 }
 
 #islandBookDiv h1 {
-	padding: 21px 0px;
-	border-top-right-radius: 2px;
-	border-top-left-radius: 2px;
+	padding: 12px 0px;
+	border-bottom: 4px solid;
 }
 
 #islandBookDiv p {
 	padding: 8px;
 	padding-bottom: 88px;
-	border: 1px solid;
-	border-top: none;
 	border-bottom-right-radius: 2px;
 	border-bottom-left-radius: 2px;
 }
@@ -487,73 +486,88 @@ input[type=checkbox]:before {
 }
 
 #checkoutDiv {
+	display: grid;
 	height: max-content;
 	max-height: 0px;
-	padding: 0 10%;
 	margin-bottom: 56px;
 	overflow: hidden;
 	opacity: 0;
+	justify-content: center;
+	justify-items: center;
+}
+
+#fromSelect {
+	display: block;
+	padding: 8px 24px;
+	font-size: 20px;
+	margin: 8px 0px 24px 0px;
+}
+
+label[for="fromSelect"] {
+	font-size: 24px;
 }
 
 #calendarDiv {
 	display: inline-block;
 	width: max-content;
-	border: 1px solid;
-	border-radius: 8px;
 }
 
 #monthHeader {
-	display: grid;
-	grid-template-columns: 84% auto auto;
-	justify-content: center;
-	align-items: center;
-	padding: 8px;
-	border-bottom: 1px solid;
+	text-align: center;
 }
 
 #monthHeader button {
-	height: 0;
-	width: 0;
-	padding: 0;
-	margin: 4px;
+	width: max-content;
 	background: none;
 	border: none;
+	padding: 0px;
+	margin: 4px;
+	font-size: 32px;
 	cursor: pointer;
 }
 
-#monthHeader > button {
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-bottom: 16px solid;
+#monthHeader > button:first-child {
+	margin-right: 32px;
 }
 
 #monthHeader > button ~ button {
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-top: 16px solid;
-	border-bottom: none;
+	margin-left: 32px;
 }
 
 #monthHeader h1 {
-	font-size: 24px;
+	display: inline-block;
+	width: 240px;
+	font-size: 32px;
 	text-align: center;
 	margin: 0px;
 }
 
+#monthHeader h1, #calendar th {
+	font-weight: normal;
+}
+
 #calendar {
-	border-spacing: 32px 16px;
+	border-spacing: 32px 8px;
+}
+
+#calendar thead {
+	text-align: center;
+}
+
+#calendar th {
+	width: 36px;
 }
 
 #calendar td {
-	height: 24px;
-	width: 24px;
-	border-radius: 50%;
+	height: 36px;
+	width: 36px;
+	line-height: 36px;
 	text-align: center;
+	border-radius: 50%;
 	cursor: default;
 }
 
 #calendar .validDate {
-	border: 1px solid;
 	cursor: pointer;
 }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php $title = "Home Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
+	<?php $title = "Booking Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
 	<body>
 		<div id="bookingIntro">
 			<h1>Booking</h1>
@@ -10,30 +10,30 @@
 			<p class="statusBlurb focus">Choose Island</p>
 			<p class="statusBlurb">Checkout</p>
 		</div>
-		<form onsubmit="addColour(2)">
+		<form onsubmit="changeStatus(2)">
 			<div id="islandBookDiv">
 				<div id="islandBookEigg">
 					<h1>Eigg</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Turpis egestas pretium aenean pharetra magna ac. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique. Diam phasellus vestibulum lorem sed risus ultricies. Sed risus pretium quam vulputate dignissim suspendisse in est. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Semper risus in hendrerit gravida. Massa massa ultricies mi quis. Nec ultrices dui sapien eget mi proin sed libero enim. Sed egestas egestas fringilla phasellus faucibus. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vitae justo eget magna fermentum iaculis eu non diam. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Sodales ut etiam sit amet nisl purus in mollis. Quis blandit turpis cursus in hac. Ut eu sem integer vitae justo eget magna.</p>
-					<input id="eigg" type="radio" name="island" value="eigg" onchange="addColour(1)">
+					<input id="eigg" type="radio" name="island" value="eigg" onchange="changeStatus(1)">
 					<label for="eigg">Book</label>
 				</div>
 				<div id="islandBookMuck">
 					<h1>Muck</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Turpis egestas pretium aenean pharetra magna ac. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique. Diam phasellus vestibulum lorem sed risus ultricies. Sed risus pretium quam vulputate dignissim suspendisse in est. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Semper risus in hendrerit gravida. Massa massa ultricies mi quis. Nec ultrices dui sapien eget mi proin sed libero enim. Sed egestas egestas fringilla phasellus faucibus. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vitae justo eget magna fermentum iaculis eu non diam. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Sodales ut etiam sit amet nisl purus in mollis. Quis blandit turpis cursus in hac. Ut eu sem integer vitae justo eget magna.</p>
-					<input id="muck"  type="radio" name="island" value="muck" onchange="addColour(1)">
+					<input id="muck"  type="radio" name="island" value="muck" onchange="changeStatus(1)">
 					<label for="muck">Book</label>
 				</div>
 				<div id="islandBookRum">
 					<h1>Rum</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Turpis egestas pretium aenean pharetra magna ac. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique. Diam phasellus vestibulum lorem sed risus ultricies. Sed risus pretium quam vulputate dignissim suspendisse in est. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Semper risus in hendrerit gravida. Massa massa ultricies mi quis. Nec ultrices dui sapien eget mi proin sed libero enim. Sed egestas egestas fringilla phasellus faucibus. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vitae justo eget magna fermentum iaculis eu non diam. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Sodales ut etiam sit amet nisl purus in mollis. Quis blandit turpis cursus in hac. Ut eu sem integer vitae justo eget magna.</p>
-					<input id="rum"  type="radio" name="island" value="rum" onchange="addColour(1)">
+					<input id="rum"  type="radio" name="island" value="rum" onchange="changeStatus(1)">
 					<label for="rum">Book</label>
 				</div>
 				<div id="islandBookMallaig">
 					<h1>Mallaig</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Turpis egestas pretium aenean pharetra magna ac. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique. Diam phasellus vestibulum lorem sed risus ultricies. Sed risus pretium quam vulputate dignissim suspendisse in est. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Semper risus in hendrerit gravida. Massa massa ultricies mi quis. Nec ultrices dui sapien eget mi proin sed libero enim. Sed egestas egestas fringilla phasellus faucibus. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vitae justo eget magna fermentum iaculis eu non diam. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Sodales ut etiam  id="eigg" sit amet nisl purus in mollis. Quis blandit turpis cursus in hac. Ut eu sem integer vitae justo eget magna.</p>
-					<input id="mallaig" type="radio" name="island" value="mallaig" onchange="addColour(1)">
+					<input id="mallaig" type="radio" name="island" value="mallaig" onchange="changeStatus(1)">
 					<label for="mallaig">Book</label>
 				</div>
 				
@@ -43,18 +43,22 @@
 							echo "<h1>Ceilidh</h1>";
 							echo "<p></p>";
 							echo "<input id='ceilidh' type='radio' name='island' value='ceilidh'>";
-							echo "<label for='ceilidh' onclick='addColour(1, this.parentElement.id)'>Book</label>";
+							echo "<label for='ceilidh' onclick='changeStatus(1, this.parentElement.id)'>Book</label>";
 						echo "/div>";
 					}
 				?>
 			</div>
 
 			<div id="checkoutDiv">
+				<label for="fromSelect">From</label>
+				<select id="fromSelect" name="departure" onchange="displayCalendarDays(document.getElementById('monthHeader').querySelector('button').id)" required>
+						
+				</select>
 				<div id="calendarDiv">
 					<div id="monthHeader">
+						<button type="button" onclick="displayCalendarDays(id - 1)"><</button>
 						<h1></h1>
-						<button type="button" onclick="displayCalendarDays(id - 1)"></button>
-						<button type="button" onclick="displayCalendarDays(parseInt(id) + 1)"></button>
+						<button type="button" onclick="displayCalendarDays(parseInt(id) + 1)">></button>
 					</div>
 					<table id="calendar">
 						<thead>
@@ -129,21 +133,19 @@
 				</div>
 				<p class="departureTime"></p>
 				<p class="departureTime"></p>
-				<select id="fromSelect" name="departure" onchange="displayCalendarDays(document.getElementById('monthHeader').querySelector('button').id)" required>
-						
-				</select>
 
-				<label>Yes</label>
-				<input type="radio" name="return" value="yes" onchange="displayDepartureTimes()">
+				<p>Book Return?</p>
+				<label for="returnNo">Yes</label>
+				<input id="returnNo" type="radio" name="return" value="yes" onchange="displayDepartureTimes()">
 
-				<label>No</label>
-				<input type="radio" name="return" value="no" checked="checked" onchange="displayDepartureTimes()">
+				<label for="returnYes">No</label>
+				<input id="returnYes" type="radio" name="return" value="no" checked="checked" onchange="displayDepartureTimes()">
 			</div>
 		</form>
 	</body>
 	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
 	<script>
-		function addColour(num) {
+		function changeStatus(num) {
 			if (num == 1) {
 				document.getElementsByClassName("status")[0].classList.add("valid");
 				document.getElementsByClassName("statusBlurb")[0].classList.remove("focus");
@@ -187,7 +189,7 @@
 				var day = new Date(year, month, 1);
 
 				const monthName = day.toLocaleString('default', { month: 'long' });
-				document.getElementById("monthHeader").querySelector("h1").innerHTML = monthName + ", " + year;
+				document.getElementById("monthHeader").querySelector("h1").innerHTML = monthName + " " + year;
 
 				if (day.getDay() != 1) {
 					day = new Date(year, month, 2 - day.getDay());
@@ -228,6 +230,7 @@
 						} else if (day.toDateString() == targetDate.toDateString() && island == "ceilidh") {
 							table.rows[row].cells[cell].classList.add("ceilidhColour");
 							table.rows[row].cells[cell].classList.add("validDate");
+							table.rows[row].cells[cell].style.setProperty("--colour", "#ffd750");
 						}
 					} else {
 						table.rows[row].cells[cell].classList.add("outsideColour");
@@ -376,20 +379,24 @@
 			paragraphs[1].innerHTML = "";
 
 			if (from == "mallaig") {
-				time = "11:00";
+				if (to == "rum") {
+					time = "11:00 - 12:45";
+				} else {
+					time = "11:00 - 12:00";
+				}
 			} if (from == "eigg") {
 				if (to == "mallaig") {
-					time = "16:30";
+					time = "16:30 - 17:30";
 				} else {
-					time = "12:30";
+					time = "12:30 - 13:30";
 				}
 			} else if (from == "muck") {
-				time = "15:30";
+				time = "15:30 - 16:00";
 			} else if (from == "rum") {
 				if (to == "mallaig") {
-					time = "15:45";
+					time = "15:45 - 17:30";
 				} else {
-					time = "15:30";
+					time = "15:30 - 16:00";
 				}
 			}
 
@@ -397,16 +404,26 @@
 
 			if (document.querySelector("input[name='return']:checked").value == "yes") {
 				if (to == "eigg") {
-					time = "16:30";
+					time = "16:30 - 17:30";
 				} else if (to == "muck") {
-					time = "15:30";
-				} else if (to == "rum") {
-					var date = new Date(2022, parseInt(document.getElementById("monthHeader").querySelector("button").id), document.querySelector("[name='dateChosen']").value);
-
-					if (date.getDay() == 4) {
-						time = "15:45";
+					if (from == "mallaig") {
+						time = "15:30 - 17:30";
 					} else {
-						time = "15:30";
+						time = "15:30 - 16:00";
+					}
+				} else if (to == "rum") {
+					var date = document.querySelector("[name='dateChosen']").value;
+					var dateArray = date.split("/");
+					var day = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
+
+					if (day.getDay() == 4) {
+						time = "15:45 - 17:30";
+					} else {
+						if (from == "mallaig") {
+							time = "15:30 - 17:30";
+						} else {
+							time = "15:30 - 16:00";
+						}
 					}
 				}
 				paragraphs[1].innerHTML = to + " Departure: " + time;
@@ -417,15 +434,19 @@
 			if (island == "eigg") {
 				elem.classList.add("eiggColour");
 				elem.classList.add("validDate");
+				elem.style.setProperty("--colour", "#50d0ff");
 			} else if (island == "muck") {
 				elem.classList.add("muckColour");
 				elem.classList.add("validDate");
+				elem.style.setProperty("--colour", "#36B13A");
 			} else if (island == "rum") {
 				elem.classList.add("rumColour");
 				elem.classList.add("validDate");
+				elem.style.setProperty("--colour", "#ff5079");
 			} else if (island == "mallaig") {
 				elem.classList.add("mallaigColour");
 				elem.classList.add("validDate");
+				elem.style.setProperty("--colour", "#7f50ff");
 			}
 		}
 
