@@ -23,6 +23,22 @@ span, input[type=checkbox], #calendarDiv, #bookingIntro .status, #bookingIntro .
 
 
 /* BOOKING.PHP */
-#islandBookDiv label, #monthHeader button {
+#islandBookDiv label, #monthHeader button, .bookingRadio label {
 	transition: all .2s;
+}
+
+@keyframes revealAnim {
+	from {
+		opacity: 0;
+		max-height: 0;
+	}
+
+	to {
+		opacity: 1;
+		max-height: 1000px;
+	}
+}
+
+#checkoutDiv.bookingAnim {
+	animation: revealAnim 2s forwards;
 }

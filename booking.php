@@ -131,15 +131,53 @@
 					</table>
 					<input type="hidden" name="dateChosen" required>
 				</div>
-				<p class="departureTime"></p>
-				<p class="departureTime"></p>
 
-				<p>Book Return?</p>
-				<label for="returnNo">Yes</label>
-				<input id="returnNo" type="radio" name="return" value="yes" onchange="displayDepartureTimes()">
+				<div>
+					<div class="bookingRadio">
+						<p>Book Return?</p>
+						<input id="returnYes" type="radio" name="return" value="yes" onchange="displayDepartureTimes()">
+						<label for="returnYes">Yes</label>
 
-				<label for="returnYes">No</label>
-				<input id="returnYes" type="radio" name="return" value="no" checked="checked" onchange="displayDepartureTimes()">
+						<input id="returnNo" type="radio" name="return" value="no" checked="checked" onchange="displayDepartureTimes()">
+						<label for="returnNo">No</label>
+					</div>
+
+					<div class="bookingRadio">
+						<p>Wheelchair?</p>
+						<input id="wheelchairYes" type="radio" name="wheelchair" value="yes" onchange="displayDepartureTimes()">
+						<label for="wheelchairYes">Yes</label>
+
+						<input id="wheelchairNo" type="radio" name="wheelchair" value="no" checked="checked" onchange="displayDepartureTimes()">
+						<label for="wheelchairNo">No</label>
+					</div>
+
+					<a href="/#wheelchairInfo">Why can't I select wheelchair</a>
+				</div>
+
+				<div id="ageDiv">
+					<p>Age</p>
+					<label>0-2</label>
+					<select class="ageSelect" name="baby" onchange="selectNum()"></select>
+					<label>3-10</label>
+					<select class="ageSelect" name="child" onchange="selectNum()"></select>
+					<label>11-16</label>
+					<select class="ageSelect" name="teenager" onchange="selectNum()"></select>
+					<label>17+</label>
+					<select class="ageSelect" name="adult" onchange="selectNum()"></select>
+				</div>
+
+				<div id="bookingCost">
+					<div id="timeDiv">
+						<p class="departureRoute"></p>
+						<p class="departureTime"></p>
+						<p class="departureRoute"></p>
+						<p class="departureTime"></p>
+					</div>
+					<div id="priceDiv">
+						<p id="priceTxt">Book</p>
+						<p id="price">£0.00</p>
+					</div>
+				</div>
 			</div>
 		</form>
 	</body>
@@ -162,8 +200,7 @@
 				document.getElementsByClassName("statusBlurb")[1].classList.remove("focus");
 			}
 
-			document.getElementById("checkoutDiv").style.maxHeight = "100%";
-			document.getElementById("checkoutDiv").style.opacity = "1";
+			document.getElementById("checkoutDiv").classList.add("bookingAnim");
 		}
 
 		function displayCalendarDays(month) {
@@ -198,6 +235,7 @@
 				populateSelect(island);
 				checkReturn();
 				const dayList = getDayList(island);
+				tallyCost();
 
 				const buttons = document.getElementById("monthHeader").querySelectorAll("button");
 				for (var i = 0; i < buttons.length; i++) {
@@ -371,47 +409,53 @@
 		function displayDepartureTimes() {
 			var from = document.getElementById("fromSelect").value;
 			var to = document.querySelector("input[name='island']:checked").value;
+			from = from.replace(from[0], from[0].toUpperCase());
+			to = to.replace(to[0], to[0].toUpperCase());
 
-			var paragraphs = document.querySelectorAll(".departureTime");
+			var pRoute = document.querySelectorAll(".departureRoute");
+			var pTime = document.querySelectorAll(".departureTime");
 			var time;
 
-			paragraphs[0].innerHTML = "";
-			paragraphs[1].innerHTML = "";
+			pRoute[0].innerHTML = "";
+			pRoute[1].innerHTML = "";
+			pTime[0].innerHTML = "";
+			pTime[1].innerHTML = "";
 
-			if (from == "mallaig") {
-				if (to == "rum") {
+			if (from == "Mallaig") {
+				if (to == "Rum") {
 					time = "11:00 - 12:45";
 				} else {
 					time = "11:00 - 12:00";
 				}
-			} if (from == "eigg") {
-				if (to == "mallaig") {
+			} if (from == "Eigg") {
+				if (to == "Mallaig") {
 					time = "16:30 - 17:30";
 				} else {
 					time = "12:30 - 13:30";
 				}
-			} else if (from == "muck") {
+			} else if (from == "Muck") {
 				time = "15:30 - 16:00";
-			} else if (from == "rum") {
-				if (to == "mallaig") {
+			} else if (from == "Rum") {
+				if (to == "Mallaig") {
 					time = "15:45 - 17:30";
 				} else {
 					time = "15:30 - 16:00";
 				}
 			}
 
-			paragraphs[0].innerHTML = from + " Departure: " + time;
+			pRoute[0].innerHTML = from + " - " + to;
+			pTime[0].innerHTML = time;
 
 			if (document.querySelector("input[name='return']:checked").value == "yes") {
-				if (to == "eigg") {
+				if (to == "Eigg") {
 					time = "16:30 - 17:30";
-				} else if (to == "muck") {
-					if (from == "mallaig") {
+				} else if (to == "Muck") {
+					if (from == "Mallaig") {
 						time = "15:30 - 17:30";
 					} else {
 						time = "15:30 - 16:00";
 					}
-				} else if (to == "rum") {
+				} else if (to == "Rum") {
 					var date = document.querySelector("[name='dateChosen']").value;
 					var dateArray = date.split("/");
 					var day = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
@@ -419,14 +463,15 @@
 					if (day.getDay() == 4) {
 						time = "15:45 - 17:30";
 					} else {
-						if (from == "mallaig") {
+						if (from == "Mallaig") {
 							time = "15:30 - 17:30";
 						} else {
 							time = "15:30 - 16:00";
 						}
 					}
 				}
-				paragraphs[1].innerHTML = to + " Departure: " + time;
+				pRoute[1].innerHTML = to + " - " + from;
+				pTime[1].innerHTML = time;
 			}
 		}
 
@@ -490,6 +535,73 @@
 			}
 
 			displayDepartureTimes();
+		}
+
+		function appendAgeOptions(num) {
+			var selects = document.getElementsByClassName("ageSelect");
+
+			for (var i = 0; i < selects.length; i++) {
+				while (selects.firstChild) {
+					selects.removeChild(selects.lastChild);
+				}
+			}
+
+			for (var i = 0; i < selects.length; i++) {
+				for (var j = 0; j <= num; j++) {
+					var option = document.createElement("option");
+					option.value = j;
+					option.innerHTML = j;
+					selects[i].appendChild(option);
+				}
+			}
+		}
+		appendAgeOptions(30);
+
+		function selectNum() {
+			var select = document.getElementsByClassName("ageSelect");
+
+			var numTally;
+
+			for (var i = 0; i < select.length; i++) {
+				numTally += select[i].value;
+				numTally = 30 - numTally;
+			}
+
+			appendAgeOptions(numTally);
+			tallyCost()
+		}
+
+		function tallyCost() {
+			var childCost = document.getElementsByClassName("ageSelect")[1].value * 7;
+			var teenagerCost = document.getElementsByClassName("ageSelect")[2].value * 10;
+
+			var routes = document.querySelectorAll(".departureRoute")[0].innerHTML.split(" - ");
+			var discount = 1.0;
+
+			if (routes[0] != "Mallaig" && routes[0] != "Eigg") {
+				discount = 0.7;
+			}
+
+			var adultCost = document.getElementsByClassName("ageSelect")[3].value;
+			if (routes[0] == "Mallaig" || routes[1] == "Mallaig") {
+				if (routes[0] == "Eigg" || routes[1] == "Eigg") {
+					adultCost *= 18;
+				} else if (routes[0] == "Muck" || routes[1] == "Muck") {
+					adultCost *= 19;
+				} else if (routes[0] == "Rum" || routes[1] == "Rum") {
+					adultCost *= 24;
+				}
+			} else if (routes[0] == "Eigg" || routes[1] == "Eigg") {
+				if (routes[0] == "Muck" || routes[1] == "Muck") {
+					adultCost *= 10;
+				} else if (routes[0] == "Rum" || routes[1] == "Rum") {
+					adultCost *= 16;
+				}
+			}
+
+			adultCost *= discount;
+
+			document.getElementById("price").innerHTML = "£" + parseInt(adultCost + childCost + teenagerCost) + ".00";
 		}
 	</script>
 </html>

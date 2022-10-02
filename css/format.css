@@ -492,7 +492,6 @@ input[type=checkbox]:before {
 	margin-bottom: 56px;
 	overflow: hidden;
 	opacity: 0;
-	justify-content: center;
 	justify-items: center;
 }
 
@@ -500,7 +499,7 @@ input[type=checkbox]:before {
 	display: block;
 	padding: 8px 24px;
 	font-size: 20px;
-	margin: 8px 0px 24px 0px;
+	margin: 8px 0px 40px 0px;
 }
 
 label[for="fromSelect"] {
@@ -510,10 +509,12 @@ label[for="fromSelect"] {
 #calendarDiv {
 	display: inline-block;
 	width: max-content;
+	margin-bottom: 24px;
 }
 
 #monthHeader {
 	text-align: center;
+	margin-bottom: 24px;
 }
 
 #monthHeader button {
@@ -571,6 +572,123 @@ label[for="fromSelect"] {
 	cursor: pointer;
 }
 
-.departureTime::first-letter {
-	text-transform: capitalize;
+.bookingRadio {
+	display: inline-block;
+	margin: 0px 48px;
+}
+
+.bookingRadio input[type="radio"] {
+	display: none;
+}
+
+.bookingRadio p, #ageDiv p {
+	font-size: 24px;
+	margin-bottom: 12px;
+}
+
+.bookingRadio label {
+	display: table-cell;
+	padding: 8px 56px;
+	font-size: 20px;
+	border: 1px solid;
+	cursor: pointer;
+}
+
+.bookingRadio > label {
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
+.bookingRadio > label ~ label {
+	border-radius: 0px;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+.bookingRadio input:disabled + label {
+	cursor: default;
+}
+
+.bookingRadio + a {
+	position: relative;
+	left: 436px;
+	display: block;
+	margin-top: 4px;
+}
+
+#ageDiv p {
+	margin-left: 16px;
+}
+
+#ageDiv select {
+	-moz-appearance: textfield;
+	height: 32px;
+	width: 64px;
+	font-size: 20px;
+	border: 1px solid;
+	border-radius: 2px;
+	text-align: center;
+}
+
+#ageDiv select option {
+	font-size: 16px;
+}
+
+#ageDiv label {
+	display: inline-block;
+	font-size: 20px;
+	margin-left: 16px;
+}
+
+#ageDiv > label:first-child {
+	margin-left: 0px;
+}
+
+#bookingCost {
+	margin-top: 48px;
+}
+
+#bookingCost #timeDiv, #bookingCost #priceDiv {
+	display: inline-grid;
+	grid-template-rows: 48px 48px;
+	justify-items: center;
+	align-items: center;
+}
+
+#bookingCost #timeDiv {
+	grid-template-columns: 200px 200px;
+	border: 1px solid;
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
+#bookingCost p {
+	margin: 0px;
+	font-size: 24px;
+}
+
+#bookingCost #timeDiv .departureRoute {
+	grid-column: 1;
+}
+
+#bookingCost #timeDiv .departureTime {
+	grid-column: 2;
+}
+
+#bookingCost #priceDiv {
+	grid-template-columns: 200px;
+	margin-left: -5px;
+	border: 1px solid;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+#bookingCost #priceTxt {
+	font-size: 24px;
+}
+
+#bookingCost #price {
+	position: relative;
+	bottom: 8px;
+	font-size: 32px;
 }

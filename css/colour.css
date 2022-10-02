@@ -1,4 +1,4 @@
-header span, #authDiv span, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover {
+header span, #authDiv span, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceDiv {
 	background-color: #ff7f50;
 }
 
@@ -74,11 +74,11 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	color: #000;
 }
 
-.booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before, #islandBookDiv h1, #islandBookDiv label:hover, #bookingIntro .status.valid, #islandBookDiv input:checked + label, #calendar td.validDate {
+.booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before, #islandBookDiv h1, #islandBookDiv label:hover, #bookingIntro .status.valid, #islandBookDiv input:checked + label, #calendar td.validDate, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceDiv {
 	color: #fff;
 }
 
-.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1, #monthHeader button:hover {
+.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1, #monthHeader button:hover, .bookingRadio + a {
 	color: #ff7f50;
 }
 
@@ -86,7 +86,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	color: #ff5079;
 }
 
-#calendar td.outsideColour {
+#calendar td.outsideColour, .bookingRadio input:disabled + label {
 	color: #c2c2c2;
 }
 
@@ -118,7 +118,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	border-color: #222;
 }
 
-#locationDiv .locationClicked {
+#locationDiv .locationClicked, .bookingRadio input:checked + label {
 	border-color: #ff7f50;
 }
 
@@ -126,7 +126,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	border-color: #fff;
 }
 
-#about div img, #authForm, #authForm:invalid button, #calendar tbody {
+#about div img, #authForm, #authForm:invalid button, #calendar tbody, .bookingRadio input:disabled + label {
 	border-color: #c2c2c2;
 }
 
@@ -142,7 +142,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	border-color: #ff5079;
 }
 
-input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover {
+input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, #bookingCost #priceDiv {
 	border-color: #ff7f50;
 }
 

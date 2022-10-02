@@ -20,7 +20,7 @@
 <script type="text/javascript">
 	var url = window.location.pathname;
 	switch(url) {
-		case "/": case "/island/mallaig.php": case "/island/eigg.php": case "/island/muck.php": case "/island/rum.php": case "/island/ceilidh.php": case "/login.php": case "/register.php":
+		case "/": case "/index.php": case "/island/mallaig.php": case "/island/eigg.php": case "/island/muck.php": case "/island/rum.php": case "/island/ceilidh.php": case "/login.php": case "/register.php":
 			document.getElementsByClassName("home")[0].parentElement.classList.toggle("bright");
 			document.getElementsByClassName("booking")[0].classList.toggle("bright");
 			document.getElementsByClassName("auth")[0].classList.toggle("bright");
