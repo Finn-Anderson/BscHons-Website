@@ -7,8 +7,7 @@
 				<h1>Sign In</h1>
 
 				<?php
-					// Displays register success message/login fail message when msg is set
-					$_SESSION = array();
+					// Displays login login fail message when msg is set
 					if (isset($_GET["msg"]) && $_GET["msg"] == "failed") {
 						echo "<p class='warning'>Wrong username / password</p><br>";
 					}

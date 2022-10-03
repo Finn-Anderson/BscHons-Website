@@ -9,13 +9,13 @@
 				<?php
 					// Displays register fail message if msg is set
 					if (isset($_GET["msg"]) && $_GET["msg"] == "failed") {
-						echo "<p class='warning'>Invalid values inputted</p><br>";
+						echo "<p class='warning'>Invalid values entered</p><br>";
 					} elseif (isset($_GET["msg"]) && $_GET["msg"] == "used") {
 						echo "<p class='warning'>Email already in use</p><br>";
 					} elseif (isset($_GET["msg"]) && $_GET["msg"] == "email") {
-						echo "<p class='warning'>Invalid email inputted</p><br>";
+						echo "<p class='warning'>Invalid email</p><br>";
 					} elseif (isset($_GET["msg"]) && $_GET["msg"] == "password") {
-						echo "<p class='warning'>Invalid passwords inputted</p><br>";
+						echo "<p class='warning'>Invalid passwords</p><br>";
 					}
 				?>
 
@@ -27,7 +27,7 @@
 
 				<input type="text" placeholder="Name" name="name" maxlength="50" onblur="checkValid(this)" required>
 
-				<input type="text" placeholder="Street Address" name="street" maxlength="100" onblur="checkValid(this)" required>
+				<input type="text" placeholder="Street Address" name="address" maxlength="100" onblur="checkValid(this)" required>
 
 				<input type="text" placeholder="City" name="city" maxlength="30" onblur="checkValid(this)" required>
 

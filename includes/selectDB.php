@@ -58,8 +58,3 @@
 
 	$conn = null;
 ?>
-<!doctype html>
-<html>
-	<head>
-	</head>
-</html>

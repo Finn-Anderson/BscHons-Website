@@ -1,5 +1,9 @@
 <?php
-	if (isset($_COOKIE["AblaCruisesRemember"])) {
+	if (session_status() === PHP_SESSION_NONE) {
+		session_start();
+	}
+	
+	if (isset($_COOKIE["AblaCruisesRemember"]) && !isset($_SESSION["authorized"])) {
 		include_once('dbCredentials.php');
 
 		try {
@@ -20,14 +24,13 @@
 				// Sets sessions to be used later on.
 				$result = $stmt->fetchAll();
 				foreach( $result as $row ) {
-					session_start();
 
-					$_SESSION['authorized'] = TRUE;
-					$_SESSION['id'] = $row["userID"];
+					$_SESSION["authorized"] = TRUE;
+					$_SESSION["id"] = $row["userID"];
 
 					$stmtCount = $conn->prepare("SELECT bookingID FROM Booking WHERE userID = :id AND returnBooked = :return");
-					$stmtCount->bindValue(':return', TRUE);
-					$stmtCount->bindValue(':id', $_SESSION['id']);
+					$stmtCount->bindValue(":return", TRUE);
+					$stmtCount->bindValue(":id", $_SESSION["id"]);
 					$stmtCount->execute();
 
 					$_SESSION["bookingTally"] = $stmtCount->rowCount();

@@ -489,7 +489,7 @@ input[type=checkbox]:before {
 	display: grid;
 	height: max-content;
 	max-height: 0px;
-	margin-bottom: 56px;
+	margin-bottom: 101px;
 	overflow: hidden;
 	opacity: 0;
 	justify-items: center;
@@ -613,6 +613,7 @@ label[for="fromSelect"] {
 	position: relative;
 	left: 436px;
 	display: block;
+	width: max-content;
 	margin-top: 4px;
 }
 
@@ -648,7 +649,7 @@ label[for="fromSelect"] {
 	margin-top: 48px;
 }
 
-#bookingCost #timeDiv, #bookingCost #priceDiv {
+#bookingCost #timeDiv, #bookingCost #priceBtn {
 	display: inline-grid;
 	grid-template-rows: 48px 48px;
 	justify-items: center;
@@ -675,12 +676,13 @@ label[for="fromSelect"] {
 	grid-column: 2;
 }
 
-#bookingCost #priceDiv {
+#bookingCost #priceBtn {
 	grid-template-columns: 200px;
 	margin-left: -5px;
 	border: 1px solid;
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
+	cursor: pointer;
 }
 
 #bookingCost #priceTxt {
@@ -691,4 +693,44 @@ label[for="fromSelect"] {
 	position: relative;
 	bottom: 8px;
 	font-size: 32px;
+}
+
+
+/* ACCOUNT.PHP */
+#accountDiv {
+	display: flex;
+	padding-top: 200px;
+	justify-content: center;
+}
+
+#avatarForm {
+	display: inline-grid;
+	grid-template-columns: 300px;
+	grid-template-rows: 300px;
+	justify-content: center;
+	align-items: center;
+}
+
+#avatarForm img, #avatarForm input, #avatarForm label {
+	grid-column: 1;
+	grid-row: 1;
+	width: 100%;
+	height: 100%;
+	border-radius: 2px;
+}
+
+#avatarForm input {
+	display: none;
+}
+
+#avatarForm label {
+	opacity: 0;
+	font-size: 56px;
+	text-align: center;
+	line-height: 300px;
+	cursor: pointer;
+}
+
+#avatarForm label:hover {
+	opacity: 1;
 }

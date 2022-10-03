@@ -10,7 +10,13 @@
 			<p class="statusBlurb focus">Choose Island</p>
 			<p class="statusBlurb">Checkout</p>
 		</div>
-		<form onsubmit="changeStatus(2)">
+		<?php
+			// Displays booking fail message when msg is set
+			if (isset($_GET["msg"]) && $_GET["msg"] == "failed") {
+				echo "<p class='warning'>Failed to make booking. Please try again.</p><br>";
+			}
+		?>
+		<form action="includes/bookingDB.php" method="post" onsubmit="changeStatus(2)">
 			<div id="islandBookDiv">
 				<div id="islandBookEigg">
 					<h1>Eigg</h1>
@@ -135,19 +141,19 @@
 				<div>
 					<div class="bookingRadio">
 						<p>Book Return?</p>
-						<input id="returnYes" type="radio" name="return" value="yes" onchange="displayDepartureTimes()">
+						<input id="returnYes" type="radio" name="return" value="true" onchange="displayCalendarDays(document.getElementById('monthHeader').querySelector('button').id)">
 						<label for="returnYes">Yes</label>
 
-						<input id="returnNo" type="radio" name="return" value="no" checked="checked" onchange="displayDepartureTimes()">
+						<input id="returnNo" type="radio" name="return" value="false" checked="checked" onchange="displayCalendarDays(document.getElementById('monthHeader').querySelector('button').id)">
 						<label for="returnNo">No</label>
 					</div>
 
 					<div class="bookingRadio">
 						<p>Wheelchair?</p>
-						<input id="wheelchairYes" type="radio" name="wheelchair" value="yes" onchange="displayDepartureTimes()">
+						<input id="wheelchairYes" type="radio" name="wheelchair" value="true" disabled onchange="displayDepartureTimes()">
 						<label for="wheelchairYes">Yes</label>
 
-						<input id="wheelchairNo" type="radio" name="wheelchair" value="no" checked="checked" onchange="displayDepartureTimes()">
+						<input id="wheelchairNo" type="radio" name="wheelchair" value="false" checked="checked" onchange="displayDepartureTimes()">
 						<label for="wheelchairNo">No</label>
 					</div>
 
@@ -157,13 +163,13 @@
 				<div id="ageDiv">
 					<p>Age</p>
 					<label>0-2</label>
-					<select class="ageSelect" name="baby" onchange="selectNum()"></select>
+					<select class="ageSelect" name="baby" onchange="checkStatus()"></select>
 					<label>3-10</label>
-					<select class="ageSelect" name="child" onchange="selectNum()"></select>
+					<select class="ageSelect" name="child" onchange="checkStatus()"></select>
 					<label>11-16</label>
-					<select class="ageSelect" name="teenager" onchange="selectNum()"></select>
+					<select class="ageSelect" name="teenager" onchange="checkStatus()"></select>
 					<label>17+</label>
-					<select class="ageSelect" name="adult" onchange="selectNum()"></select>
+					<select class="ageSelect" name="adult" onchange="checkStatus()"></select>
 				</div>
 
 				<div id="bookingCost">
@@ -173,34 +179,44 @@
 						<p class="departureRoute"></p>
 						<p class="departureTime"></p>
 					</div>
-					<div id="priceDiv">
+					<button id="priceBtn">
 						<p id="priceTxt">Book</p>
 						<p id="price">£0.00</p>
-					</div>
+					</button>
 				</div>
 			</div>
 		</form>
 	</body>
-	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
+	<?php 
+		if (isset($_SESSION["authorized"])) {
+			echo "<script>var loginCheck = '".$_SESSION["authorized"]."'</script>";
+		} else {
+			echo "<script>var loginCheck = false</script>";
+		}
+	?>;
 	<script>
 		function changeStatus(num) {
-			if (num == 1) {
-				document.getElementsByClassName("status")[0].classList.add("valid");
-				document.getElementsByClassName("statusBlurb")[0].classList.remove("focus");
-				document.getElementsByClassName("statusBlurb")[1].classList.add("focus");
+			if (loginCheck) {
+				if (num == 1) {
+					document.getElementsByClassName("status")[0].classList.add("valid");
+					document.getElementsByClassName("statusBlurb")[0].classList.remove("focus");
+					document.getElementsByClassName("statusBlurb")[1].classList.add("focus");
 
-				var month = 8;
-				if (document.getElementById("monthHeader").querySelector("button").id) {
-					month = parseInt(document.getElementById("monthHeader").querySelector("button").id);
+					var month = 8;
+					if (document.getElementById("monthHeader").querySelector("button").id) {
+						month = parseInt(document.getElementById("monthHeader").querySelector("button").id);
+					}
+
+					displayCalendarDays(month);
+				} else {
+					document.getElementsByClassName("status")[1].classList.add("valid");
+					document.getElementsByClassName("statusBlurb")[1].classList.remove("focus");
 				}
 
-				displayCalendarDays(month);
+				document.getElementById("checkoutDiv").classList.add("bookingAnim")
 			} else {
-				document.getElementsByClassName("status")[1].classList.add("valid");
-				document.getElementsByClassName("statusBlurb")[1].classList.remove("focus");
+				window.location.href = "/login.php";
 			}
-
-			document.getElementById("checkoutDiv").classList.add("bookingAnim");
 		}
 
 		function displayCalendarDays(month) {
@@ -235,7 +251,7 @@
 				populateSelect(island);
 				checkReturn();
 				const dayList = getDayList(island);
-				tallyCost();
+				checkStatus();
 
 				const buttons = document.getElementById("monthHeader").querySelectorAll("button");
 				for (var i = 0; i < buttons.length; i++) {
@@ -243,43 +259,48 @@
 				}
 
 				var row = 1;
-				while (!table.rows[6].cells[6].innerHTML) {
 
-					var cell;
-					if (day.getDay() == 0) {
-						cell = 6;
-					} else {
-						cell = day.getDay() - 1;
-					}
-
-					table.rows[row].cells[cell].innerHTML = day.getDate();
-
-					if (day.getMonth() == month) {
-						const targetDate = new Date(2022, 9, 27);
-
-						if (dayList && dayList.includes(day.getDay())) {
-							if (day.getDay() == 0 || day.getDay() == 6) {
-								if (day.getMonth() == 5 || day.getMonth() == 6 || day.getMonth() == 7) {
-									applyCalendarColours(island, table.rows[row].cells[cell]);
-								}
-							} else {
-								applyCalendarColours(island, table.rows[row].cells[cell]);
-							}
-						} else if (day.toDateString() == targetDate.toDateString() && island == "ceilidh") {
-							table.rows[row].cells[cell].classList.add("ceilidhColour");
-							table.rows[row].cells[cell].classList.add("validDate");
-							table.rows[row].cells[cell].style.setProperty("--colour", "#ffd750");
+				var dayCheck = day.getDate() + "/" + day.getMonth() + "/" + day.getYear();
+				getStatus(dayCheck, function(response) {
+					while (!table.rows[6].cells[6].innerHTML) {
+						var cell;
+						if (day.getDay() == 0) {
+							cell = 6;
+						} else {
+							cell = day.getDay() - 1;
 						}
-					} else {
-						table.rows[row].cells[cell].classList.add("outsideColour");
-					}
 
-					if (day.getDay() == 0) {
-						row += 1;
+						table.rows[row].cells[cell].innerHTML = day.getDate();
+
+						if (day.getMonth() == month) {
+							const targetDate = new Date(2022, 9, 27);
+							
+							if (response[0] > 0) {
+								if (dayList && dayList.includes(day.getDay())) {
+									if (day.getDay() == 0 || day.getDay() == 6) {
+										if (day.getMonth() == 5 || day.getMonth() == 6 || day.getMonth() == 7) {
+											applyCalendarColours(island, table.rows[row].cells[cell]);
+										}
+									} else {
+										applyCalendarColours(island, table.rows[row].cells[cell]);
+									}
+								} else if (day.toDateString() == targetDate.toDateString() && island == "ceilidh") {
+									table.rows[row].cells[cell].classList.add("ceilidhColour");
+									table.rows[row].cells[cell].classList.add("validDate");
+									table.rows[row].cells[cell].style.setProperty("--colour", "#ffd750");
+								}
+							}
+						} else {
+							table.rows[row].cells[cell].classList.add("outsideColour");
+						}
+
+						if (day.getDay() == 0) {
+							row += 1;
+						}
+						
+						day.setDate(day.getDate() + 1);
 					}
-					
-					day.setDate(day.getDate() + 1);
-				}
+				});
 			}
 		}
 
@@ -446,7 +467,7 @@
 			pRoute[0].innerHTML = from + " - " + to;
 			pTime[0].innerHTML = time;
 
-			if (document.querySelector("input[name='return']:checked").value == "yes") {
+			if (document.querySelector("input[name='return']:checked").value == "true") {
 				if (to == "Eigg") {
 					time = "16:30 - 17:30";
 				} else if (to == "Muck") {
@@ -509,7 +530,11 @@
 
 				var year = new Date().getFullYear();
 
-				document.querySelector("[name='dateChosen']").value = d + "/" + month + "/" + year;
+				var date = d + "/" + month + "/" + year;
+
+				if (date != document.querySelector("[name='dateChosen']").value) {
+					document.querySelector("[name='dateChosen']").value = date;
+				}
 
 				var dates = document.querySelectorAll(".selectedDate");
 				for (var i = 0; i < dates.length; i++) {
@@ -518,6 +543,7 @@
 
 				day.classList.add("selectedDate");
 
+				checkStatus();
 				displayDepartureTimes();
 			}
 		}
@@ -539,36 +565,67 @@
 
 		function appendAgeOptions(num) {
 			var selects = document.getElementsByClassName("ageSelect");
+			var tally;
+			var storeValues = [0, 0, 0, 0];
 
 			for (var i = 0; i < selects.length; i++) {
-				while (selects.firstChild) {
-					selects.removeChild(selects.lastChild);
+				if (selects[i].value) {
+					storeValues[i] = parseInt(selects[i].value);
+				}
+				while (selects[i].firstChild) {
+					selects[i].removeChild(selects[i].lastChild);
 				}
 			}
 
 			for (var i = 0; i < selects.length; i++) {
-				for (var j = 0; j <= num; j++) {
+				tally = storeValues[i] + num;
+
+				for (var j = 0; j <= tally; j++) {
 					var option = document.createElement("option");
 					option.value = j;
 					option.innerHTML = j;
 					selects[i].appendChild(option);
 				}
+				selects[i].value = storeValues[i];
 			}
 		}
-		appendAgeOptions(30);
 
-		function selectNum() {
+		function checkStatus() {
 			var select = document.getElementsByClassName("ageSelect");
+			getStatus(document.querySelector("[name='dateChosen']").value, function(response) {
+				var numTally = 0;
 
-			var numTally;
+				if (response[0]) {
+					if (select[0].value) {
+						for (var i = 0; i < select.length; i++) {
+							numTally += parseInt(select[i].value);
+						}
+					}
+					numTally = response[0] - numTally;
 
-			for (var i = 0; i < select.length; i++) {
-				numTally += select[i].value;
-				numTally = 30 - numTally;
-			}
+					if (numTally < 0) {
+						numTally = response[0];
+						for (var i = 0; i < select.length; i++) {
+							select[i].value = 0;
+						}
+					}
 
-			appendAgeOptions(numTally);
-			tallyCost()
+					appendAgeOptions(numTally);
+					tallyCost();
+				} else {
+					for (var i = 0; i < select.length; i++) {
+						while (select[i].firstChild) {
+							select[i].removeChild(select[i].lastChild);
+						}
+					}
+				}
+
+				if (response[1]) {
+					document.querySelectorAll("input[name='wheelchair']")[0].disabled = true;
+				} else {
+					document.querySelectorAll("input[name='wheelchair']")[0].disabled = false;
+				}
+			});
 		}
 
 		function tallyCost() {
@@ -578,7 +635,7 @@
 			var routes = document.querySelectorAll(".departureRoute")[0].innerHTML.split(" - ");
 			var discount = 1.0;
 
-			if (routes[0] != "Mallaig" && routes[0] != "Eigg") {
+			if (document.querySelector("input[name='return']:checked").value == "false") {
 				discount = 0.7;
 			}
 
@@ -599,9 +656,27 @@
 				}
 			}
 
-			adultCost *= discount;
+			var cost = parseInt(adultCost + childCost + teenagerCost);
+			cost *= discount;
 
-			document.getElementById("price").innerHTML = "£" + parseInt(adultCost + childCost + teenagerCost) + ".00";
+			document.getElementById("price").innerHTML = "£" + cost.toFixed(2);
+		}
+
+		function getStatus(day, cbk) {
+			if (day) {
+				var fromIsland = document.getElementById("fromSelect").value;
+				var toIsland = document.querySelector("input[name='island']:checked").value;
+				var returnIsland = document.querySelector("input[name='return']:checked").value;
+				$.ajax({
+					type: "POST",
+					url: "includes/statusDB.php",
+					data: {date: day, from: fromIsland, to: toIsland, returnBooked: returnIsland},
+					dataType: "json"
+				}).done(function(response) {
+					cbk(response);
+				});
+			}
 		}
 	</script>
+	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
 </html>

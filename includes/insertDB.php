@@ -32,7 +32,7 @@
 					header("Location: ../register.php?msg=failed");
 					break;
 				}
-			} elseif ($i == 11) {
+			} elseif ($i == (Count($tblList) - 1)) {
 				//Check it doesn't alread exist. Output determines whether msg is fail or success (success input register data)
 				$checkReg = $conn->prepare("SELECT 1 FROM User WHERE email = :mail");
 				$checkReg->bindValue(":mail", $email, PDO::PARAM_STR);
@@ -43,15 +43,16 @@
 					$pw = hash("sha512", $pw1);
 
 					// stmt to insert row
-					$stmtReg = $conn->prepare("INSERT INTO User (email, password, name, address, city, postcode)
-						VALUES (:mail, :pwd, :name, :address, :city, :post)");
+					$stmtReg = $conn->prepare("INSERT INTO User (email, password, name, address, city, postcode, avatar)
+						VALUES (:mail, :pwd, :name, :address, :city, :post, :avatar)");
 
 					$stmtReg->bindValue(":mail", $email, PDO::PARAM_STR);
 					$stmtReg->bindValue(":pwd", $pw, PDO::PARAM_STR);
-					$stmtReg->bindValue(":name", $forename, PDO::PARAM_STR);
+					$stmtReg->bindValue(":name", $name, PDO::PARAM_STR);
 					$stmtReg->bindValue(":address", $address, PDO::PARAM_STR);
 					$stmtReg->bindValue(":city", $city, PDO::PARAM_STR);
 					$stmtReg->bindValue(":post", $postcode, PDO::PARAM_STR);
+					$stmtReg->bindValue(':avatar', '../img/avatar/default.svg');
 
 					$stmtReg->execute();
 

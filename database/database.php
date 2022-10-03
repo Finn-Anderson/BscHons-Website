@@ -60,7 +60,8 @@
 		address VARCHAR(100) NOT NULL,
 		city VARCHAR(30) NOT NULL,
 		postcode VARCHAR(10) NOT NULL,
-		rememberID Char(32)
+		rememberID Char(32),
+		avatar LONGBLOB NOT NULL
 		)";
 
 		// use exec() because no results are returned
@@ -164,6 +165,7 @@
 		tripID MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 		bookingID MEDIUMINT UNSIGNED NOT NULL,
 		routeFareID MEDIUMINT UNSIGNED NOT NULL,
+		numberOfPeople TINYINT UNSIGNED NOT NULL,
 		FOREIGN KEY (bookingID) REFERENCES Booking (bookingID) ON DELETE CASCADE ON UPDATE CASCADE,
 		FOREIGN KEY (routeFareID) REFERENCES RouteFare (routeFareID) ON DELETE CASCADE ON UPDATE CASCADE
 		)";
