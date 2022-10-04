@@ -163,13 +163,13 @@
 				<div id="ageDiv">
 					<p>Age</p>
 					<label>0-2</label>
-					<select class="ageSelect" name="baby" onchange="checkStatus()"></select>
+					<select class="ageSelect" name="baby" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)"></select>
 					<label>3-10</label>
-					<select class="ageSelect" name="child" onchange="checkStatus()"></select>
+					<select class="ageSelect" name="child" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)"></select>
 					<label>11-16</label>
-					<select class="ageSelect" name="teenager" onchange="checkStatus()"></select>
+					<select class="ageSelect" name="teenager" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)"></select>
 					<label>17+</label>
-					<select class="ageSelect" name="adult" onchange="checkStatus()"></select>
+					<select class="ageSelect" name="adult" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)"></select>
 				</div>
 
 				<div id="bookingCost">
@@ -202,7 +202,7 @@
 					document.getElementsByClassName("statusBlurb")[0].classList.remove("focus");
 					document.getElementsByClassName("statusBlurb")[1].classList.add("focus");
 
-					var month = 8;
+					var month = new Date().getMonth();
 					if (document.getElementById("monthHeader").querySelector("button").id) {
 						month = parseInt(document.getElementById("monthHeader").querySelector("button").id);
 					}
@@ -219,6 +219,7 @@
 			}
 		}
 
+		var responseArray = [];
 		function displayCalendarDays(month) {
 			if (month > 3 && month < 10) {
 				const table = document.getElementById("calendar");
@@ -231,7 +232,6 @@
 				}
 				document.querySelector("[name='dateChosen']").value = "";
 
-
 				var island = document.querySelector("input[name='island']:checked").value;
 
 				if (island == "ceilidh") {
@@ -239,10 +239,25 @@
 				}
 
 				const year = new Date().getFullYear();
+				var dayUntouched = new Date(year, month, 1);
 				var day = new Date(year, month, 1);
 
 				const monthName = day.toLocaleString('default', { month: 'long' });
 				document.getElementById("monthHeader").querySelector("h1").innerHTML = monthName + " " + year;
+
+				const buttons = document.getElementById("monthHeader").querySelectorAll("button");
+				for (var i = 0; i < buttons.length; i++) {
+					buttons[i].id = month;
+					buttons[i].disabled = true;
+				}
+
+				document.getElementById("eigg").disabled = true;
+				document.getElementById("muck").disabled = true;
+				document.getElementById("rum").disabled = true;
+				document.getElementById("mallaig").disabled = true;
+				if (document.getElementById("ceilidh")) {
+					document.getElementById("ceilidh").disabled = true;
+				}
 
 				if (day.getDay() != 1) {
 					day = new Date(year, month, 2 - day.getDay());
@@ -251,17 +266,12 @@
 				populateSelect(island);
 				checkReturn();
 				const dayList = getDayList(island);
-				checkStatus();
-
-				const buttons = document.getElementById("monthHeader").querySelectorAll("button");
-				for (var i = 0; i < buttons.length; i++) {
-					buttons[i].id = month;
-				}
 
 				var row = 1;
 
-				var dayCheck = day.getDate() + "/" + day.getMonth() + "/" + day.getYear();
-				getStatus(dayCheck, function(response) {
+				const currentDate = new Date();
+
+				getStatus(dayUntouched.getMonth() + 1, dayUntouched.getFullYear(), function(response) {
 					while (!table.rows[6].cells[6].innerHTML) {
 						var cell;
 						if (day.getDay() == 0) {
@@ -273,9 +283,11 @@
 						table.rows[row].cells[cell].innerHTML = day.getDate();
 
 						if (day.getMonth() == month) {
+							responseArray.push([response[(day.getDate() - 1)][0], response[(day.getDate() - 1)][1]]);
+
 							const targetDate = new Date(2022, 9, 27);
-							
-							if (response[0] > 0) {
+
+							if (response[(day.getDate() - 1)][0] > 0 && day >= currentDate) {
 								if (dayList && dayList.includes(day.getDay())) {
 									if (day.getDay() == 0 || day.getDay() == 6) {
 										if (day.getMonth() == 5 || day.getMonth() == 6 || day.getMonth() == 7) {
@@ -299,6 +311,16 @@
 						}
 						
 						day.setDate(day.getDate() + 1);
+					}
+					buttons[0].disabled = false;
+					buttons[1].disabled = false;
+
+					document.getElementById("eigg").disabled = false;
+					document.getElementById("muck").disabled = false;
+					document.getElementById("rum").disabled = false;
+					document.getElementById("mallaig").disabled = false;
+					if (document.getElementById("ceilidh")) {
+						document.getElementById("ceilidh").disabled = false;
 					}
 				});
 			}
@@ -530,7 +552,7 @@
 
 				var year = new Date().getFullYear();
 
-				var date = d + "/" + month + "/" + year;
+				var date = d + "-" + month + "-" + year;
 
 				if (date != document.querySelector("[name='dateChosen']").value) {
 					document.querySelector("[name='dateChosen']").value = date;
@@ -543,7 +565,7 @@
 
 				day.classList.add("selectedDate");
 
-				checkStatus();
+				checkStatus(day.innerHTML - 1);
 				displayDepartureTimes();
 			}
 		}
@@ -590,42 +612,41 @@
 			}
 		}
 
-		function checkStatus() {
+		function checkStatus(day) {
 			var select = document.getElementsByClassName("ageSelect");
-			getStatus(document.querySelector("[name='dateChosen']").value, function(response) {
-				var numTally = 0;
 
-				if (response[0]) {
-					if (select[0].value) {
-						for (var i = 0; i < select.length; i++) {
-							numTally += parseInt(select[i].value);
-						}
-					}
-					numTally = response[0] - numTally;
+			var numTally = 0;
 
-					if (numTally < 0) {
-						numTally = response[0];
-						for (var i = 0; i < select.length; i++) {
-							select[i].value = 0;
-						}
-					}
-
-					appendAgeOptions(numTally);
-					tallyCost();
-				} else {
+			if (responseArray[day][0]) {
+				if (select[0].value) {
 					for (var i = 0; i < select.length; i++) {
-						while (select[i].firstChild) {
-							select[i].removeChild(select[i].lastChild);
-						}
+						numTally += parseInt(select[i].value);
+					}
+				}
+				numTally = responseArray[day][0] - numTally;
+
+				if (numTally < 0) {
+					numTally = 0;
+					for (var i = 0; i < select.length; i++) {
+						select[i].value = 0;
 					}
 				}
 
-				if (response[1]) {
-					document.querySelectorAll("input[name='wheelchair']")[0].disabled = true;
-				} else {
-					document.querySelectorAll("input[name='wheelchair']")[0].disabled = false;
+				appendAgeOptions(numTally);
+				tallyCost();
+			} else {
+				for (var i = 0; i < select.length; i++) {
+					while (select[i].firstChild) {
+						select[i].removeChild(select[i].lastChild);
+					}
 				}
-			});
+			}
+
+			if (responseArray[day][1]) {
+				document.querySelectorAll("input[name='wheelchair']")[0].disabled = true;
+			} else {
+				document.querySelectorAll("input[name='wheelchair']")[0].disabled = false;
+			}
 		}
 
 		function tallyCost() {
@@ -662,15 +683,15 @@
 			document.getElementById("price").innerHTML = "£" + cost.toFixed(2);
 		}
 
-		function getStatus(day, cbk) {
-			if (day) {
+		function getStatus(m, y, cbk) {
+			if (m, y) {
 				var fromIsland = document.getElementById("fromSelect").value;
 				var toIsland = document.querySelector("input[name='island']:checked").value;
 				var returnIsland = document.querySelector("input[name='return']:checked").value;
 				$.ajax({
 					type: "POST",
 					url: "includes/statusDB.php",
-					data: {date: day, from: fromIsland, to: toIsland, returnBooked: returnIsland},
+					data: {month: m, year: y, from: fromIsland, to: toIsland, returnBooked: returnIsland},
 					dataType: "json"
 				}).done(function(response) {
 					cbk(response);

@@ -34,7 +34,7 @@
 		// Checks if all inputs are valid
 		$tblList = array($to, $from, $date, $return, $wheelchair, $baby, $child, $teenager, $adult, $tally);
 		for ($i=0; $i < Count($tblList); $i++) {
-			if ((empty($tblList[$i]) AND !is_numeric($tblList[$i])) OR (($i == 3 OR $i == 4) AND !is_bool($tblList[$i])) OR ($tblList[$i] == $to AND $to == $from) OR (is_numeric($tblList[$i])) AND ($tblList[$i] < 0 OR $tblList[$i] > 30) OR ($tblList[$i] == $return AND $return == true AND $reverse == true) OR $tally <= 0) {
+			if ((empty($tblList[$i]) AND !is_numeric($tblList[$i]) AND !is_bool($tblList[$i])) OR ($tblList[$i] == $to AND $to == $from) OR (is_numeric($tblList[$i])) AND ($tblList[$i] < 0 OR $tblList[$i] > 30) OR ($tblList[$i] == $return AND $return == true AND $reverse == true) OR $tally <= 0) {
 				header("Location: ../booking.php?msg=failed");
 				break;
 			} elseif ($i == (Count($tblList) - 1)) {
@@ -81,7 +81,7 @@
 					foreach( $result as $row ) {
 						$choice = 0;
 
-						if ($row["minAge"] == 0 && $row["minAge"] == 2) {
+						if ($row["minAge"] == 0 && $row["maxAge"] == 2) {
 							$choice = $baby;
 						} else if ($row["minAge"] == 3 && $row["maxAge"] == 10) {
 							$choice = $child;

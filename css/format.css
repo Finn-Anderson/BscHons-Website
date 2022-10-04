@@ -659,6 +659,7 @@ label[for="fromSelect"] {
 #bookingCost #timeDiv {
 	grid-template-columns: 200px 200px;
 	border: 1px solid;
+	border-right: none;
 	border-top-left-radius: 2px;
 	border-bottom-left-radius: 2px;
 }
@@ -679,7 +680,7 @@ label[for="fromSelect"] {
 #bookingCost #priceBtn {
 	grid-template-columns: 200px;
 	margin-left: -5px;
-	border: 1px solid;
+	border: none;
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
 	cursor: pointer;
