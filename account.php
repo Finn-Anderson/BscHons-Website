@@ -3,22 +3,26 @@
 	<?php $title = "Account Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php"; include $_SERVER["DOCUMENT_ROOT"]."/includes/accountDB.php" ?>
 	<body>
 		<div id="accountDiv">
-			<form id="avatarForm" method="post" action="includes/updateAvatar.php" enctype="multipart/form-data">
-				<?php 
-					if (pathinfo($img, PATHINFO_EXTENSION) == "svg") {
-						echo '<img id="avatar" src="'.$img.'"/>';
-					} else {
-						echo '<img id="avatar" src="'.$img.'"/>';
-					}
-				?>
-				<input id="fileUpload" type="file" name="avatar" onchange="document.getElementById('avatar').src = window.URL.createObjectURL(this.files[0]); saveProfile()" accept=".jpg, .jpeg, .png, .gif, .svg">
-				<label for="fileUpload">&#9998</label>
+			<div>
+				<form id="avatarForm" method="post" action="includes/updateAvatar.php" enctype="multipart/form-data">
+					<?php 
+						if (pathinfo($img, PATHINFO_EXTENSION) == "svg") {
+							echo '<img id="avatar" src="'.$img.'"/>';
+						} else {
+							echo '<img id="avatar" src="'.$img.'"/>';
+						}
+					?>
+					<input id="fileUpload" type="file" name="avatar" onchange="document.getElementById('avatar').src = window.URL.createObjectURL(this.files[0]); saveProfile()" accept=".jpg, .jpeg, .png, .gif, .svg">
+					<label for="fileUpload">&#9998</label>
+				</form>
 
-				<p><?php echo $name ?></p>
+				<p id="name"><?php echo $name ?></p>
 
-				<a href="/includes/logout.php">Logout</a>
+				<a id="logoutBtn" href="/includes/logout.php">Logout</a>
+			</div>
 
-				<table>
+			<div id="accountTableDiv">
+				<table id="accountTable" cellspacing="0">
 					<thead>
 						<tr>
 							<th>Del</th>
@@ -28,49 +32,13 @@
 							<th>Date</th>
 						</tr>
 					</thead>
-					<tbody>
-						<?php
-							include $_SERVER["DOCUMENT_ROOT"]."/includes/dbCredentials.php";
-
-							try {
-								$conn = new PDO("mysql:host=$servername;dbname=$dbname", $name, $pass);
-
-								// set the PDO error mode to exception
-								$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-								$getBookings = $conn->prepare("SELECT Booking.bookingID, SUM(numberOfPeople) AS numPeople, SUM(numberOfPeople * cost) AS sumCost, date, returnBooked FROM Booking, Trip, RouteFare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND userID = :id GROUP BY Trip.bookingID DESC");
-								$getBookings->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
-								$getBookings->execute();
-
-								$result = $getBookings->fetchAll();
-
-								foreach( $result as $row ) {
-									if ($row["bookingID"] && $row["date"]) {
-										echo "<tr>";
-											echo "<td><button type='button' onclick='deleteRow()'>X</button></td>";
-											echo "<td>".$row["bookingID"]."</td>";
-											echo "<td>".$row["numPeople"]."</td>";
-											if ($row["returnBooked"]) {
-												echo "<td>".$row["sumCost"]."</td>";
-											} else {
-												echo "<td>".$row["sumCost"] * 0.7."</td>";
-											}
-											echo "<td>".$row["date"]."</td>";
-											echo "<td><a>edit</a></td>";
-										echo "</tr>";
-									}
-								}
-							}
-
-							catch(PDOException $e) {
-								echo $e->getMessage();
-							}
-
-							$conn = null;
-						?>
+					<tbody id="accountTBody">
 					</tbody>
 				</table>
-			</form>
+				<button id="prev" onclick="displayBookings(parseInt(document.getElementById('page').innerHTML) - 1)"><</button>
+				<p id="page"></p>
+				<button id="next" onclick="displayBookings(parseInt(document.getElementById('page').innerHTML) + 1)">></button>
+			</div>
 		</div>
 	</body>
 	<script>
@@ -91,8 +59,82 @@
 			}, 'json');
 		}
 
-		function deleteRow() {
+		function getBookings(off, cbk) {
+			$.ajax({
+				type: "POST",
+				url: "includes/getBookingsDB.php",
+				data: {offset: off},
+				dataType: "json"
+			}).done(function(response) {
+				cbk(response);
+			});
+		}
 
+		function displayBookings(pageNum) {
+			var offset;
+			if (pageNum && pageNum != 0) {
+				offset = (pageNum - 1) * 10;
+				document.getElementById("page").innerHTML = pageNum;
+			} else {
+				offset = 0;
+				document.getElementById("page").innerHTML = 1;
+			}
+
+			document.getElementById("next").style.display = "inline-block";
+			document.getElementById("prev").style.display = "inline-block";
+			if ((offset + 10) >= <?php echo $count ?>) {
+				document.getElementById("next").style.display = "none";
+			} 
+
+			if (offset == 0) {
+				document.getElementById("prev").style.display = "none";
+			}
+			getBookings(offset, function(response) {
+				for (var i = 0; i < response.length; i++) {
+
+					var tr = document.createElement("tr");
+					document.getElementById("accountTBody").appendChild(tr);
+
+					var del = document.createElement("td");
+					del.innerHTML = "X";
+					del.onclick = (function(i){
+						return function(){ deleteRow(response[i][0]); }
+					})(i);
+					tr.appendChild(del);
+
+					for (var j = 0; j < response[i].length; j++) {
+						var td = document.createElement("td");
+						td.innerHTML = response[i][j];
+
+						if (j == (response[i].length - 1)) {
+							td.classList.add("lastTD");
+						}
+						tr.appendChild(td);
+					}
+
+					var today = new Date();
+					var compare = new Date(response[i][3]);
+
+					if (today.getTime() <= compare.getTime()) {
+						var edit = document.createElement("td");
+						edit.innerHTML = "edit";
+						edit.classList.add("edit");
+						edit.onclick = (function(i){
+							return function(){ editRow(response[i][0]); }
+						})(i);
+						tr.appendChild(edit);
+					}
+				}
+			});
+		}
+		displayBookings(1);
+
+		function deleteRow(id) {
+			alert(id);
+		}
+
+		function editRow(id) {
+			location.href = "includes/editBooking.php?id=" + id;
 		}
 	</script>
 	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>

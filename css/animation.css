@@ -7,6 +7,10 @@ span, input[type=checkbox], #calendarDiv, #bookingIntro .status, #bookingIntro .
 	transition: all .4s;
 }
 
+#islandBookDiv label, #monthHeader button, .bookingRadio label, #accountTable tbody tr td:first-child, #accountTable tbody tr a {
+	transition: all .2s;
+}
+
 
 /* INDEX.PHP */
 #locationText {
@@ -23,9 +27,6 @@ span, input[type=checkbox], #calendarDiv, #bookingIntro .status, #bookingIntro .
 
 
 /* BOOKING.PHP */
-#islandBookDiv label, #monthHeader button, .bookingRadio label {
-	transition: all .2s;
-}
 
 @keyframes revealAnim {
 	from {
