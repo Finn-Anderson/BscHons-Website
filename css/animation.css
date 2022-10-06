@@ -7,7 +7,7 @@ span, input[type=checkbox], #calendarDiv, #bookingIntro .status, #bookingIntro .
 	transition: all .4s;
 }
 
-#islandBookDiv label, #monthHeader button, .bookingRadio label, #accountTable tbody tr td:first-child, #accountTable tbody tr a {
+#islandBookDiv label, #monthHeader button, .bookingRadio label, #accountTable tbody tr td {
 	transition: all .2s;
 }
 

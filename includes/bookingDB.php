@@ -57,14 +57,15 @@
 
 				if ($capacity >= 0) {
 					// stmt to insert data
-					$stmtBooking = $conn->prepare("INSERT INTO Booking (userID, date, surcharge, returnBooked, wheelchairBooked, reverse)
-						VALUES (:id, :date, :surcharge, :returnBooked, :wheelchairBooked, :reverse)");
+					$stmtBooking = $conn->prepare("INSERT INTO Booking (userID, date, surcharge, returnBooked, wheelchairBooked, reverse, cancelled)
+						VALUES (:id, :date, :surcharge, :returnBooked, :wheelchairBooked, :reverse, :cancelled)");
 					$stmtBooking->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 					$stmtBooking->bindValue(":date", $date, PDO::PARAM_STR);
 					$stmtBooking->bindValue(":surcharge", $surcharge, PDO::PARAM_INT);
 					$stmtBooking->bindValue(":returnBooked", $return, PDO::PARAM_BOOL);
 					$stmtBooking->bindValue(":wheelchairBooked", $wheelchair, PDO::PARAM_BOOL);
 					$stmtBooking->bindValue(":reverse", $reverse, PDO::PARAM_BOOL);
+					$stmtBooking->bindValue(":cancelled", false, PDO::PARAM_BOOL);
 					$stmtBooking->execute();
 
 					$getBookingID = $conn->prepare("SELECT bookingID FROM Booking WHERE userID = :id ORDER BY bookingID DESC LIMIT 1");

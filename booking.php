@@ -459,35 +459,47 @@
 			var pTime = document.querySelectorAll(".departureTime");
 			var time;
 
+			var span1 = document.createElement("span");
+			var span2 = document.createElement("span");
+
 			pRoute[0].innerHTML = "";
 			pRoute[1].innerHTML = "";
 			pTime[0].innerHTML = "";
 			pTime[1].innerHTML = "";
 
-			if (from == "Mallaig") {
-				if (to == "Rum") {
+			var date = document.querySelector("[name='dateChosen']").value;
+			var dateArray = date.split("/");
+			var day = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
+
+			if (day.getDay() == 4) {
+				if (from == "Mallaig") {
 					time = "11:00 - 12:45";
 				} else {
-					time = "11:00 - 12:00";
-				}
-			} if (from == "Eigg") {
-				if (to == "Mallaig") {
-					time = "16:30 - 17:30";
-				} else {
-					time = "12:30 - 13:30";
-				}
-			} else if (from == "Muck") {
-				time = "15:30 - 16:00";
-			} else if (from == "Rum") {
-				if (to == "Mallaig") {
 					time = "15:45 - 17:30";
-				} else {
+				}
+			} else if (from == "Muck" || from == "Rum") {
+				if (to == "Eigg") {
 					time = "15:30 - 16:00";
+				} else {
+					time = "15:30 - 17:30";
+				}
+			} else if (from == "Eigg") {
+				if (to == "Muck" || to == "Rum") {
+					time = "12:30 - 13:30";
+				} else {
+					$time = "16:30 - 17:30";
+				}
+			} else {
+				if (to == "Muck" || to == "Rum") {
+					time = "11:00 - 13:30";
+				} else {
+					time = "11:00 - 12:00";
 				}
 			}
 
 			pRoute[0].innerHTML = from + " - " + to;
 			pTime[0].innerHTML = time;
+			pTime[0].prepend(span1);
 
 			if (document.querySelector("input[name='return']:checked").value == "true") {
 				if (to == "Eigg") {
@@ -499,10 +511,6 @@
 						time = "15:30 - 16:00";
 					}
 				} else if (to == "Rum") {
-					var date = document.querySelector("[name='dateChosen']").value;
-					var dateArray = date.split("/");
-					var day = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
-
 					if (day.getDay() == 4) {
 						time = "15:45 - 17:30";
 					} else {
@@ -515,6 +523,7 @@
 				}
 				pRoute[1].innerHTML = to + " - " + from;
 				pTime[1].innerHTML = time;
+				pTime[1].prepend(span2);
 			}
 		}
 
@@ -679,6 +688,7 @@
 
 			var cost = parseInt(adultCost + childCost + teenagerCost);
 			cost *= discount;
+			cost *= 1.2;
 
 			document.getElementById("price").innerHTML = "£" + cost.toFixed(2);
 		}

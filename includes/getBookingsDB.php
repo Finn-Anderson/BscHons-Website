@@ -13,9 +13,10 @@
 
 		$values = array();
 
-		$getBookings = $conn->prepare("SELECT Booking.bookingID, SUM(numberOfPeople) AS numPeople, SUM(numberOfPeople * cost) AS sumCost, date, returnBooked FROM Booking, Trip, RouteFare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND userID = :id GROUP BY Trip.bookingID DESC LIMIT 10 OFFSET :offset");
+		$getBookings = $conn->prepare("SELECT Booking.bookingID, SUM(numberOfPeople) AS numPeople, SUM(numberOfPeople * cost) AS sumCost, date, returnBooked FROM Booking, Trip, RouteFare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND userID = :id AND cancelled = :cancelled GROUP BY Trip.bookingID DESC ORDER BY date DESC LIMIT 10 OFFSET :offset");
 		$getBookings->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 		$getBookings->bindValue(":offset", $offset, PDO::PARAM_INT);
+		$getBookings->bindValue(":cancelled", false, PDO::PARAM_BOOL);
 		$getBookings->execute();
 
 		$result = $getBookings->fetchAll();

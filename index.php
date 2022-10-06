@@ -7,7 +7,7 @@
 			<div id="introTxt">
 				<h1>Alba Cruises</h1>
 				<p>Your escape to island cruising is just one click away</p>
-				<a href="booking.php">Book Now</a>
+				<a class="albaButton" href="booking.php">Book Now</a>
 			</div>
 		</div>
 
@@ -41,7 +41,7 @@
 			<div id="locationText">
 				<h1>Interactable Map &#8594;</h1>
 				<p>Click one of the circles on an island to learn more about that island!</p>
-				<a href="">Learn More</a>
+				<a class="albaButton" href="">Learn More</a>
 			</div>
 		</div>
 	</body>

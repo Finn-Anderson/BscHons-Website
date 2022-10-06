@@ -18,11 +18,11 @@
 		$days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
 		if ($to == "mallaig" || $to == "eigg") {
-			$stmt = $conn->prepare("SELECT numberOfPeople, wheelchairBooked FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND (Booking.returnBooked = true OR Booking.reverse = true) AND Route.from = :froms AND Route.to = :to");
+			$stmt = $conn->prepare("SELECT numberOfPeople, wheelchairBooked FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND (Booking.returnBooked = true OR Booking.reverse = true) AND Route.from = :froms AND Route.to = :to AND cancelled = :cancelled");
 		} else if ($return == "true") {
-			$stmt = $conn->prepare("SELECT numberOfPeople, wheelchairBooked FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND Route.from = :froms AND Route.to = :to");
+			$stmt = $conn->prepare("SELECT numberOfPeople, wheelchairBooked FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND Route.from = :froms AND Route.to = :to AND cancelled = :cancelled");
 		} else {
-			$stmt = $conn->prepare("SELECT numberOfPeople, wheelchairBooked FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND Booking.reverse = false AND Route.from = :froms AND Route.to = :to");
+			$stmt = $conn->prepare("SELECT numberOfPeople, wheelchairBooked FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND Booking.reverse = false AND Route.from = :froms AND Route.to = :to AND cancelled = :cancelled");
 		}
 
 		if ($to == "mallaig" || ($to == "eigg" && $from != "mallaig")) {
@@ -32,6 +32,7 @@
 
 		$stmt->bindValue(":froms", ucfirst($from), PDO::PARAM_STR);
 		$stmt->bindValue(":to", ucfirst($to), PDO::PARAM_STR);
+		$stmt->bindValue(":cancelled", false, PDO::PARAM_BOOL);
 
 		for ($i=1; $i <= $days; $i++) {
 			$dateString = $year."-".$month."-".$i;

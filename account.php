@@ -4,6 +4,7 @@
 	<body>
 		<div id="accountDiv">
 			<div>
+				<h1 id="accounth1">Account</h1>
 				<form id="avatarForm" method="post" action="includes/updateAvatar.php" enctype="multipart/form-data">
 					<?php 
 						if (pathinfo($img, PATHINFO_EXTENSION) == "svg") {
@@ -22,6 +23,7 @@
 			</div>
 
 			<div id="accountTableDiv">
+				<h1>Bookings</h1>
 				<table id="accountTable" cellspacing="0">
 					<thead>
 						<tr>
@@ -90,10 +92,16 @@
 				document.getElementById("prev").style.display = "none";
 			}
 			getBookings(offset, function(response) {
+				var tbody = document.getElementById("accountTBody");
+
+				while (tbody.firstChild) {
+					tbody.lastChild.remove();
+				}
+
 				for (var i = 0; i < response.length; i++) {
 
 					var tr = document.createElement("tr");
-					document.getElementById("accountTBody").appendChild(tr);
+					tbody.appendChild(tr);
 
 					var del = document.createElement("td");
 					del.innerHTML = "X";
@@ -105,6 +113,9 @@
 					for (var j = 0; j < response[i].length; j++) {
 						var td = document.createElement("td");
 						td.innerHTML = response[i][j];
+						td.onclick = (function(i){
+							return function(){ displayRow(response[i][0]); }
+						})(i);
 
 						if (j == (response[i].length - 1)) {
 							td.classList.add("lastTD");
@@ -130,11 +141,21 @@
 		displayBookings(1);
 
 		function deleteRow(id) {
-			alert(id);
+			$.ajax({
+				type: "POST",
+				url: "includes/cancelBooking.php",
+				data: {bookingID: id}
+			}).done(function() {
+				displayBookings();
+			});
+		}
+
+		function displayRow(id) {
+			location.href = "print.php?id=" + id;
 		}
 
 		function editRow(id) {
-			location.href = "includes/editBooking.php?id=" + id;
+			location.href = "editBooking.php?id=" + id;
 		}
 	</script>
 	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>

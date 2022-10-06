@@ -85,6 +85,7 @@
 		returnBooked BOOLEAN NOT NULL,
 		wheelchairBooked BOOLEAN NOT NULL,
 		reverse BOOLEAN NOT NULL,
+		cancelled BOOLEAN NOT NULL,
 		FOREIGN KEY (userID) REFERENCES User (userID) ON DELETE CASCADE ON UPDATE CASCADE
 		)";
 
