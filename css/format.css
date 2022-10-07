@@ -11,10 +11,13 @@ a {
 }
 
 header {
-	position: absolute;
-	z-index: 1;
 	width: 100%;
 	text-align: center;
+}
+
+#indexBody header {
+	position: absolute;
+	z-index: 1;
 }
 
 header #homeDiv {
@@ -381,8 +384,9 @@ input[type=checkbox]:before {
 	letter-spacing: 1px;
 }
 
-.warning {
+.warning, .success {
 	text-align: center;
+	font-size: 18px;
 }
 
 
@@ -393,7 +397,7 @@ input[type=checkbox]:before {
 	grid-template-columns: 200px 200px;
 	justify-content: center;
 	justify-items: center;
-	padding: 148px 0px 64px 0px;
+	padding: 24px 0px 64px 0px;
 }
 
 #bookingIntro h1, #bookingIntro #dashLine {
@@ -490,21 +494,30 @@ input[type=checkbox]:before {
 #checkoutDiv {
 	display: grid;
 	height: max-content;
-	max-height: 0px;
 	margin-bottom: 101px;
-	overflow: hidden;
-	opacity: 0;
 	justify-items: center;
 }
 
-#fromSelect {
+#bookingBody #checkoutDiv {
+	max-height: 0px;
+	overflow: hidden;
+	opacity: 0;
+}
+
+#fromToDiv div {
+	display: inline-block;
+	margin: 0px 32px;
+	text-align: center;
+}
+
+#fromSelect, #toSelect {
 	display: block;
 	padding: 8px 24px;
 	font-size: 20px;
 	margin: 8px 0px 40px 0px;
 }
 
-label[for="fromSelect"] {
+label[for="fromSelect"], label[for="toSelect"] {
 	font-size: 24px;
 }
 
@@ -711,7 +724,7 @@ label[for="fromSelect"] {
 #accountDiv {
 	display: flex;
 	min-height: calc(100vh - 520px);
-	padding-top: 124px;
+	margin-bottom: 64px;
 	justify-content: center;
 	align-content: center;
 	flex-wrap: wrap;
@@ -842,10 +855,9 @@ label[for="fromSelect"] {
 /* PRINT.PHP */
 #printDiv {
 	display: flex;
-	padding-top: 164px;
 	justify-content: center;
 	flex-wrap: wrap;
-	margin-bottom: 124px;
+	margin: 48px 0px 88px 0px;
 }
 
 #printHeader, #printBooked, #printBooked p {

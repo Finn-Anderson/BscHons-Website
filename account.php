@@ -24,6 +24,12 @@
 
 			<div id="accountTableDiv">
 				<h1>Bookings</h1>
+				<?php
+					// Displays booking success message when user successfully edits booking.
+					if (isset($_GET["msg"]) && $_GET["msg"] == "success") {
+						echo "<p class='success'>Booking editted</p><br>";
+					}
+				?>
 				<table id="accountTable" cellspacing="0">
 					<thead>
 						<tr>
@@ -110,9 +116,17 @@
 					})(i);
 					tr.appendChild(del);
 
-					for (var j = 0; j < response[i].length; j++) {
+					for (var j = 0; j < (response[i].length - 1); j++) {
 						var td = document.createElement("td");
-						td.innerHTML = response[i][j];
+						if (j == 2) {
+							$surcharge = 0;
+							if (response[i][4]) {
+								$surcharge = 5;
+							}
+							td.innerHTML = ((response[i][j] + $surcharge) * 1.2).toFixed(2);
+						} else {
+							td.innerHTML = response[i][j];
+						}
 						td.onclick = (function(i){
 							return function(){ displayRow(response[i][0]); }
 						})(i);
@@ -123,10 +137,10 @@
 						tr.appendChild(td);
 					}
 
-					var today = new Date();
-					var compare = new Date(response[i][3]);
+					var today = new Date().setHours(0, 0, 0, 0);
+					var compare = new Date(response[i][3]).setHours(0, 0, 0, 0);
 
-					if (today.getTime() <= compare.getTime()) {
+					if (today < compare) {
 						var edit = document.createElement("td");
 						edit.innerHTML = "edit";
 						edit.classList.add("edit");

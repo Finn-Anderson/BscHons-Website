@@ -1,3 +1,4 @@
+/* BACKGROUND COLOURS */
 header span, #authDiv span, .albaButton, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #logoutBtn, #printDetails table thead, #printCostDiv {
 	background-color: #ff7f50;
 }
@@ -14,7 +15,7 @@ footer {
 	background-color: #ff926a;
 }
 
-#companyInfo, #about, #authForm:invalid button, #authForm {
+#companyInfo, #about, #authForm:invalid button, #authForm, #printDetails table tbody td:nth-child(even) {
 	background-color: #fff;
 }
 
@@ -74,6 +75,8 @@ footer {
 	background-color: #f0f0f0;
 }
 
+
+/* TEXT COLOURS */
 footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .status {
 	color: #777;
 }
@@ -106,7 +109,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	color: #50d0ff;
 }
 
-#islandBookMuck h1 {
+#islandBookMuck h1, .success {
 	color: #36B13A;
 }
 
@@ -118,6 +121,8 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	color: #ffd750;
 }
 
+
+/* BORDER COLOURS */
 #locationDiv .locationButton, #home, #companyInfo div {
 	border-color: #222;
 }
@@ -166,6 +171,8 @@ input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDat
 	border-color: #ffd750;
 }
 
+
+/* SPECIAL CASE COLOURS */
 #authForm input {
 	outline-color: #ff7f50;
 }

@@ -13,7 +13,7 @@
 
 		$values = array();
 
-		$getBookings = $conn->prepare("SELECT Booking.bookingID, SUM(numberOfPeople) AS numPeople, SUM(numberOfPeople * cost) AS sumCost, date, returnBooked FROM Booking, Trip, RouteFare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND userID = :id AND cancelled = :cancelled GROUP BY Trip.bookingID DESC ORDER BY date DESC LIMIT 10 OFFSET :offset");
+		$getBookings = $conn->prepare("SELECT Booking.bookingID, SUM(numberOfPeople) AS numPeople, SUM(numberOfPeople * cost) AS sumCost, date, returnBooked, surcharge FROM Booking, Trip, RouteFare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND userID = :id AND cancelled = :cancelled GROUP BY Trip.bookingID DESC ORDER BY date DESC LIMIT 10 OFFSET :offset");
 		$getBookings->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 		$getBookings->bindValue(":offset", $offset, PDO::PARAM_INT);
 		$getBookings->bindValue(":cancelled", false, PDO::PARAM_BOOL);
@@ -25,7 +25,7 @@
 			if (!$row["returnBooked"]) {
 				$row["sumCost"] = $row["sumCost"] * 0.7;
 			}
-			array_push($values, array($row["bookingID"], $row["numPeople"], number_format((float)$row["sumCost"], 2, ".", ""), $row["date"]));
+			array_push($values, array($row["bookingID"], $row["numPeople"], number_format((float)$row["sumCost"], 2, ".", ""), $row["date"], $row["surcharge"]));
 		}
 
 		echo json_encode($values);

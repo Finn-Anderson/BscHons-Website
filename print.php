@@ -37,7 +37,7 @@
 							$ageRange = $row["minAge"]." - ".$row["maxAge"];
 
 							$row["cost"] *= $row["numberOfPeople"];
-							array_push($values, array($row["bookingID"], $row["date"], $row["wheelchairBooked"], $row["returnBooked"], $row["surcharge"], $row["from"], $row["to"], $row["numberOfPeople"], $ageRange, number_format((float)$row["cost"], 2, ".", "")));
+							array_push($values, array(sprintf("%08d",$row["bookingID"]), $row["date"], $row["wheelchairBooked"], $row["returnBooked"], $row["surcharge"], $row["from"], $row["to"], $row["numberOfPeople"], $ageRange, number_format((float)$row["cost"], 2, ".", "")));
 						}
 					}
 				} else {
@@ -54,7 +54,7 @@
 		<div id="printDiv">
 			<div id="printHeader">
 				<?php 
-					echo "<p>Booking ID: ".$values[0][0]."</p>";
+					echo "<p>ID: ".$values[0][0]."</p>";
 					echo "<p>".$values[0][1]."</p>";
 
 					$from = $values[0][5];
@@ -195,6 +195,7 @@
 						for ($i=0; $i < count($values); $i++) { 
 							$cost += $values[$i][9];
 						}
+						$cost += $surcharge;
 						$cost *= 1.2;
 						$cost = number_format((float)$cost, 2, ".", "");
 					?>
@@ -203,7 +204,7 @@
 						<p class='printRight'>£<?php echo $cost ?></p>
 					</div>
 				</div>
-				<button class="albaButton">PRINT</button>
+				<button class="albaButton" onclick="window.print()">PRINT</button>
 			</div>
 		</div>
 	</body>

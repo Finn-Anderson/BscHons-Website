@@ -20,21 +20,21 @@
 		}
 
 		// Checks what pages user can access depending on login state
-		if (isset($_SESSION['authorized']) AND $_SESSION['authorized'] == TRUE) {
-			$NOTpermList = array('login.php', 'register.php');
+		if (isset($_SESSION["authorized"]) AND $_SESSION["authorized"] == TRUE) {
+			$NOTpermList = array("login.php", "register.php");
 
 			for ($x = 0; $x < count($NOTpermList); $x++) {
-				if (basename($_SERVER['PHP_SELF']) == $NOTpermList[$x]) {
-					header('Location: ../index.php');
+				if (basename($_SERVER["PHP_SELF"]) == $NOTpermList[$x]) {
+					header("Location: ../index.php");
 					exit();
 				}
 			}
 		} else {
-			$NOTpermList = array('editBooking.php', 'account.php');
+			$NOTpermList = array("editBooking.php", "account.php", "print.php");
 
 			for ($x = 0; $x < count($NOTpermList); $x++) {
-				if (basename($_SERVER['PHP_SELF']) == $NOTpermList[$x]) {
-					header('Location: ../login.php');
+				if (basename($_SERVER["PHP_SELF"]) == $NOTpermList[$x]) {
+					header("Location: ../login.php");
 					exit();
 				}
 			}

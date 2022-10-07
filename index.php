@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<?php $title = "Home Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
-	<body>
+	<body id="indexBody">
 		<div id="intro">
 			<img id="1" src="/img/eiggPanoramic.jpg">
 			<div id="introTxt">

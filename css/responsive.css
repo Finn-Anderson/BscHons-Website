@@ -1,0 +1,26 @@
+@media print
+{    
+	header, footer
+	{
+		display: none !important;
+	}
+
+	body {
+		height: 100%;
+		overflow: hidden;
+		-webkit-print-color-adjust:exact !important;
+		print-color-adjust:exact !important;
+	}
+
+	#printDiv {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-image: url("/img/logoPrint.png");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 90% 90%;
+		margin: 0px;
+	}
+}
