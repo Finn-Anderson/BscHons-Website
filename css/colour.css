@@ -1,5 +1,5 @@
 /* BACKGROUND COLOURS */
-header span, #authDiv span, .albaButton, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #logoutBtn, #printDetails table thead, #printCostDiv {
+header span, #authDiv span, .albaButton, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #logoutBtn, #printDetails table thead, #printCostDiv, footer button:hover, footer span {
 	background-color: #ff7f50;
 }
 
@@ -85,11 +85,11 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	color: #000;
 }
 
-.albaButton, .booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before, #islandBookDiv h1, #islandBookDiv label:hover, #bookingIntro .status.valid, #islandBookDiv input:checked + label, #calendar td.validDate, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #accountTable tbody tr td:first-child:hover, #printDetails table thead, #printCostDiv p {
+.albaButton, #introTxt, .booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before, #islandBookDiv h1, #islandBookDiv label:hover, #bookingIntro .status.valid, #islandBookDiv input:checked + label, #calendar td.validDate, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #accountTable tbody tr td:first-child:hover, #printDetails table thead, #printCostDiv p, footer span {
 	color: #fff;
 }
 
-.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1, #monthHeader button:hover, .bookingRadio + a, #accountTable tbody tr .edit:hover, #prev:hover, #next:hover, #accountDiv h1 {
+.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1, #monthHeader button:hover, .bookingRadio + a, #accountTable tbody tr .edit:hover, #prev:hover, #next:hover, #accountDiv h1, footer h1 {
 	color: #ff7f50;
 }
 
@@ -131,7 +131,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	border-color: #ff7f50;
 }
 
-#homeDiv.bright {
+#homeDiv.bright, footer button {
 	border-color: #fff;
 }
 
@@ -151,7 +151,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	border-color: #ff5079;
 }
 
-input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover {
+input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, footer button:hover {
 	border-color: #ff7f50;
 }
 
@@ -169,6 +169,10 @@ input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDat
 
 #islandBookCeilidh label:hover, #islandBookCeilidh input:checked + label, #islandBookCeilidh h1 {
 	border-color: #ffd750;
+}
+
+footer span::after {
+	border-top-color: #ff7f50;
 }
 
 

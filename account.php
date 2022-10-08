@@ -34,8 +34,8 @@
 					<thead>
 						<tr>
 							<th>Del</th>
-							<th>Booking ID</th>
-							<th>No. of People</th>
+							<th>ID</th>
+							<th>People</th>
 							<th>Cost</th>
 							<th>Date</th>
 						</tr>

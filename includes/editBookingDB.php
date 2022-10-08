@@ -86,6 +86,10 @@
 						$stmtBooking->bindValue(":cancelled", false, PDO::PARAM_BOOL);
 						$stmtBooking->execute();
 
+						$delTrip = $conn->prepare("DELETE FROM Trip WHERE bookingID = :bookingID");
+						$delTrip->bindValue(":bookingID", $bookingID, PDO::PARAM_INT);
+						$delTrip->execute();
+
 						$getRouteFareIDs = $conn->prepare("SELECT routeFareID, minAge, maxAge FROM RouteFare, Fare, Route WHERE RouteFare.routeID = Route.routeID AND RouteFare.fareID = Fare.fareID AND Route.from = :froms AND Route.to = :to");
 						$getRouteFareIDs->bindValue(":froms", $from, PDO::PARAM_STR);
 						$getRouteFareIDs->bindValue(":to", $to, PDO::PARAM_STR);
@@ -105,7 +109,8 @@
 								$choice = $adult;
 							}
 
-							$stmtTrip = $conn->prepare("UPDATE Trip SET numberOfPeople = :numberOfPeople WHERE bookingID = :bookingID AND routeFareID = :routeFareID");
+							$stmtTrip = $conn->prepare("INSERT INTO Trip (bookingID, routeFareID, numberOfPeople)
+								VALUES (:bookingID, :routeFareID, :numberOfPeople)");
 							$stmtTrip->bindValue(":bookingID", $bookingID, PDO::PARAM_INT);
 							$stmtTrip->bindValue(":routeFareID", $row["routeFareID"], PDO::PARAM_INT);
 							$stmtTrip->bindValue(":numberOfPeople", $choice, PDO::PARAM_INT);

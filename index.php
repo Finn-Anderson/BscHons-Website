@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 	<?php $title = "Home Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
-	<body id="indexBody">
+	<body>
 		<div id="intro">
-			<img id="1" src="/img/eiggPanoramic.jpg">
 			<div id="introTxt">
 				<h1>Alba Cruises</h1>
 				<p>Your escape to island cruising is just one click away</p>
 				<a class="albaButton" href="booking.php">Book Now</a>
+			</div>
+			<div id="introImg">
+				<img id="1" src="/img/eiggPanoramic.jpg">
 			</div>
 		</div>
 

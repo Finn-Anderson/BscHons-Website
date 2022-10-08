@@ -110,7 +110,9 @@
 				}
 			}
 
-			checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1);
+			if (document.querySelectorAll('.selectedDate')[0]) {
+				checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1);
+			}
 			displayDepartureTimes();
 			tallyCost();
 		}

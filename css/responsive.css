@@ -24,3 +24,30 @@
 		margin: 0px;
 	}
 }
+
+@media (max-width:480px) {
+	#accountTable tr th:nth-child(4), #accountTable tr td:nth-child(4) {
+		display:none;
+	}
+
+	#printBooked {
+		margin: 16px 0px 0px 0px;
+	}
+
+	#printDetails .albaButton {
+		width: 100%;
+		margin-top: 64px;
+	}
+}
+
+@media (max-width:558px) {
+	footer {
+		text-align: center;
+	}
+}
+
+@media (max-width:660px) {
+	#printBooked {
+		margin: 16px 0px 0px 0px;
+	}
+}

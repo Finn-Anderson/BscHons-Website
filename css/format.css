@@ -6,6 +6,10 @@ body {
 	min-height: 100vh;
 }
 
+main {
+	min-height: calc(100vh - 248px);
+}
+
 a {
 	text-decoration: none;
 }
@@ -13,11 +17,6 @@ a {
 header {
 	width: 100%;
 	text-align: center;
-}
-
-#indexBody header {
-	position: absolute;
-	z-index: 1;
 }
 
 header #homeDiv {
@@ -78,30 +77,70 @@ header span, #authDiv span {
 }
 
 footer {
-	display: inline-block;
-	width: 100%;
-	height: 320px;
-}
-
-footer img, footer div {
-	display: inline-block;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
+	display: flex;
+	height: max-content;
+	padding: 24px;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10vw;
 }
 
 footer img {
-	float: right;
-	margin-right: 10%;
+	height: 200px;
 }
 
 footer p {
-	font-size: 18px;
-	line-height: 26px;
+	font-size: 20px;
+	line-height: 32px;
+	margin: 0px;
 }
 
-footer div {
-	margin-left: 10%;
+footer h1 {
+	font-size: 40px;
+	margin-bottom: 48px;
+	margin-top: 0px;
+}
+
+footer #footerContactDiv {
+	text-align: center;
+}
+
+footer span {
+	position: absolute;
+	bottom: 130%;
+	left: -106%;
+	width: max-content;
+	padding: 4px;
+	border-radius: 2px;
+	font-size: 16px;
+	opacity: 0;
+	pointer-events: none
+}
+
+footer span::after {
+	position: absolute;
+	left: 50%;
+	top: 100%;
+	transform: translate(-50%);
+	content: "";
+	border-top: 8px solid;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+}
+
+footer button {
+	position: relative;
+	height: 64px;
+	width: 64px;
+	background-color: transparent;
+	background-image: url("/img/contactIcon.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 80% 40%;
+	border: 1px solid;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 .albaButton {
@@ -117,23 +156,15 @@ footer div {
 
 /* INDEX.PHP */
 #intro {
-	height: 65vh;
-}
-
-#intro img {
-	position: fixed;
-	z-index: -1;
-	width: 100%;
-	filter: brightness(0.66);
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #introTxt {
-	position: absolute;
-	color: white;
-	top: 35%;
-	left: 50%;
-	transform: translate(-50%, -55%);
 	text-align: center;
+	margin-bottom: 15%;
 }
 
 #introTxt h1 {
@@ -153,6 +184,20 @@ footer div {
 	font-size: 30px;
 }
 
+#intro #introImg {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#intro img {
+	position: fixed;
+	z-index: -1;
+	height: 100%;
+	width: 100%;
+	filter: brightness(0.66);
+}
+
 #companyInfo, #about {
 	display: flex;
 	flex-wrap: wrap;
@@ -162,6 +207,7 @@ footer div {
 
 #companyInfo div {
 	width: 20vw;
+	min-width: 300px;
 	margin: 24px;
 	padding: 0px 16px 16px 16px;
 	text-align: center;
@@ -239,22 +285,22 @@ footer div {
 
 #mallaig {
 	top: 183px;
-    right: 115px;
+	right: 115px;
 }
 
 #eigg {
 	top: 380px;
-    right: 472px;
+	right: 472px;
 }
 
 #muck {
 	top: 517px;
-    right: 571px;
+	right: 571px;
 }
 
 #rum {
 	top: 178px;
-    right: 686px;
+	right: 686px;
 }
 
 
@@ -455,10 +501,13 @@ input[type=checkbox]:before {
 	display: flex;
 	text-align: center;
 	padding: 0px 8px;
+	flex-wrap: wrap;
 }
 
 #islandBookDiv div {
 	margin: 8px;
+	min-width: 300px;
+	flex: 1;
 }
 
 #islandBookDiv h1, #islandBookDiv p {
@@ -725,14 +774,13 @@ label[for="fromSelect"], label[for="toSelect"] {
 	display: flex;
 	min-height: calc(100vh - 520px);
 	margin-bottom: 64px;
-	justify-content: center;
-	align-content: center;
 	flex-wrap: wrap;
 	gap: 36px;
+	flex-direction: column;
 }
 
 #accountDiv div {
-	margin: 0px 25%;
+	margin: auto;
 }
 
 #avatarForm {

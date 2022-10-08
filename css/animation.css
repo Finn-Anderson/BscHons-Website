@@ -1,4 +1,3 @@
-/* HEADER.PHP */
 .home {
 	transition: background-image .2s;
 }
@@ -7,7 +6,7 @@ span, input[type=checkbox], #calendarDiv, #bookingIntro .status, #bookingIntro .
 	transition: all .4s;
 }
 
-#islandBookDiv label, #monthHeader button, .bookingRadio label, #accountTable tbody tr td {
+#islandBookDiv label, #monthHeader button, .bookingRadio label, #accountTable tbody tr td, footer button {
 	transition: all .2s;
 }
 
@@ -27,7 +26,6 @@ span, input[type=checkbox], #calendarDiv, #bookingIntro .status, #bookingIntro .
 
 
 /* BOOKING.PHP */
-
 @keyframes revealAnim {
 	from {
 		opacity: 0;
@@ -42,4 +40,21 @@ span, input[type=checkbox], #calendarDiv, #bookingIntro .status, #bookingIntro .
 
 #checkoutDiv.bookingAnim {
 	animation: revealAnim 2s forwards;
+}
+
+
+/* FOOTER.PHP */
+@keyframes clipboardAnim {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+.footerAnim {
+	opacity: 1;
+	animation: clipboardAnim 1s 1s forwards;
 }
