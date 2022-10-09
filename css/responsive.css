@@ -26,6 +26,10 @@
 }
 
 @media (max-width:480px) {
+	#introTxt h1 {
+		font-size: 88px;
+	}
+
 	#accountTable tr th:nth-child(4), #accountTable tr td:nth-child(4) {
 		display:none;
 	}
@@ -33,21 +37,66 @@
 	#printBooked {
 		margin: 16px 0px 0px 0px;
 	}
-
 	#printDetails .albaButton {
 		width: 100%;
 		margin-top: 64px;
 	}
 }
 
-@media (max-width:558px) {
+@media (max-width: 558px) {
 	footer {
 		text-align: center;
 	}
 }
 
-@media (max-width:660px) {
+@media (max-width: 660px) {
 	#printBooked {
 		margin: 16px 0px 0px 0px;
+	}
+}
+
+@media (max-width: 800px) {
+	#bookingRadioDiv {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+	#bookingRadioDiv a {
+		left: 49px;
+	}
+	.bookingRadio {
+		margin: 0px;
+	}
+
+	#bookingCost #timeDiv {
+		width: 100%;
+		border: 1px solid;
+	}
+	#bookingCost #timeDiv, #bookingCost #priceBtn {
+		border-radius: 2px;
+	}
+	#bookingCost #priceBtn {
+		width: calc(100% + 2px);
+		margin: 24px 0px 0px 0px;
+	}
+}
+
+@media (max-width: 1650px) { 
+	#locationDiv, .locationPointer, #mapDiv img {
+		display: none;
+	}
+	#locationSelect {
+		display: block;
+	}
+	#mapDiv {
+		grid-template-columns: auto;
+		grid-gap: 0px;
+		padding: 16px;
+		justify-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+	}
+	#locationText {
+		text-align: center;
 	}
 }

@@ -140,7 +140,7 @@
 			<input type="hidden" name="dateChosen" required>
 		</div>
 
-		<div>
+		<div id="bookingRadioDiv">
 			<div class="bookingRadio">
 				<p>Book Return?</p>
 				<input id="returnYes" type="radio" name="return" value="true" disabled onchange="displayDepartureTimes()">
@@ -164,14 +164,24 @@
 
 		<div id="ageDiv">
 			<p>Age</p>
-			<label>0-2</label>
-			<select class="ageSelect" name="baby" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
-			<label>3-10</label>
-			<select class="ageSelect" name="child" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
-			<label>11-16</label>
-			<select class="ageSelect" name="teenager" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
-			<label>17+</label>
-			<select class="ageSelect" name="adult" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
+			<div>
+				<div>
+					<label>0-2</label>
+					<select class="ageSelect" name="baby" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
+				</div>
+				<div>
+					<label>3-10</label>
+					<select class="ageSelect" name="child" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
+				</div>
+				<div>
+					<label>11-16</label>
+					<select class="ageSelect" name="teenager" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
+				</div>
+				<div>
+					<label>17+</label>
+					<select class="ageSelect" name="adult" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
+				</div>
+			</div>
 		</div>
 
 		<div id="bookingCost">
@@ -524,7 +534,7 @@
 			if (to == "Muck" || to == "Rum") {
 				time = "12:30 - 13:30";
 			} else {
-				$time = "16:30 - 17:30";
+				time = "16:30 - 17:30";
 			}
 		} else {
 			if (to == "Muck" || to == "Rum") {

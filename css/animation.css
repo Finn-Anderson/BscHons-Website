@@ -34,7 +34,7 @@ span, input[type=checkbox], #calendarDiv, #bookingIntro .status, #bookingIntro .
 
 	to {
 		opacity: 1;
-		max-height: 1000px;
+		max-height: 1200px;
 	}
 }
 

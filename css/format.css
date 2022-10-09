@@ -226,7 +226,7 @@ footer button {
 	justify-content: right;
 	grid-template-rows: 612px;
 	grid-template-columns: 500px 1000px;
-	grid-gap: 200px;
+	grid-gap: 100px;
 }
 
 #locationDiv, .locationPointer, #mapDiv img {
@@ -247,10 +247,21 @@ footer button {
 	cursor: pointer;
 }
 
+#locationSelect {
+	grid-row: 1;
+	grid-column: 1;
+	display: none;
+}
+
+#locationSelect select {
+	background: transparent;
+	cursor: pointer;
+	outline: none;
+}
+
 #locationText {
 	grid-column: 1;
 	width: 100%;
-	height: 300px;
 	margin-top: 64px;
 }
 
@@ -555,11 +566,11 @@ input[type=checkbox]:before {
 
 #fromToDiv div {
 	display: inline-block;
-	margin: 0px 32px;
+	margin: 0px 1vw;
 	text-align: center;
 }
 
-#fromSelect, #toSelect {
+#fromSelect, #toSelect, #locationSelect select {
 	display: block;
 	padding: 8px 24px;
 	font-size: 20px;
@@ -612,7 +623,8 @@ label[for="fromSelect"], label[for="toSelect"] {
 }
 
 #calendar {
-	border-spacing: 32px 8px;
+	border-spacing: 1vw 1vh;
+	margin: auto;
 }
 
 #calendar thead {
@@ -681,6 +693,16 @@ label[for="fromSelect"], label[for="toSelect"] {
 	margin-top: 4px;
 }
 
+#ageDiv > div {
+	display: flex;
+}
+
+#ageDiv div div {
+	display: inline-block;
+	text-align: center;
+	margin: 0px 8px;
+}
+
 #ageDiv p {
 	margin-left: 16px;
 }
@@ -702,7 +724,6 @@ label[for="fromSelect"], label[for="toSelect"] {
 #ageDiv label {
 	display: inline-block;
 	font-size: 20px;
-	margin-left: 16px;
 }
 
 #ageDiv > label:first-child {
@@ -721,7 +742,8 @@ label[for="fromSelect"], label[for="toSelect"] {
 }
 
 #bookingCost #timeDiv {
-	grid-template-columns: 200px 200px;
+	width: 400px;
+	grid-template-columns: auto auto;
 	border: 1px solid;
 	border-right: none;
 	border-top-left-radius: 2px;
@@ -750,7 +772,8 @@ label[for="fromSelect"], label[for="toSelect"] {
 }
 
 #bookingCost #priceBtn {
-	grid-template-columns: 200px;
+	width: 200px;
+	grid-template-columns: auto;
 	margin-left: -5px;
 	border: none;
 	border-top-right-radius: 2px;
