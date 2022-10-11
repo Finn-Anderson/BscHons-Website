@@ -7,6 +7,7 @@
 		<button onclick="copyEmail()"><span id="onclickAnim">Copied Email to Clipboard</span></button>
 	</div>
 	<img src="/img/logoDark.png">
+	<p id="cookieP">This site uses essential cookies only</p>
 </footer>
 <script type="text/javascript">
 	var footerEmail = "theonlyscotiaislandcruisesglencross@gmail.com";

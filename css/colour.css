@@ -85,7 +85,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	color: #000;
 }
 
-.albaButton, #introTxt, .booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before, #islandBookDiv h1, #islandBookDiv label:hover, #bookingIntro .status.valid, #islandBookDiv input:checked + label, #calendar td.validDate, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #accountTable tbody tr td:first-child:hover, #printDetails table thead, #printCostDiv p, footer span {
+.albaButton, #introTxt, .booking.bright, .auth.bright, a, #authForm:valid button, input[type=checkbox]:before, #islandBookDiv h1, #islandBookDiv label:hover, #bookingIntro .status.valid, #islandBookDiv input:checked + label, #calendar td.validDate, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #accountTable tbody tr td:first-child:hover, #printDetails table thead, #printCostDiv p, footer span, #avatarForm label {
 	color: #fff;
 }
 
@@ -97,7 +97,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	color: #ff5079;
 }
 
-#calendar td.outsideColour, .bookingRadio input:disabled + label, #avatarForm label {
+#calendar td.outsideColour, .bookingRadio input:disabled + label {
 	color: #c2c2c2;
 }
 

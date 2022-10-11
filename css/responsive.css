@@ -53,9 +53,13 @@
 	#printBooked {
 		margin: 16px 0px 0px 0px;
 	}
+
+	footer #cookieP {
+		margin: 0 5%;
+	}
 }
 
-@media (max-width: 800px) {
+@media (max-width: 840px) {
 	#bookingRadioDiv {
 		display: flex;
 		justify-content: center;
@@ -78,6 +82,10 @@
 	#bookingCost #priceBtn {
 		width: calc(100% + 2px);
 		margin: 24px 0px 0px 0px;
+	}
+
+	footer {
+		gap: 10vw;
 	}
 }
 

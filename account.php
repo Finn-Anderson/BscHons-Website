@@ -119,11 +119,11 @@
 					for (var j = 0; j < (response[i].length - 1); j++) {
 						var td = document.createElement("td");
 						if (j == 2) {
-							$surcharge = 0;
+							surcharge = 0;
 							if (response[i][4]) {
-								$surcharge = 5;
+								surcharge = 5;
 							}
-							td.innerHTML = ((response[i][j] + $surcharge) * 1.2).toFixed(2);
+							td.innerHTML = ((response[i][j] + surcharge) * 1.2).toFixed(2);
 						} else {
 							td.innerHTML = response[i][j];
 						}
