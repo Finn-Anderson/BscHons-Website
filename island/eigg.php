@@ -3,9 +3,11 @@
 	<?php $title = "Eigg Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
 	<body>
 		<div id="intro">
-			<img id="1" src="/img/eiggPanoramic.jpg">
 			<div id="introTxt">
 				<h1>Eigg</h1>
+			</div>
+			<div id="introImg">
+				<img id="1" src="/img/eiggPanoramic.jpg">
 			</div>
 		</div>
 		<div id="about">

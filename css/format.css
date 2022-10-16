@@ -711,10 +711,6 @@ label[for="fromSelect"], label[for="toSelect"] {
 	margin: 0px 8px;
 }
 
-#ageDiv p {
-	margin-left: 16px;
-}
-
 #ageDiv select {
 	-moz-appearance: textfield;
 	height: 32px;
