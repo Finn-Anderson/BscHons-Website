@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php $title = "Home Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
+	<?php $title = "Home Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php"?>
 	<body>
 		<div id="intro">
 			<div id="introTxt">
@@ -35,6 +35,7 @@
 				<button id="eigg" class="locationBtn" onclick="changeBorderColour(this); lineAnim(this.id)"></button>
 				<button id="muck" class="locationBtn" onclick="changeBorderColour(this); lineAnim(this.id)"></button>
 				<button id="rum" class="locationBtn" onclick="changeBorderColour(this); lineAnim(this.id)"></button>
+				<?php if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] > 6) { echo "<button id='ceilidh' class='locationBtn' onclick='changeBorderColour(this); lineAnim(this.id)'></button>"; } ?>
 			</div>
 			<div class="locationPointer">
 				<div class="locationLine"></div>
@@ -46,6 +47,7 @@
 					<option value="eigg">Eigg</option>
 					<option value="muck">Muck</option>
 					<option value="rum">Rum</option>
+					<?php if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] > 6) { echo "<option value='ceilidh'>Ceilidh</option>"; } ?>
 				</select>
 			</div>
 			<div id="locationText">
@@ -107,11 +109,18 @@
 			}
 
 			document.getElementById("locationText").style.opacity = "1";
+			document.getElementById("locationText").childNodes[5].style.display = "inline-block";
 
 			document.getElementById("selectTimeout").disabled = false;
 		}
 
 		function performAnim(id) {
+			if (document.getElementsByClassName("ceilidh")) {
+				document.getElementsByClassName("locationLine")[0].classList.remove("ceilidhClicked");
+				document.getElementsByClassName("locationLine")[1].classList.remove("ceilidhClicked");
+				document.getElementById("locationText").childNodes[5].classList.remove("ceilidhClicked");
+			}
+				
 			if (id == "mallaig") {
 				document.getElementsByClassName("locationLine")[0].style.setProperty("--rotation", "rotate(14deg)");
 				document.getElementsByClassName("locationLine")[0].style.setProperty("--width", "242px");
@@ -150,16 +159,19 @@
 				document.getElementsByClassName("locationLine")[1].style.setProperty("--right", "775px");
 			} else if (id == "ceilidh") {
 				document.getElementsByClassName("locationLine")[0].style.setProperty("--rotation", "rotate(46deg)");
-				document.getElementsByClassName("locationLine")[0].style.setProperty("--width", "359px");
-				document.getElementsByClassName("locationLine")[0].style.setProperty("--top", "257px");
-				document.getElementsByClassName("locationLine")[0].style.setProperty("--right", "421px");
+				document.getElementsByClassName("locationLine")[0].style.setProperty("--width", "300px");
+				document.getElementsByClassName("locationLine")[0].style.setProperty("--top", "236px");
+				document.getElementsByClassName("locationLine")[0].style.setProperty("--right", "422px");
+				document.getElementsByClassName("locationLine")[0].classList.add("ceilidhClicked");
 
-				document.getElementsByClassName("locationLine")[1].style.setProperty("--width", "880px");
+				document.getElementsByClassName("locationLine")[1].style.setProperty("--width", "929px");
 				document.getElementsByClassName("locationLine")[1].style.setProperty("--top", "125px");
-				document.getElementsByClassName("locationLine")[1].style.setProperty("--right", "723px");
+				document.getElementsByClassName("locationLine")[1].style.setProperty("--right", "674px");
+				document.getElementsByClassName("locationLine")[1].classList.add("ceilidhClicked");
+
+				document.getElementById("locationText").childNodes[5].classList.add("ceilidhClicked");
 			}
 
-			document.getElementById("locationText").childNodes[5].style.display = "block";
 			document.getElementById("locationText").style.transitionDelay = "1s";
 			document.getElementsByClassName("locationPointer")[0].classList.add("locationLineAnim");
 		}

@@ -111,6 +111,8 @@
 							$stmtTrip->execute();
 						}
 
+						$_SESSION["bookingTally"] += 1;
+
 						header("Location: ../print.php");
 					} else {
 						header("Location: ../booking.php?msg=failed");

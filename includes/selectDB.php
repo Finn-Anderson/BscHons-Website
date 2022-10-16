@@ -28,9 +28,10 @@
 				$_SESSION["authorized"] = TRUE;
 				$_SESSION["id"] = $row["userID"];
 
-				$stmtCount = $conn->prepare("SELECT bookingID FROM Booking WHERE userID = :id AND returnBooked = :return");
-				$stmtCount->bindValue(':return', TRUE);
-				$stmtCount->bindValue(':id', $_SESSION['id']);
+				$stmtCount = $conn->prepare("SELECT bookingID FROM Booking WHERE userID = :id AND returnBooked = :return AND year(date) = :year");
+				$stmtCount->bindValue(":return", TRUE);
+				$stmtCount->bindValue(":id", $_SESSION["id"]);
+				$stmtCount->bindValue(":year", date("Y"));
 				$stmtCount->execute();
 
 				$_SESSION["bookingTally"] = $stmtCount->rowCount();

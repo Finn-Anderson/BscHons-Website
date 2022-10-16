@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php $title = "Print Page" ?>
+	<?php $title = "Print Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
 	<body>
 		<main>
-			<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
+			<?php  ?>
 			<?php
 				include $_SERVER["DOCUMENT_ROOT"]."/includes/dbCredentials.php";
 
@@ -150,7 +150,9 @@
 								for ($i=0; $i < count($values); $i++) { 
 									echo "<tr>";
 									for ($j=5; $j < count($values[$i]); $j++) { 
-										if ($j == 9) {
+										if ($j == 8 && $values[$i][$j] == "17 - 200") {
+											echo "<td>17+</td>";
+										} else if ($j == 9) {
 											echo "<td>£".$values[$i][$j]."</td>";
 										} else {
 											echo "<td>".$values[$i][$j]."</td>";
@@ -185,7 +187,7 @@
 
 							echo "<div>";
 								echo "<p>Surcharge:</p>";
-								echo "<p class='printRight'>".$surcharge."</p>";
+								echo "<p class='printRight'>£".$surcharge."</p>";
 							echo "</div>";
 
 							echo "<div>";

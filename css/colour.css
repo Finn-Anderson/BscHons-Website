@@ -1,5 +1,5 @@
 /* BACKGROUND COLOURS */
-header span, #authDiv span, .albaButton, #locationText a, #introTxt a, #locationDiv button, .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #logoutBtn, #printDetails table thead, #printCostDiv, footer button:hover, footer span {
+header span, #authDiv span, .albaButton, #introTxt a, #locationDiv button:not(#ceilidh), .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #logoutBtn, #printDetails table thead, #printCostDiv, footer button:hover, footer span {
 	background-color: #ff7f50;
 }
 
@@ -11,7 +11,7 @@ footer {
 	background: linear-gradient(135deg, #ff5079, #7f50ff);
 }
 
-.albaButton:hover, #locationText a:hover, #introTxt a:hover, #authForm:valid button:hover, #bookingCost #priceBtn:hover, #logoutBtn:hover {
+.albaButton:hover, #introTxt a:hover, #authForm:valid button:hover, #bookingCost #priceBtn:hover, #logoutBtn:hover {
 	background-color: #ff926a;
 }
 
@@ -47,28 +47,52 @@ footer {
 	background-color: #7f50ff;
 }
 
-#islandBookCeilidh label:hover, #islandBookCeilidh input:checked + label {
-	background-color: #ffd750;
+#islandBookCeilidh label:hover, #islandBookCeilidh input:checked + label, #locationDiv #ceilidh, .albaButton.ceilidhClicked, .locationLine.ceilidhClicked {
+	background-color: #ffc603;
+}
+
+.albaButton.ceilidhClicked:hover {
+	background-color: #ffcc1d;
 }
 
 #islandBookEigg p {
 	background: linear-gradient(180deg, rgba(80, 208, 255, 0.1), transparent);
 }
 
+#islandBookEigg a:hover p {
+	background: linear-gradient(180deg, rgba(80, 208, 255, 0.15), transparent);
+}
+
 #islandBookMuck p {
 	background: linear-gradient(180deg, rgba(54, 177, 58, 0.1), transparent);
+}
+
+#islandBookMuck a:hover p {
+	background: linear-gradient(180deg, rgba(54, 177, 58, 0.15), transparent);
 }
 
 #islandBookRum p {
 	background: linear-gradient(180deg, rgba(255, 80, 121, 0.1), transparent);
 }
 
+#islandBookRum a:hover p {
+	background: linear-gradient(180deg, rgba(255, 80, 121, 0.15), transparent);
+}
+
 #islandBookMallaig p {
 	background: linear-gradient(180deg, rgba(127, 80, 255, 0.1), transparent);
 }
 
+#islandBookMallaig a:hover p {
+	background: linear-gradient(180deg, rgba(127, 80, 255, 0.15), transparent);
+}
+
 #islandBookCeilidh p {
 	background: linear-gradient(180deg, rgba(255, 215, 80, 0.1), transparent);
+}
+
+#islandBookCeilidh a:hover p {
+	background: linear-gradient(180deg, rgba(255, 215, 80, 0.15), transparent);
 }
 
 #accountTable tbody tr:nth-child(even) td, #printDetails table tbody td:nth-child(odd) {
@@ -81,7 +105,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	color: #777;
 }
 
-.booking, .auth, #authForm a, #bookingIntro .statusBlurb.focus {
+.booking, .auth, #authForm a, #bookingIntro .statusBlurb.focus, #islandBookDiv p {
 	color: #000;
 }
 
@@ -118,7 +142,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 }
 
 #islandBookCeilidh h1 {
-	color: #ffd750;
+	color: #ffc603;
 }
 
 
@@ -167,8 +191,8 @@ input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDat
 	border-color: #7f50ff;
 }
 
-#islandBookCeilidh label:hover, #islandBookCeilidh input:checked + label, #islandBookCeilidh h1 {
-	border-color: #ffd750;
+#islandBookCeilidh label:hover, #islandBookCeilidh input:checked + label, #islandBookCeilidh h1, #locationDiv #ceilidh.locationClicked {
+	border-color: #ffc603;
 }
 
 footer span::after {

@@ -7,7 +7,7 @@ body {
 }
 
 main {
-	min-height: calc(100vh - 248px);
+	min-height: calc(100vh - 441.41px);
 }
 
 a {
@@ -164,15 +164,15 @@ footer #cookieP {
 
 /* INDEX.PHP */
 #intro {
-	height: 100vh;
+	height: 50vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding-bottom: 136px;
 }
 
 #introTxt {
 	text-align: center;
-	margin-bottom: 15%;
 }
 
 #introTxt h1 {
@@ -274,7 +274,6 @@ footer #cookieP {
 }
 
 #locationText .albaButton {
-	margin-top: 24px;
 	display: none;
 }
 
@@ -320,6 +319,11 @@ footer #cookieP {
 #rum {
 	top: 178px;
 	right: 686px;
+}
+
+#ceilidh {
+	top: 337px;
+    right: 463px;
 }
 
 
@@ -369,11 +373,9 @@ footer #cookieP {
 
 /* LOGIN/REGISTER */
 #authDiv {
-	position: relative;
-	top: 116;
 	display: flex;
 	width: 100%;
-	min-height: calc(100% - 116px);
+	min-height: calc(100% - 132px);
 	justify-content: center;
 	align-items: center;
 }
@@ -932,7 +934,7 @@ label[for="fromSelect"], label[for="toSelect"] {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	margin: 48px 0px 88px 0px;
+	padding: 48px 0px 88px 0px;
 }
 
 #printHeader, #printBooked, #printBooked p {

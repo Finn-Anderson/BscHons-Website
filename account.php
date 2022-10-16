@@ -123,7 +123,7 @@
 							if (response[i][4]) {
 								surcharge = 5;
 							}
-							td.innerHTML = ((response[i][j] + surcharge) * 1.2).toFixed(2);
+							td.innerHTML = "£" + ((response[i][j] + surcharge) * 1.2).toFixed(2);
 						} else {
 							td.innerHTML = response[i][j];
 						}
