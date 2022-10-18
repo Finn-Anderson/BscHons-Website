@@ -31,6 +31,10 @@
 			$adult = htmlspecialchars($_POST["adult"], ENT_QUOTES);
 			$bookingID = htmlspecialchars($_POST["bookingID"], ENT_QUOTES);
 
+			if ($to == "ceilidh") {
+				$to = "eigg";
+			}
+
 			$reverse = false;
 			if ($to == "mallaig" || ($to == "eigg" && $from != "mallaig")) {
 				$from = htmlspecialchars($_POST["island"], ENT_QUOTES);

@@ -34,14 +34,14 @@
 					echo "<label for='mallaig'>Book</label>";
 				echo "</div>";
 				
-				if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] > 6) {
+				if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] >= 6) {
 					echo "<div id='islandBookCeilidh'>";
 						echo "<a href='/island/ceilidh.php'>";
 							echo "<h1>Ceilidh</h1>";
 							echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Turpis egestas pretium aenean pharetra magna ac. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique. Diam phasellus vestibulum lorem sed risus ultricies. Sed risus pretium quam vulputate dignissim suspendisse in est. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Semper risus in hendrerit gravida. Massa massa ultricies mi quis. Nec ultrices dui sapien eget mi proin sed libero enim. Sed egestas egestas fringilla phasellus faucibus. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vitae justo eget magna fermentum iaculis eu non diam. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Sodales ut etiam sit amet nisl purus in mollis. Quis blandit turpis cursus in hac. Ut eu sem integer vitae justo eget magna.</p>";
 						echo "</a>";
-						echo "<input id='ceilidh' type='radio' name='island' value='ceilidh'>";
-						echo "<label for='ceilidh' onclick='changeStatus(1, this.parentElement.id)'>Book</label>";
+						echo "<input id='ceilidh' type='radio' name='island' value='ceilidh' onchange='changeStatus(1)'>";
+						echo "<label for='ceilidh'>Book</label>";
 					echo "</div>";
 				}
 			echo "</div>";
@@ -62,9 +62,8 @@
 								<option value='mallaig'>Mallaig</option>
 								<option value='eigg'>Eigg</option>
 								<option value='muck'>Muck</option>
-								<option value='rum'>Rum</option>
-								<option value='mallaig'>Mallaig</option>";
-							if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] > 6) {
+								<option value='rum'>Rum</option>";
+							if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] >= 6) {
 								echo "<option value='ceilidh'>Ceilidh</option>";
 							}
 						echo "</select>";
@@ -335,12 +334,8 @@
 
 						const targetDate = new Date(2022, 9, 27);
 
-						if (day.toDateString() == targetDate.toDateString() && island == "ceilidh") {
-							table.rows[row].cells[cell].classList.add("ceilidhColour");
-							table.rows[row].cells[cell].classList.add("validDate");
-							table.rows[row].cells[cell].style.setProperty("--colour", "#ffd750");
-						} else if (response[(day.getDate() - 1)][0] > 0 && day >= currentDate) {
-							if (dayList && dayList.includes(day.getDay())) {
+						if (response[(day.getDate() - 1)][0] > 0 && day >= currentDate) {
+							if (dayList && dayList.includes(day.getDay()) && day.toDateString() != targetDate.toDateString()) {
 								if (day.getDay() == 0 || day.getDay() == 6) {
 									if (day.getMonth() == 5 || day.getMonth() == 6 || day.getMonth() == 7) {
 										applyCalendarColours(island, table.rows[row].cells[cell]);
@@ -348,6 +343,8 @@
 								} else {
 									applyCalendarColours(island, table.rows[row].cells[cell]);
 								}
+							} else if (island == "ceilidh" && day.toDateString() == targetDate.toDateString()) {
+								applyCalendarColours(island, table.rows[row].cells[cell]);
 							}
 						}
 					} else {
@@ -507,6 +504,11 @@
 		} else {
 			to = document.getElementById("toSelect").value;
 		}
+
+		if (to == "ceilidh") {
+			to = "eigg";
+		}
+
 		var from = document.getElementById("fromSelect").value;
 
 		from = from.replace(from[0], from[0].toUpperCase());
@@ -582,6 +584,8 @@
 			pTime[1].innerHTML = time;
 			pTime[1].prepend(span2);
 		}
+
+		tallyCost()
 	}
 
 	function applyCalendarColours(island, elem) {
@@ -601,6 +605,10 @@
 			elem.classList.add("mallaigColour");
 			elem.classList.add("validDate");
 			elem.style.setProperty("--colour", "#7f50ff");
+		} else if (island == "ceilidh") {
+			elem.classList.add("ceilidhColour");
+			elem.classList.add("validDate");
+			elem.style.setProperty("--colour", "#ffc603");
 		}
 	}
 
@@ -684,7 +692,7 @@
 			}
 
 			appendAgeOptions(numTally);
-			tallyCost();
+			tallyCost()
 		} else {
 			for (var i = 0; i < select.length; i++) {
 				while (select[i].firstChild) {
@@ -723,6 +731,10 @@
 
 		var routes = document.querySelectorAll(".departureRoute")[0].innerHTML.split(" - ");
 		var discount = 1.0;
+
+		if (routes[1] == "Ceilidh") {
+			routes[1] = "Eigg";
+		}
 
 		if (document.querySelector("input[name='return']:checked").value == "false") {
 			discount = 0.7;

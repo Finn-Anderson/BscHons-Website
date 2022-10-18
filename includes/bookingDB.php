@@ -30,6 +30,10 @@
 			$teenager = htmlspecialchars($_POST["teenager"], ENT_QUOTES);
 			$adult = htmlspecialchars($_POST["adult"], ENT_QUOTES);
 
+			if ($to == "ceilidh") {
+				$to = "eigg";
+			}
+
 			$reverse = false;
 			if ($to == "mallaig" || ($to == "eigg" && $from != "mallaig")) {
 				$from = htmlspecialchars($_POST["island"], ENT_QUOTES);

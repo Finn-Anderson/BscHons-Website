@@ -13,6 +13,14 @@
 					// set the PDO error mode to exception
 					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+					$getBookingsTally = $conn->prepare("SELECT bookingID FROM Booking WHERE userID = :id AND cancelled = :cancelled and returnBooked = :return ORDER BY date ASC LIMIT 1 OFFSET 5");
+					$getBookingsTally->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
+					$getBookingsTally->bindValue(":cancelled", false, PDO::PARAM_BOOL);
+					$getBookingsTally->bindValue(":return", true, PDO::PARAM_BOOL);
+					$getBookingsTally->execute();
+
+					$tally = $getBookingsTally->fetch();
+
 					if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
 						$id = htmlspecialchars($_GET["id"], ENT_QUOTES);
 						$getBooking = $conn->prepare("SELECT Booking.bookingID, date, surcharge, Route.from, Route.to, numberOfPeople, cost, returnBooked, wheelchairBooked, minAge, maxAge FROM Booking, Trip, RouteFare, Route, Fare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND RouteFare.fareID = Fare.fareID AND userID = :id AND Booking.bookingID = :bookingID AND cancelled = :cancelled");
@@ -32,14 +40,20 @@
 					if ($getBooking->rowCount() > 0) {
 						foreach( $result as $row ) {
 							if ($row["numberOfPeople"] > 0) {
-								if (!$row["returnBooked"]) {
+								$discount = "0%";
+
+								if ($tally && $tally["bookingID"] == $row["bookingID"]) {
+									$row["cost"] = $row["cost"] * 0.5;
+									$discount = "50%";
+								} else if (!$row["returnBooked"]) {
 									$row["cost"] = $row["cost"] * 0.7;
+									$discount = "30%";
 								}
 
 								$ageRange = $row["minAge"]." - ".$row["maxAge"];
 
 								$row["cost"] *= $row["numberOfPeople"];
-								array_push($values, array(sprintf("%08d",$row["bookingID"]), $row["date"], $row["wheelchairBooked"], $row["returnBooked"], $row["surcharge"], $row["from"], $row["to"], $row["numberOfPeople"], $ageRange, number_format((float)$row["cost"], 2, ".", "")));
+								array_push($values, array(sprintf("%08d",$row["bookingID"]), $row["date"], $row["wheelchairBooked"], $row["returnBooked"], $row["surcharge"], $row["from"], $row["to"], $row["numberOfPeople"], $ageRange, number_format((float)$row["cost"], 2, ".", ""), $discount));
 							}
 						}
 					} else {
@@ -149,7 +163,7 @@
 							<?php 
 								for ($i=0; $i < count($values); $i++) { 
 									echo "<tr>";
-									for ($j=5; $j < count($values[$i]); $j++) { 
+									for ($j=5; $j < (count($values[$i]) - 1); $j++) { 
 										if ($j == 8 && $values[$i][$j] == "17 - 200") {
 											echo "<td>17+</td>";
 										} else if ($j == 9) {
@@ -165,16 +179,9 @@
 					</table>
 					<div>
 						<?php
-							if ($values[0][3]) {
-								$discount = 1;
-							} else {
-								$discount = 0.7;
-							}
-							$discount = (1 - $discount) * 100;
-
 							echo "<div class=''>";
 								echo "<p>Discount:</p>";
-								echo "<p class='printRight'>".$discount."%</p>";
+								echo "<p class='printRight'>".$values[0][10]."</p>";
 							echo "</div>";
 
 							if ($values[0][4]) {

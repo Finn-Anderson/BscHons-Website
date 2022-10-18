@@ -20,6 +20,9 @@
 
 		$days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
+		if ($to == "ceilidh") {
+			$to = "eigg";
+		}
 		if ($to == "mallaig" || $to == "eigg") {
 			$stmt = $conn->prepare("SELECT numberOfPeople, wheelchairBooked, userID FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND (Booking.returnBooked = true OR Booking.reverse = true) AND Route.from = :froms AND Route.to = :to AND cancelled = :cancelled");
 		} else if ($return == "true") {
@@ -38,7 +41,7 @@
 		$stmt->bindValue(":cancelled", false, PDO::PARAM_BOOL);
 		
 
-		for ($i=1; $i <= $days; $i++) {
+		for ($i = 1; $i <= $days; $i++) {
 			$dateString = $year."-".$month."-".$i;
 			$date = date("Y-m-d", strtotime($dateString));
 

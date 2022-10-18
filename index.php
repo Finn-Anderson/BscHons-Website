@@ -35,7 +35,7 @@
 				<button id="eigg" class="locationBtn" onclick="changeBorderColour(this); lineAnim(this.id)"></button>
 				<button id="muck" class="locationBtn" onclick="changeBorderColour(this); lineAnim(this.id)"></button>
 				<button id="rum" class="locationBtn" onclick="changeBorderColour(this); lineAnim(this.id)"></button>
-				<?php if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] > 6) { echo "<button id='ceilidh' class='locationBtn' onclick='changeBorderColour(this); lineAnim(this.id)'></button>"; } ?>
+				<?php if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] >= 6) { echo "<button id='ceilidh' class='locationBtn' onclick='changeBorderColour(this); lineAnim(this.id)'></button>"; } ?>
 			</div>
 			<div class="locationPointer">
 				<div class="locationLine"></div>
@@ -47,7 +47,7 @@
 					<option value="eigg">Eigg</option>
 					<option value="muck">Muck</option>
 					<option value="rum">Rum</option>
-					<?php if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] > 6) { echo "<option value='ceilidh'>Ceilidh</option>"; } ?>
+					<?php if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] >= 6) { echo "<option value='ceilidh'>Ceilidh</option>"; } ?>
 				</select>
 			</div>
 			<div id="locationText">
