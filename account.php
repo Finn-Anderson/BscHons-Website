@@ -106,14 +106,25 @@
 
 				for (var i = 0; i < response.length; i++) {
 
+					var today = new Date().setHours(0, 0, 0, 0);
+					var compare = new Date(response[i][3]).setHours(0, 0, 0, 0);
+
 					var tr = document.createElement("tr");
 					tbody.appendChild(tr);
 
 					var del = document.createElement("td");
-					del.innerHTML = "X";
-					del.onclick = (function(i){
-						return function(){ deleteRow(response[i][0]); }
-					})(i);
+					if (today < compare) {
+						del.innerHTML = "X";
+						del.classList.add("delRowBtn");
+						del.onclick = (function(i){
+							return function(){ if (confirm("Are you sure you want to delete this booking?")) deleteRow(response[i][0]); }
+						})(i);
+					} else {
+						del.innerHTML = "-";
+						del.onclick = (function(i){
+							return function(){ displayRow(response[i][0]); }
+						})(i);
+					}
 					tr.appendChild(del);
 
 					for (var j = 0; j < (response[i].length - 1); j++) {
@@ -131,14 +142,11 @@
 							return function(){ displayRow(response[i][0]); }
 						})(i);
 
-						if (j == (response[i].length - 1)) {
+						if (j == (response[i].length - 2)) {
 							td.classList.add("lastTD");
 						}
 						tr.appendChild(td);
 					}
-
-					var today = new Date().setHours(0, 0, 0, 0);
-					var compare = new Date(response[i][3]).setHours(0, 0, 0, 0);
 
 					if (today < compare) {
 						var edit = document.createElement("td");
