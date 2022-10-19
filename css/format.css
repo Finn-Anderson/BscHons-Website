@@ -265,11 +265,12 @@ footer #cookieP {
 	background: transparent;
 	cursor: pointer;
 	outline: none;
+	margin-top: 8px;
 }
 
 #locationText {
 	grid-column: 1;
-	width: 100%;
+	max-width: 700px;
 	margin-top: 64px;
 }
 
@@ -328,44 +329,24 @@ footer #cookieP {
 
 
 /* ABOUT ISLAND */
-#about div {
-	display: grid;
-	grid-template-columns: auto;
-	grid-template-rows: 0px auto;
+#about > div {
+	display: flex;
 	grid-gap: 32px;
-	margin: 48px 50vw;
-}
-
-#about div h1, #about div p {
-	grid-column: 1;
+	margin: 48px 20vw;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 #about div h1 {
-	grid-row: 1;
 	margin-top: 0px;
 }
 
-#about div p {
-	grid-row: 2;
-	width: 300px;
-}
-
-#about div img {
-	grid-column: 2;
-	grid-row: 1 / span 2;
-}
-
-#about #reverse h1, #about #reverse p  {
-	grid-column: 2;
-}
-
-#about #reverse img {
-	grid-column: 1;
-}
-
-#about div img {
-	width: 300px;
+#about div p, #about div img {
 	height: 300px;
+	width: 300px;
+}
+
+#about div img {
 	border: 1px solid;
 	border-radius: 4px;
 }
@@ -584,6 +565,9 @@ input[type=checkbox]:before {
 	display: block;
 	padding: 8px 24px;
 	font-size: 20px;
+}
+
+#fromSelect, #toSelect {
 	margin: 8px 0px 40px 0px;
 }
 

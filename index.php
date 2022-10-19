@@ -9,7 +9,7 @@
 				<a class="albaButton" href="booking.php">Book Now</a>
 			</div>
 			<div id="introImg">
-				<img id="1" src="/img/eiggPanoramic.jpg">
+				<img src="/img/eiggPanoramic.jpg">
 			</div>
 		</div>
 
@@ -42,7 +42,8 @@
 				<div class="locationLine"></div>
 			</div>
 			<div id="locationSelect">
-				<select id="selectTimeout" onchange="fadeText(this.value)">
+				<select id="selectTimeout" onchange="lineAnim(this.value)">
+					<option value="" selected disabled>Select</option>
 					<option value="mallaig">Mallaig</option>
 					<option value="eigg">Eigg</option>
 					<option value="muck">Muck</option>
@@ -64,6 +65,7 @@
 				$(".locationClicked").removeClass("locationClicked");
 				element.classList.toggle("locationClicked");
 			}
+			document.getElementById("selectTimeout").value = element.id;
 		}
 
 		function lineAnim(id) {
@@ -75,14 +77,6 @@
 			document.getElementsByClassName("locationPointer")[0].classList.remove("locationLineAnim");
 
 			setTimeout(function() { displayText(id); performAnim(id) }, 2000);
-		}
-
-		function fadeText(id) {
-			document.getElementById("selectTimeout").disabled = true;
-
-			document.getElementById("locationText").style.opacity = "0";
-
-			setTimeout(function() { displayText(id) }, 2000);
 		}
 
 		function displayText(id) {

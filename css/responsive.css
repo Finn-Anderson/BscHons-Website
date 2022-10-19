@@ -101,6 +101,7 @@
 	}
 	#mapDiv {
 		grid-template-columns: auto;
+		grid-template-rows: auto auto;
 		grid-gap: 0px;
 		padding: 16px;
 		justify-items: center;
@@ -109,7 +110,8 @@
 	}
 	#locationText {
 		text-align: center;
-		max-width: 700px;
+		grid-row: 2;
+		margin-top: 0px;
 	}
 
 	#locationText a {

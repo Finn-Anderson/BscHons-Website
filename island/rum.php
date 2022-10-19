@@ -7,23 +7,29 @@
 				<h1>Rum</h1>
 			</div>
 			<div id="introImg">
-				<img id="1" src="/img/eiggPanoramic.jpg">
+				<img src="/img/eiggPanoramic.jpg">
 			</div>
 		</div>
 		<div id="about">
 			<div>
-				<h1>About</h1>
-				<p></p>
-				<img src="">
-			</div>
-			<div id="reverse">
-				<h1>Local Services</h1>
-				<p></p>
+				<div>
+					<h1>About</h1>
+					<p></p>
+				</div>
 				<img src="">
 			</div>
 			<div>
-				<h1>Cruise Times</h1>
-				<p></p>
+				<img src="">
+				<div>
+					<h1>Local Services</h1>
+					<p></p>
+				</div>
+			</div>
+			<div>
+				<div>
+					<h1>Cruise Times</h1>
+					<p></p>
+				</div>
 				<img src="">
 			</div>
 		</div>
