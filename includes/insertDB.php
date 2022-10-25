@@ -52,7 +52,7 @@
 					$stmtReg->bindValue(":address", $address, PDO::PARAM_STR);
 					$stmtReg->bindValue(":city", $city, PDO::PARAM_STR);
 					$stmtReg->bindValue(":post", $postcode, PDO::PARAM_STR);
-					$stmtReg->bindValue(':avatar', '../img/avatar/default.svg');
+					$stmtReg->bindValue(":avatar", "../img/avatar/default.svg");
 
 					$stmtReg->execute();
 

@@ -33,6 +33,10 @@
 						if ($row["numberOfPeople"] > 0) {
 							$ageRange = $row["minAge"]." - ".$row["maxAge"];
 
+							if ($row["date"] == "2022-10-27") {
+								$row["to"] = "ceilidh";
+							}
+
 							array_push($values, array(sprintf("%08d",$row["bookingID"]), $row["to"], $row["from"], $row["date"], $row["wheelchairBooked"], $row["returnBooked"], $row["numberOfPeople"], $ageRange));
 						}
 					} else {
@@ -62,7 +66,8 @@
 		?>
 		<form action="includes/editBookingDB.php" method="post">
 			<input type="hidden" name="bookingID" value="<?php echo $values[0][0] ?>">
-		<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/bookingInputs.php" ?>
+			<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/bookingInputs.php" ?>
+		</form>
 	</body>
 	<script>
 		document.getElementById("toSelect").value = "<?php echo strtolower($values[0][1]) ?>";

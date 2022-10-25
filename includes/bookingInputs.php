@@ -1,258 +1,162 @@
-	<?php
-		if (basename($_SERVER["PHP_SELF"]) == "booking.php") {
-			echo "<div id='islandBookDiv'>";
-				echo "<div id='islandBookEigg'>";
-					echo "<a href='/island/eigg.php'>";
-						echo "<h1>Eigg</h1>";
-						echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Turpis egestas pretium aenean pharetra magna ac. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique. Diam phasellus vestibulum lorem sed risus ultricies. Sed risus pretium quam vulputate dignissim suspendisse in est. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Semper risus in hendrerit gravida. Massa massa ultricies mi quis. Nec ultrices dui sapien eget mi proin sed libero enim. Sed egestas egestas fringilla phasellus faucibus. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vitae justo eget magna fermentum iaculis eu non diam. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Sodales ut etiam sit amet nisl purus in mollis. Quis blandit turpis cursus in hac. Ut eu sem integer vitae justo eget magna.</p>";
-					echo "</a>";
-					echo "<input id='eigg' type='radio' name='island' value='eigg' onchange='changeStatus(1)'>";
-					echo "<label for='eigg'>Book</label>";
+<div id="checkoutDiv">
+	<div id="fromToDiv">
+		<div>
+			<label for="fromSelect">From</label>
+			<select id="fromSelect" name="departure" onchange="displayCalendarDays(document.getElementById('monthHeader').querySelector('button').id)" required></select>
+		</div>
+		<?php 
+			if (basename($_SERVER["PHP_SELF"]) == "editBooking.php") {
+				echo "<div>";
+					echo "<label for='toSelect'>To</label>";
+					echo "<select id='toSelect' name='island' onchange='displayCalendarDays(document.getElementById(\"monthHeader\").querySelector(\"button\").id)' required>
+							<option value='mallaig'>Mallaig</option>
+							<option value='eigg'>Eigg</option>
+							<option value='muck'>Muck</option>
+							<option value='rum'>Rum</option>";
+						if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] >= 6) {
+							echo "<option value='ceilidh'>Ceilidh</option>";
+						}
+					echo "</select>";
 				echo "</div>";
-				echo "<div id='islandBookMuck'>";
-					echo "<a href='/island/muck.php'>";
-						echo "<h1>Muck</h1>";
-						echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Turpis egestas pretium aenean pharetra magna ac. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique. Diam phasellus vestibulum lorem sed risus ultricies. Sed risus pretium quam vulputate dignissim suspendisse in est. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Semper risus in hendrerit gravida. Massa massa ultricies mi quis. Nec ultrices dui sapien eget mi proin sed libero enim. Sed egestas egestas fringilla phasellus faucibus. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vitae justo eget magna fermentum iaculis eu non diam. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Sodales ut etiam sit amet nisl purus in mollis. Quis blandit turpis cursus in hac. Ut eu sem integer vitae justo eget magna.</p>";
-					echo "</a>";
-					echo "<input id='muck' type='radio' name='island' value='muck' onchange='changeStatus(1)'>";
-					echo "<label for='muck'>Book</label>";
-				echo "</div>";
-				echo "<div id='islandBookRum'>";
-					echo "<a href='/island/rum.php'>";
-						echo "<h1>Rum</h1>";
-						echo"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Turpis egestas pretium aenean pharetra magna ac. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique. Diam phasellus vestibulum lorem sed risus ultricies. Sed risus pretium quam vulputate dignissim suspendisse in est. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Semper risus in hendrerit gravida. Massa massa ultricies mi quis. Nec ultrices dui sapien eget mi proin sed libero enim. Sed egestas egestas fringilla phasellus faucibus. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vitae justo eget magna fermentum iaculis eu non diam. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Sodales ut etiam sit amet nisl purus in mollis. Quis blandit turpis cursus in hac. Ut eu sem integer vitae justo eget magna.</p>";
-					echo "</a>";
-					echo "<input id='rum' type='radio' name='island' value='rum' onchange='changeStatus(1)'>";
-					echo "<label for='rum'>Book</label>";
-				echo "</div>";
-				echo "<div id='islandBookMallaig'>";
-					echo "<a href='/island/mallaig.php'>";
-						echo "<h1>Mallaig</h1>";
-						echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Turpis egestas pretium aenean pharetra magna ac. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique. Diam phasellus vestibulum lorem sed risus ultricies. Sed risus pretium quam vulputate dignissim suspendisse in est. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Semper risus in hendrerit gravida. Massa massa ultricies mi quis. Nec ultrices dui sapien eget mi proin sed libero enim. Sed egestas egestas fringilla phasellus faucibus. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vitae justo eget magna fermentum iaculis eu non diam. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Sodales ut etiam sit amet nisl purus in mollis. Quis blandit turpis cursus in hac. Ut eu sem integer vitae justo eget magna.</p>";
-					echo "</a>";
-					echo "<input id='mallaig' type='radio' name='island' value='mallaig' onchange='changeStatus(1)'>";
-					echo "<label for='mallaig'>Book</label>";
-				echo "</div>";
-				
-				if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] >= 6) {
-					echo "<div id='islandBookCeilidh'>";
-						echo "<a href='/island/ceilidh.php'>";
-							echo "<h1>Ceilidh</h1>";
-							echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Turpis egestas pretium aenean pharetra magna ac. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique. Diam phasellus vestibulum lorem sed risus ultricies. Sed risus pretium quam vulputate dignissim suspendisse in est. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Semper risus in hendrerit gravida. Massa massa ultricies mi quis. Nec ultrices dui sapien eget mi proin sed libero enim. Sed egestas egestas fringilla phasellus faucibus. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vitae justo eget magna fermentum iaculis eu non diam. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Sodales ut etiam sit amet nisl purus in mollis. Quis blandit turpis cursus in hac. Ut eu sem integer vitae justo eget magna.</p>";
-						echo "</a>";
-						echo "<input id='ceilidh' type='radio' name='island' value='ceilidh' onchange='changeStatus(1)'>";
-						echo "<label for='ceilidh'>Book</label>";
-					echo "</div>";
-				}
-			echo "</div>";
-		}
-	?>
+			}
+		?>
+	</div>
+	<div id="calendarDiv">
+		<div id="monthHeader">
+			<button type="button" onclick="displayCalendarDays(id - 1)"><</button>
+			<h1></h1>
+			<button type="button" onclick="displayCalendarDays(parseInt(id) + 1)">></button>
+		</div>
+		<table id="calendar">
+			<thead>
+				<tr>
+					<th>Mo</th>
+					<th>Tu</th>
+					<th>We</th>
+					<th>Th</th>
+					<th>Fr</th>
+					<th>Sa</th>
+					<th>Su</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+				</tr>
+				<tr>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+				</tr>
+				<tr>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+				</tr>
+				<tr>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+				</tr>
+				<tr>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+				</tr>
+				<tr>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+					<td onclick="inputDate(this)"></td>
+				</tr>
+			</tbody>
+		</table>
+		<input type="hidden" name="dateChosen" required>
+	</div>
 
-	<div id="checkoutDiv">
-		<div id="fromToDiv">
+	<div id="bookingRadioDiv">
+		<div class="bookingRadio">
+			<p>Book Return?</p>
+			<input id="returnYes" type="radio" name="return" value="true" disabled onchange="displayDepartureTimes()">
+			<label for="returnYes">Yes</label>
+
+			<input id="returnNo" type="radio" name="return" value="false" checked="checked" onchange="displayDepartureTimes()">
+			<label for="returnNo">No</label>
+		</div>
+
+		<div class="bookingRadio">
+			<p>Wheelchair?</p>
+			<input id="wheelchairYes" type="radio" name="wheelchair" value="true" disabled>
+			<label for="wheelchairYes">Yes</label>
+
+			<input id="wheelchairNo" type="radio" name="wheelchair" value="false" checked="checked">
+			<label for="wheelchairNo">No</label>
+		</div>
+
+		<a href="/#wheelchairInfo">Why can't I select wheelchair</a>
+	</div>
+
+	<div id="ageDiv">
+		<p>Age</p>
+		<div>
 			<div>
-				<label for="fromSelect">From</label>
-				<select id="fromSelect" name="departure" onchange="displayCalendarDays(document.getElementById('monthHeader').querySelector('button').id)" required></select>
+				<label>0-2</label>
+				<select class="ageSelect" name="baby" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
 			</div>
-			<?php 
-				if (basename($_SERVER["PHP_SELF"]) == "editBooking.php") {
-					echo "<div>";
-						echo "<label for='toSelect'>To</label>";
-						echo "<select id='toSelect' name='island' onchange='displayCalendarDays(document.getElementById(\"monthHeader\").querySelector(\"button\").id)' required>
-								<option value='mallaig'>Mallaig</option>
-								<option value='eigg'>Eigg</option>
-								<option value='muck'>Muck</option>
-								<option value='rum'>Rum</option>";
-							if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] >= 6) {
-								echo "<option value='ceilidh'>Ceilidh</option>";
-							}
-						echo "</select>";
-					echo "</div>";
-				}
-			?>
-		</div>
-		<div id="calendarDiv">
-			<div id="monthHeader">
-				<button type="button" onclick="displayCalendarDays(id - 1)"><</button>
-				<h1></h1>
-				<button type="button" onclick="displayCalendarDays(parseInt(id) + 1)">></button>
-			</div>
-			<table id="calendar">
-				<thead>
-					<tr>
-						<th>Mo</th>
-						<th>Tu</th>
-						<th>We</th>
-						<th>Th</th>
-						<th>Fr</th>
-						<th>Sa</th>
-						<th>Su</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-					</tr>
-					<tr>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-					</tr>
-					<tr>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-					</tr>
-					<tr>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-					</tr>
-					<tr>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-					</tr>
-					<tr>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-						<td onclick="inputDate(this)"></td>
-					</tr>
-				</tbody>
-			</table>
-			<input type="hidden" name="dateChosen" required>
-		</div>
-
-		<div id="bookingRadioDiv">
-			<div class="bookingRadio">
-				<p>Book Return?</p>
-				<input id="returnYes" type="radio" name="return" value="true" disabled onchange="displayDepartureTimes()">
-				<label for="returnYes">Yes</label>
-
-				<input id="returnNo" type="radio" name="return" value="false" checked="checked" onchange="displayDepartureTimes()">
-				<label for="returnNo">No</label>
-			</div>
-
-			<div class="bookingRadio">
-				<p>Wheelchair?</p>
-				<input id="wheelchairYes" type="radio" name="wheelchair" value="true" disabled>
-				<label for="wheelchairYes">Yes</label>
-
-				<input id="wheelchairNo" type="radio" name="wheelchair" value="false" checked="checked">
-				<label for="wheelchairNo">No</label>
-			</div>
-
-			<a href="/#wheelchairInfo">Why can't I select wheelchair</a>
-		</div>
-
-		<div id="ageDiv">
-			<p>Age</p>
 			<div>
-				<div>
-					<label>0-2</label>
-					<select class="ageSelect" name="baby" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
-				</div>
-				<div>
-					<label>3-10</label>
-					<select class="ageSelect" name="child" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
-				</div>
-				<div>
-					<label>11-16</label>
-					<select class="ageSelect" name="teenager" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
-				</div>
-				<div>
-					<label>17+</label>
-					<select class="ageSelect" name="adult" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
-				</div>
+				<label>3-10</label>
+				<select class="ageSelect" name="child" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
 			</div>
-		</div>
-
-		<div id="bookingCost">
-			<div id="timeDiv">
-				<p class="departureRoute"></p>
-				<p class="departureTime"></p>
-				<p class="departureRoute"></p>
-				<p class="departureTime"></p>
+			<div>
+				<label>11-16</label>
+				<select class="ageSelect" name="teenager" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
 			</div>
-			<button id="priceBtn">
-				<p id="priceTxt"><?php if (basename($_SERVER["PHP_SELF"]) == "booking.php") { echo "Book"; } else { echo "Edit"; } ?></p>
-				<p id="price">£0.00</p>
-			</button>
+			<div>
+				<label>17+</label>
+				<select class="ageSelect" name="adult" onchange="checkStatus(document.querySelectorAll('.selectedDate')[0].innerHTML - 1)" required></select>
+			</div>
 		</div>
 	</div>
-</form>
-<?php 
-	if (isset($_SESSION["authorized"])) {
-		echo "<script>var loginCheck = '".$_SESSION["authorized"]."'</script>";
-	} else {
-		echo "<script>var loginCheck = false</script>";
-	}
-?>;
+
+	<div id="bookingCost">
+		<div id="timeDiv">
+			<p class="departureRoute"></p>
+			<p class="departureTime"></p>
+			<p class="departureRoute"></p>
+			<p class="departureTime"></p>
+		</div>
+		<button id="priceBtn">
+			<p id="priceTxt"><?php if (basename($_SERVER["PHP_SELF"]) == "booking.php") { echo "Book"; } else { echo "Edit"; } ?></p>
+			<p id="price">£0.00</p>
+		</button>
+	</div>
+</div>
 <script>
-	function changeStatus(num) {
-		if (loginCheck) {
-			if (num == 1) {
-				document.getElementsByClassName("status")[0].classList.add("valid");
-				document.getElementsByClassName("statusBlurb")[0].classList.remove("focus");
-				document.getElementsByClassName("statusBlurb")[1].classList.add("focus");
-
-				var month = new Date().getMonth();
-
-				if (document.querySelector("input[name='island']:checked").value == "ceilidh") {
-					month = 9;
-				} else if (document.getElementById("monthHeader").querySelector("button").id) {
-					month = parseInt(document.getElementById("monthHeader").querySelector("button").id);
-				}
-
-				displayCalendarDays(month);
-			} else {
-				var inputs = document.getElementsByClassName("ageSelect");
-				var count = 0;
-				for (var i = 0; i < inputs.length; i++) {
-					if (!isNaN(inputs[i].value) && inputs[i].value) {
-						count += 1;
-					}
-				}
-
-				if (count == 4 && document.getElementsByClassName("status")[1]) {
-					document.getElementsByClassName("status")[1].classList.add("valid");
-					document.getElementsByClassName("statusBlurb")[1].classList.remove("focus");
-				}	
-			}
-			if (window.location.href.split(/[\\/]/).pop() == "booking.php" || window.location.href.split(/[\\/]/).pop() == "booking.php?msg=failed") {
-				document.getElementById("checkoutDiv").classList.add("bookingAnim")
-			}
-		} else {
-			window.location.href = "/login.php";
-		}
-	}
-
 	var responseArray = [];
 	function displayCalendarDays(month) {
 		if (month > 3 && month < 10) {
@@ -335,7 +239,7 @@
 						const targetDate = new Date(2022, 9, 27);
 
 						if (response[(day.getDate() - 1)][0] > 0 && day >= currentDate) {
-							if (dayList && dayList.includes(day.getDay()) && day.toDateString() != targetDate.toDateString()) {
+							if (dayList && dayList.includes(day.getDay()) && day.toDateString() > targetDate.toDateString()) {
 								if (day.getDay() == 0 || day.getDay() == 6) {
 									if (day.getMonth() == 5 || day.getMonth() == 6 || day.getMonth() == 7) {
 										applyCalendarColours(island, table.rows[row].cells[cell]);

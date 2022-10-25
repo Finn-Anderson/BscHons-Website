@@ -62,12 +62,12 @@ header div {
 	text-decoration: none;
 }
 
-.booking:hover span, .auth:hover span, .booking.current, .auth.current, .booking.current span, .auth.current span, #authForm a:hover span {
+.booking:hover .underline, .auth:hover .underline, .booking.current, .auth.current, .booking.current .underline, .auth.current .underline, #authForm a:hover .underline, #adminLink:hover .underline {
 	opacity: 1;
 	top: 8px;
 }
 
-header span, #authDiv span {
+.underline {
 	position: relative;
 	top: 0px;
 	display: block;
@@ -501,7 +501,6 @@ input[type=checkbox]:before {
 
 #islandBookDiv {
 	display: flex;
-	text-align: center;
 	padding: 0px 8px;
 	flex-wrap: wrap;
 }
@@ -510,6 +509,7 @@ input[type=checkbox]:before {
 	margin: 8px;
 	min-width: 300px;
 	flex: 1;
+	text-align: center;
 }
 
 #islandBookDiv h1, #islandBookDiv p {
@@ -526,6 +526,7 @@ input[type=checkbox]:before {
 	padding-bottom: 88px;
 	border-bottom-right-radius: 2px;
 	border-bottom-left-radius: 2px;
+	text-align: left;
 }
 
 #islandBookDiv input {
@@ -857,6 +858,15 @@ label[for="fromSelect"], label[for="toSelect"] {
 	margin: auto;
 	margin-bottom: 24px;
 	text-align: center;
+}
+
+#adminLink {
+	display: block;
+	width: max-content;
+	text-align: center;
+	margin: 0 auto;
+	padding-bottom: 4px;
+	letter-spacing: 1px;
 }
 
 #accountTable {

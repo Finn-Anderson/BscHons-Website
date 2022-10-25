@@ -23,10 +23,10 @@
 
 					if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
 						$id = htmlspecialchars($_GET["id"], ENT_QUOTES);
-						$getBooking = $conn->prepare("SELECT Booking.bookingID, date, surcharge, Route.from, Route.to, numberOfPeople, cost, returnBooked, wheelchairBooked, minAge, maxAge FROM Booking, Trip, RouteFare, Route, Fare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND RouteFare.fareID = Fare.fareID AND userID = :id AND Booking.bookingID = :bookingID AND cancelled = :cancelled");
+						$getBooking = $conn->prepare("SELECT Booking.bookingID, date, surcharge, Route.from, Route.to, numberOfPeople, cost, returnBooked, wheelchairBooked, minAge, maxAge, reverse FROM Booking, Trip, RouteFare, Route, Fare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND RouteFare.fareID = Fare.fareID AND userID = :id AND Booking.bookingID = :bookingID AND cancelled = :cancelled");
 						$getBooking->bindValue(":bookingID", $id, PDO::PARAM_INT);
 					} else {
-						$getBooking = $conn->prepare("SELECT Booking.bookingID, date, surcharge, Route.from, Route.to, numberOfPeople, cost, returnBooked, wheelchairBooked, minAge, maxAge FROM Booking, Trip, RouteFare, Route, Fare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND RouteFare.fareID = Fare.fareID AND userID = :id AND cancelled = :cancelled ORDER BY Booking.bookingID DESC, minAge ASC LIMIT 4");
+						$getBooking = $conn->prepare("SELECT Booking.bookingID, date, surcharge, Route.from, Route.to, numberOfPeople, cost, returnBooked, wheelchairBooked, minAge, maxAge, reverse FROM Booking, Trip, RouteFare, Route, Fare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND RouteFare.fareID = Fare.fareID AND userID = :id AND cancelled = :cancelled ORDER BY Booking.bookingID DESC, minAge ASC LIMIT 4");
 					}
 
 					$getBooking->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
@@ -51,6 +51,12 @@
 								}
 
 								$ageRange = $row["minAge"]." - ".$row["maxAge"];
+
+								if ($row["reverse"]) {
+									$from = $row["from"];
+									$row["from"] = $row["to"];
+									$row["to"] = $from;
+								}
 
 								$row["cost"] *= $row["numberOfPeople"];
 								array_push($values, array(sprintf("%08d",$row["bookingID"]), $row["date"], $row["wheelchairBooked"], $row["returnBooked"], $row["surcharge"], $row["from"], $row["to"], $row["numberOfPeople"], $ageRange, number_format((float)$row["cost"], 2, ".", ""), $discount));

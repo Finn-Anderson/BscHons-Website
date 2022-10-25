@@ -1,7 +1,7 @@
 <?php include "head.php" ?>
 <header>
 	<div>
-		<a class="booking" href="/booking.php">Booking<span></span></a>
+		<a class="booking" href="/booking.php">Booking<span class="underline"></span></a>
 	</div>
 	<div id="homeDiv">
 		<a class="home" href="/"></a>
@@ -10,9 +10,9 @@
 	<div>
 	<?php 
 		if (isset($_SESSION["authorized"])) {
-			echo "<a class='auth' href='/account.php'>Account<span></span></a>";
+			echo "<a class='auth' href='/account.php'>Account<span class='underline'></span></a>";
 		} else {
-			echo "<a class='auth' href='/login.php'>Login<span></span></a>";
+			echo "<a class='auth' href='/login.php'>Login<span class='underline'></span></a>";
 		}
 	?>
 	</div>

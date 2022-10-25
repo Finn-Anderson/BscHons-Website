@@ -16,18 +16,17 @@
 		$checkBooking->bindValue(":bookingID", $bookingID, PDO::PARAM_INT);
 		$checkBooking->execute();
 
-
 		if ($checkBooking->rowCount() > 0) {
 			$result = $checkBooking->fetchAll();
 
 			foreach( $result as $row ) {
-				$cancelBooking = $conn->prepare("UPDATE Booking SET cancelled = :cancelled AND surcharge = :surcharge WHERE userID = :id AND bookingID = :bookingID");
+				$cancelBooking = $conn->prepare("UPDATE Booking SET cancelled = :cancelled, surcharge = :surcharge WHERE userID = :id AND bookingID = :bookingID");
 				$cancelBooking->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 				$cancelBooking->bindValue(":bookingID", $bookingID, PDO::PARAM_INT);
 				$cancelBooking->bindValue(":cancelled", true, PDO::PARAM_BOOL);
 
-				$today = strtotime(date("Y-m-d"));
-				$date = strtotime(date("Y-m-d", $row["date"]));
+				$today = new DateTime("now");
+				$date = new DateTime($row["date"]);
 
 				$check = $today->diff($date);
 

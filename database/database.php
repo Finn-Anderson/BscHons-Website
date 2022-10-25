@@ -61,7 +61,8 @@
 		city VARCHAR(30) NOT NULL,
 		postcode VARCHAR(10) NOT NULL,
 		rememberID Char(32),
-		avatar LONGBLOB NOT NULL
+		avatar LONGBLOB NOT NULL,
+		admin BOOLEAN NOT NULL default 0
 		)";
 
 		// use exec() because no results are returned
@@ -285,6 +286,32 @@
 			
 
 		echo "All route fares created successfully \n";
+	}
+	
+	catch(PDOException $e) {
+		echo $e->getMessage();
+	}
+
+
+	// Insert admin user
+	try {
+		$admin = $conn->prepare("INSERT INTO User (email, password, name, address, city, postcode, avatar, admin)
+			VALUES (:mail, :pwd, :name, :address, :city, :post, :avatar, :admin)");
+
+		$pw = hash("sha512", "albaCruise510");
+
+		$admin->bindValue(":mail", "theonlyscotiaislandcruisesglencross@gmail.com", PDO::PARAM_STR);
+		$admin->bindValue(":pwd", $pw, PDO::PARAM_STR);
+		$admin->bindValue(":name", "Admin", PDO::PARAM_STR);
+		$admin->bindValue(":address", "Harbour Road", PDO::PARAM_STR);
+		$admin->bindValue(":city", "Mallaig", PDO::PARAM_STR);
+		$admin->bindValue(":post", "PH41 4QD", PDO::PARAM_STR);
+		$admin->bindValue(":avatar", "../img/avatar/default.svg");
+		$admin->bindValue(":admin", true);
+			
+		$admin->execute();
+
+		echo "Admin account created successfully \n";
 	}
 	
 	catch(PDOException $e) {
