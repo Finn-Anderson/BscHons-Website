@@ -522,6 +522,7 @@ input[type=checkbox]:before {
 }
 
 #islandBookDiv p {
+	height: 430px;
 	padding: 8px;
 	padding-bottom: 88px;
 	border-bottom-right-radius: 2px;
@@ -554,6 +555,10 @@ input[type=checkbox]:before {
 	max-height: 0px;
 	overflow: hidden;
 	opacity: 0;
+}
+
+#fromToDiv {
+	text-align: center;
 }
 
 #fromToDiv div {
@@ -837,7 +842,7 @@ label[for="fromSelect"], label[for="toSelect"] {
 	font-size: 36px;
 }
 
-#accountDiv #name, #accountTable tbody tr td, #accountTable tbody tr a, #logoutBtn {
+#accountDiv #name, #accountTable tbody tr td, #accountTable tbody tr a {
 	font-size: 20px;
 }
 
@@ -845,18 +850,6 @@ label[for="fromSelect"], label[for="toSelect"] {
 	font-size: 24px;
 	font-weight: 600;
 	margin-top: 8px;
-	text-align: center;
-}
-
-#logoutBtn {
-	display: block;
-	width: max-content;
-	letter-spacing: 1px;
-	font-size: 20px;
-	padding: 8px 16px;
-	border-radius: 2px;
-	margin: auto;
-	margin-bottom: 24px;
 	text-align: center;
 }
 
@@ -920,6 +913,13 @@ label[for="fromSelect"], label[for="toSelect"] {
 #page, #prev, #next {
 	display: inline-block;
 	font-size: 18px;
+}
+
+#accountDiv .albaButton {
+	display: block;
+	margin: auto;
+	margin-bottom: 24px;
+	text-align: center;
 }
 
 
@@ -992,4 +992,16 @@ label[for="fromSelect"], label[for="toSelect"] {
 #printDetails .albaButton {
 	padding: 8px 24px;
 	margin-top: 117px;
+}
+
+
+/* ADMIN.PHP */
+#capacitySearchDiv h1 {
+	margin-top: 0px;
+	font-size: 24px;
+}
+
+#capacitySearchDiv {
+	font-size: 20px;
+	text-align: center;
 }

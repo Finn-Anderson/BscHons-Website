@@ -20,9 +20,15 @@
 
 					<p id="name"><?php echo $name ?></p>
 
-					<a id="logoutBtn" href="/includes/logout.php">Logout</a>
+					<a class="albaButton" href="/includes/logout.php">Logout</a>
 
-					<a id="adminLink" href="/admin.php">ADMIN PAGE<span class="underline"></span></a>
+					<?php 
+						if ($admin) {
+							$_SESSION["admin"] = $admin;
+							echo "<a id='adminLink' href='/admin.php'>ADMIN PAGE<span class='underline'></span></a>";
+						}
+					?>
+					
 				</div>
 
 				<div id="accountTableDiv">

@@ -13,7 +13,7 @@
 		$pw = hash("sha512", $password);
 
 		// stmt to select row
-		$stmt = $conn->prepare("SELECT userID FROM User WHERE email = :email AND password = :pwd");
+		$stmt = $conn->prepare("SELECT userID, admin FROM User WHERE email = :email AND password = :pwd");
 		$stmt->bindValue(":email", $email, PDO::PARAM_STR);
 		$stmt->bindValue(":pwd", $pw, PDO::PARAM_STR);
 		$stmt->execute();
@@ -26,6 +26,7 @@
 				session_start();
 
 				$_SESSION["authorized"] = TRUE;
+				$_SESSION["admin"] = $row["admin"];
 				$_SESSION["id"] = $row["userID"];
 
 				$stmtCount = $conn->prepare("SELECT bookingID FROM Booking WHERE userID = :id AND returnBooked = :return AND year(date) = :year");

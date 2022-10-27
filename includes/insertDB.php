@@ -68,7 +68,7 @@
 						foreach( $result as $row ) {
 							session_start();
 							$_SESSION["authorized"] = TRUE;
-							$_SESSION["powers"] = $row["powers"];
+							$_SESSION["admin"] = $row["admin"];
 							$_SESSION["id"] = $row["userid"];
 						}
 

@@ -84,8 +84,7 @@
 					document.getElementsByClassName("statusBlurb")[0].classList.remove("focus");
 					document.getElementsByClassName("statusBlurb")[1].classList.add("focus");
 
-					var month = new Date().getMonth();
-
+					var month;
 					if (document.querySelector("input[name='island']:checked").value == "ceilidh") {
 						month = 9;
 					} else if (document.getElementById("monthHeader").querySelector("button").id) {

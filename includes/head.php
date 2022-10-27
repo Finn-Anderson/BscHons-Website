@@ -23,6 +23,10 @@
 		if (isset($_SESSION["authorized"]) AND $_SESSION["authorized"] == TRUE) {
 			$NOTpermList = array("login.php", "register.php");
 
+			if (!$_SESSION["admin"]) {
+				array_push($NOTpermList, "admin.php");
+			}
+
 			for ($x = 0; $x < count($NOTpermList); $x++) {
 				if (basename($_SERVER["PHP_SELF"]) == $NOTpermList[$x]) {
 					header("Location: ../index.php");
@@ -30,7 +34,7 @@
 				}
 			}
 		} else {
-			$NOTpermList = array("editBooking.php", "account.php", "print.php");
+			$NOTpermList = array("editBooking.php", "account.php", "print.php", "admin.php");
 
 			for ($x = 0; $x < count($NOTpermList); $x++) {
 				if (basename($_SERVER["PHP_SELF"]) == $NOTpermList[$x]) {

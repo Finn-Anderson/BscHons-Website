@@ -2,7 +2,7 @@
 	transition: background-image .2s;
 }
 
-span, input[type=checkbox], #calendarDiv, #bookingIntro .status, #bookingIntro .statusBlurb, #avatarForm label {
+span, input[type=checkbox], #calendarDiv, #bookingIntro .status, #bookingIntro .statusBlurb, #avatarForm label, #capacitySearchDiv p {
 	transition: all .4s;
 }
 

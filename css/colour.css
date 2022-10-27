@@ -1,5 +1,5 @@
 /* BACKGROUND COLOURS */
-.underline, .albaButton, #introTxt a, #locationDiv button:not(#ceilidh), .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #logoutBtn, #printDetails table thead, #printCostDiv, footer button:hover, footer span {
+.underline, .albaButton, #introTxt a, #locationDiv button:not(#ceilidh), .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #printDetails table thead, #printCostDiv, footer button:hover, footer span {
 	background-color: #ff7f50;
 }
 
@@ -11,7 +11,7 @@ footer {
 	background: linear-gradient(135deg, #ff5079, #7f50ff);
 }
 
-.albaButton:hover, #introTxt a:hover, #authForm:valid button:hover, #bookingCost #priceBtn:hover, #logoutBtn:hover {
+.albaButton:hover, #introTxt a:hover, #authForm:valid button:hover, #bookingCost #priceBtn:hover {
 	background-color: #ff926a;
 }
 
@@ -113,7 +113,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	color: #fff;
 }
 
-.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1, #monthHeader button:hover, .bookingRadio + a, #accountTable tbody tr .edit:hover, #prev:hover, #next:hover, #accountDiv h1, footer h1, #adminLink {
+.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1, #monthHeader button:hover, .bookingRadio + a, #accountTable tbody tr .edit:hover, #prev:hover, #next:hover, #accountDiv > div > h1, footer h1, #adminLink {
 	color: #ff7f50;
 }
 

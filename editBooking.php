@@ -56,7 +56,7 @@
 	?>
 	<body>
 		<div id="bookingIntro">
-			<h1>ID: <?php echo $values[0][0] ?></h1>
+			<h1 id="bookingID">ID: <?php echo $values[0][0] ?></h1>
 		</div>
 		<?php
 			// Displays booking fail message when msg is set

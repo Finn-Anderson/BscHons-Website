@@ -158,7 +158,18 @@
 </div>
 <script>
 	var responseArray = [];
+	var year = new Date().getFullYear();
+	if (new Date().getMonth() >= 9 && new Date().getDate() >= 27) {
+		year += 1;
+	}
 	function displayCalendarDays(month) {
+		if (!month) {
+			if (year != new Date().getFullYear()) {
+				month = 4;
+			} else {
+				month = new Date().getMonth();
+			}
+		}
 		if (month > 3 && month < 10) {
 			const table = document.getElementById("calendar");
 
@@ -177,8 +188,6 @@
 			pRoute[1].innerHTML = "";
 			pTime[0].innerHTML = "";
 			pTime[1].innerHTML = "";
-
-			const year = new Date().getFullYear();
 			var dayUntouched = new Date(year, month, 1);
 			var day = new Date(year, month, 1);
 
@@ -236,10 +245,10 @@
 					if (day.getMonth() == month) {
 						responseArray.push([response[(day.getDate() - 1)][0], response[(day.getDate() - 1)][1]]);
 
-						const targetDate = new Date(2022, 9, 27);
+						const targetDate = new Date(year, 9, 27);
 
 						if (response[(day.getDate() - 1)][0] > 0 && day >= currentDate) {
-							if (dayList && dayList.includes(day.getDay()) && day.toDateString() > targetDate.toDateString()) {
+							if (dayList && dayList.includes(day.getDay()) && day < targetDate) {
 								if (day.getDay() == 0 || day.getDay() == 6) {
 									if (day.getMonth() == 5 || day.getMonth() == 6 || day.getMonth() == 7) {
 										applyCalendarColours(island, table.rows[row].cells[cell]);
@@ -266,8 +275,13 @@
 					editSelectDate();
 				}
 
-				buttons[0].disabled = false;
-				buttons[1].disabled = false;
+				if (month != 4) {
+					buttons[0].disabled = false;
+				}
+
+				if (month != 9) {
+					buttons[1].disabled = false;
+				}
 
 				for (var i = 0; i < disableArray.length; i++) {
 					var disableElement = document.getElementById(disableArray[i]);
@@ -334,7 +348,6 @@
 	}
 
 	function getDayList(destination, from) {
-		var returnBooked = document.querySelector("input[name='return']:checked").value;
 		var list = [];
 		var index = 0;
 
@@ -674,17 +687,25 @@
 			var toIsland;
 
 			if (document.getElementById("toSelect")) {
-				var toIsland = document.getElementById("toSelect").value;
+				toIsland = document.getElementById("toSelect").value;
 			} else {
-				var toIsland = document.querySelector("input[name='island']:checked").value;
+				toIsland = document.querySelector("input[name='island']:checked").value;
 			}
 			var returnIsland = document.querySelector("input[name='return']:checked").value;
 
-			var currentPage = window.location.href.split(/[\\/]/).pop();
+			var id;
+			if (document.getElementById("bookingID")) {
+				let idTxt = document.getElementById("bookingID").innerHTML;
+				var idSplit = idTxt.split(" ");
+				id = idSplit[1];
+			} else {
+				id = 0;
+			}
+
 			$.ajax({
 				type: "POST",
 				url: "includes/statusDB.php",
-				data: {month: m, year: y, from: fromIsland, to: toIsland, returnBooked: returnIsland, page: currentPage},
+				data: {month: m, year: y, from: fromIsland, to: toIsland, returnBooked: returnIsland, bookingID: id},
 				dataType: "json"
 			}).done(function(response) {
 				cbk(response);
