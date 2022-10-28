@@ -56,7 +56,7 @@
 
 					$stmtReg->execute();
 
-					$stmt = $conn->prepare("SELECT userid FROM User WHERE email = :email AND password = :pwd");
+					$stmt = $conn->prepare("SELECT userid, admin FROM User WHERE email = :email AND password = :pwd");
 					$stmt->bindValue(":email", $email, PDO::PARAM_STR);
 					$stmt->bindValue(":pwd", $pw, PDO::PARAM_STR);
 					$stmt->execute();

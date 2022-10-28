@@ -15,7 +15,7 @@
 			$remID = $_COOKIE["AblaCruisesRemember"];
 
 			// stmt to select row
-			$stmt = $conn->prepare("SELECT userID FROM User WHERE rememberID = :remID");
+			$stmt = $conn->prepare("SELECT userID, admin FROM User WHERE rememberID = :remID");
 			$stmt->bindValue(':remID', $remID);
 			$stmt->execute();
 
@@ -26,6 +26,7 @@
 				foreach( $result as $row ) {
 
 					$_SESSION["authorized"] = TRUE;
+					$_SESSION["admin"] = $row["admin"];
 					$_SESSION["id"] = $row["userID"];
 
 					$stmtCount = $conn->prepare("SELECT bookingID FROM Booking WHERE userID = :id AND returnBooked = :return AND year(date) = :year");

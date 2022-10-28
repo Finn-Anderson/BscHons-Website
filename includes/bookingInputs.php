@@ -541,8 +541,6 @@
 				month = "0" + month;
 			}
 
-			var year = new Date().getFullYear();
-
 			var date = d + "-" + month + "-" + year;
 
 			if (date != document.querySelector("[name='dateChosen']").value) {

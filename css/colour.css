@@ -113,7 +113,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	color: #fff;
 }
 
-.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1, #monthHeader button:hover, .bookingRadio + a, #accountTable tbody tr .edit:hover, #prev:hover, #next:hover, #accountDiv > div > h1, footer h1, #adminLink {
+.booking:hover, .auth:hover, .booking.current, .auth.current, #companyInfo div h1, #about div h1, #authForm h1, #authForm a:hover, #bookingIntro h1, #monthHeader button:hover, .bookingRadio + a, #accountTable tbody tr .edit:hover, #prev:hover, #next:hover, #accountDiv > div > h1, footer h1, #adminLink, #userSearchContainer h1 {
 	color: #ff7f50;
 }
 
@@ -175,7 +175,7 @@ footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .s
 	border-color: #ff5079;
 }
 
-input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, footer button:hover, #locationSelect select:focus {
+input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, footer button:hover, #locationSelect select:focus, #userSearchContainer h1 {
 	border-color: #ff7f50;
 }
 

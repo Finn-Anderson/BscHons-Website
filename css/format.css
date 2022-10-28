@@ -864,6 +864,7 @@ label[for="fromSelect"], label[for="toSelect"] {
 
 #accountTable {
 	border-spacing: 0px 4px;
+	margin: auto;
 }
 
 #accountTable thead th {
@@ -898,10 +899,6 @@ label[for="fromSelect"], label[for="toSelect"] {
 
 #accountTableDiv {
 	text-align: center;
-}
-
-#next {
-	margin-right: 64px;
 }
 
 #prev, #next {
@@ -1004,4 +1001,41 @@ label[for="fromSelect"], label[for="toSelect"] {
 #capacitySearchDiv {
 	font-size: 20px;
 	text-align: center;
+}
+
+#accountTableDiv input {
+	font-size: 20px;
+	text-align: center;
+	padding: 4px 24px;
+	margin-bottom: 12px;
+}
+
+#userSearchContainer h1 {
+	padding: 12px;
+	border-bottom: 4px solid;
+}
+
+#userSearchContainer {
+	display: flex;
+}
+
+#userSearchContainer div {
+	margin: 0px 16px;
+	min-width: 150px;
+}
+
+#userSearchContainer p {
+	font-size: 18px;
+}
+
+#userSearchContainer h1 {
+	margin: 0px;
+}
+
+#userSearchContainer h2 {
+	margin-bottom: 12px;
+}
+
+.adminH2 {
+	margin-top: 32px;
 }
