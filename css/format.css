@@ -200,10 +200,12 @@ footer #cookieP {
 
 #intro img {
 	position: fixed;
+	top: -6px;
+	left: -6px;
 	z-index: -1;
 	height: 100%;
-	width: 100%;
-	filter: brightness(0.66);
+	width: 110%;
+	filter: brightness(0.66) blur(1px);
 }
 
 #companyInfo, #about {
