@@ -159,7 +159,7 @@
 <script>
 	var responseArray = [];
 	var year = new Date().getFullYear();
-	if (new Date().getMonth() >= 9 && new Date().getDate() >= 27) {
+	if (new Date().getMonth() > 9 || (new Date().getMonth() == 9 && new Date().getDate() >= 27)) {
 		year += 1;
 	}
 	function displayCalendarDays(month) {

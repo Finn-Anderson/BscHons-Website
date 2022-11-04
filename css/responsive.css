@@ -41,6 +41,9 @@
 		width: 100%;
 		margin-top: 64px;
 	}
+	#printDetails table thead th, #printDetails table tbody td {
+		padding: 4px 6px;
+	}
 }
 
 @media (max-width: 558px) {

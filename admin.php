@@ -112,8 +112,8 @@
 				<button class="albaButton" onclick="getStatus()">Search</button>
 				<div id="capacitySearchDiv">
 					<h1>Capacity</h1>
-					<p></p>
-					<p></p>
+					<p class="capacityText"></p>
+					<p class="capacityText"></p>
 				</div>
 			</div>
 		</main>
@@ -510,9 +510,9 @@
 				var toIsland = document.getElementById("toSelect").value;
 				var selectedDate = document.querySelector("[name='dateChosen']").value;
 				
-				const p = document.querySelectorAll("p");
+				const p = document.getElementsByClassName("capacityText");
+				p[0].style.opacity = "0";
 				p[1].style.opacity = "0";
-				p[2].style.opacity = "0";
 
 				$.ajax({
 					type: "POST",
@@ -522,11 +522,11 @@
 				}).done(function(response) {
 					setTimeout(
 						function() {
-							p[1].innerHTML = "On Day: " + response[0];
-							p[2].innerHTML = "Seasonal Average: " + response[1];
+							p[0].innerHTML = "On Day: " + response[0];
+							p[1].innerHTML = "Seasonal Average: " + response[1];
 
-							p[1].style.opacity = "1";
-							p[2].style.opacity = "1";	
+							p[0].style.opacity = "1";
+							p[1].style.opacity = "1";	
 						}, timer
 					);
 				});

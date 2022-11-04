@@ -344,11 +344,11 @@ footer #cookieP {
 }
 
 #about div p, #about div img {
-	height: 300px;
 	width: 300px;
 }
 
 #about div img {
+	height: 300px;
 	border: 1px solid;
 	border-radius: 4px;
 }
@@ -524,7 +524,7 @@ input[type=checkbox]:before {
 }
 
 #islandBookDiv p {
-	height: 430px;
+	min-height: 448px;
 	padding: 8px;
 	padding-bottom: 88px;
 	border-bottom-right-radius: 2px;
@@ -1019,6 +1019,7 @@ label[for="fromSelect"], label[for="toSelect"] {
 
 #userSearchContainer {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 #userSearchContainer div {

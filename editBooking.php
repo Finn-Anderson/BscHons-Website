@@ -76,10 +76,11 @@
 		document.getElementById("fromSelect").value = "<?php echo strtolower($values[0][2]) ?>";
 
 		var currentBookingDate = new Date(<?php echo date('Y,m,d', strtotime($values[0][3])) ?>);
+		var year = currentBookingDate.getFullYear();
 		displayCalendarDays(currentBookingDate.getMonth() - 1);
 
 		function editSelectDate() {
-			var firstDay = new Date(currentBookingDate.getFullYear(), (currentBookingDate.getMonth() - 1), 0).getDay();
+			var firstDay = new Date(year, (currentBookingDate.getMonth() - 1), 0).getDay();
 
 			if (firstDay == 0) {
 				firstDay = 7;
