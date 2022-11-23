@@ -7,6 +7,7 @@
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+		// Gets all relevant user information from logged in user to be used later
 		$getAvatar = $conn->prepare("SELECT avatar, name, COUNT(bookingID) as count, admin FROM User, Booking WHERE User.userID = Booking.userID AND User.userID = :id");
 		$getAvatar->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 		$getAvatar->execute();

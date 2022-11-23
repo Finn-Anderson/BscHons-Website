@@ -9,6 +9,7 @@
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+		// Setting variables
 		$month = intval($_POST["month"]);
 		$year = intval($_POST["year"]);
 		$from = htmlspecialchars($_POST["from"], ENT_QUOTES);
@@ -23,6 +24,8 @@
 		if ($to == "ceilidh") {
 			$to = "eigg";
 		}
+
+		// Get capacity and if wheelchair is booked
 		if ($to == "mallaig" || $to == "eigg") {
 			$stmt = $conn->prepare("SELECT numberOfPeople, wheelchairBooked FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND (Booking.returnBooked = true OR Booking.reverse = true) AND Route.from = :froms AND Route.to = :to AND cancelled = :cancelled AND Booking.bookingID != :bookingID");
 		} else if ($return == "true") {
@@ -41,7 +44,7 @@
 		$stmt->bindValue(":cancelled", false, PDO::PARAM_BOOL);
 		$stmt->bindValue(":bookingID", $bookingID, PDO::PARAM_INT);
 		
-
+		// Apply capacity and if the wheelchair is booked for each day to an array to be used later
 		for ($i = 1; $i <= $days; $i++) {
 			$dateString = $year."-".$month."-".$i;
 			$date = date("Y-m-d", strtotime($dateString));

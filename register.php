@@ -37,13 +37,5 @@
 			</div>
 		<div>
 	</body>
-	<script type="text/javascript">
-		function checkValid(element) {
-			if (!element.validity.valid) {
-				element.classList.add("invalid");
-			} else if (element.classList.contains("invalid")) {
-				element.classList.remove("invalid");
-			}
-		}
-	</script>
+	<script src="js/auth.js"></script>
 </html>

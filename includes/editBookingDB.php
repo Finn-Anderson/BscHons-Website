@@ -9,7 +9,7 @@
 
 		session_start();
 
-		// Check if posts are valid before doing databse queries
+		// Check if posts are valid before doing database queries
 		$count = 0;
 		foreach($_POST as $key => $value){
 			if(empty($value) AND !is_numeric($value) AND !is_bool($value)) {
@@ -36,17 +36,21 @@
 			}
 
 			$reverse = false;
+
+			// Swap from and to if travelling backwards
 			if ($to == "mallaig" || ($to == "eigg" && $from != "mallaig")) {
 				$from = htmlspecialchars($_POST["island"], ENT_QUOTES);
 				$to = htmlspecialchars($_POST["departure"], ENT_QUOTES);
 				$reverse = true;
 			}
 
+			// Set initial variable values to use later
 			$tally = $baby + $child + $teenager + $adult;
 			$capacity = 30 - $tally;
 			$surcharge = false;
 			$compare = new DateTime("now", new DateTimeZone("Europe/London"));
 
+			// Add surcharge if being editted within 24 hours of departure
 			$diff = time() - strtotime($date);
 			if ($diff < 86400) {
 				$surcharge = true;
@@ -59,7 +63,7 @@
 					header("Location: ../editBooking.php?msg=failed&id=".$_POST["bookingID"]);
 					break;
 				} elseif ($i == (Count($tblList) - 1)) {
-					// Check if capacity sent is greater than capacity allowed.
+					// Check if capacity sent is greater than capacity allowed
 					$checkCapacity = $conn->prepare("SELECT numberOfPeople FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND Route.from = :froms AND Route.to = :to AND Booking.returnBooked = :return AND Booking.reverse = :reverse AND userID != :id");
 					$checkCapacity->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 					$checkCapacity->bindValue(":date", $date, PDO::PARAM_STR);
@@ -78,7 +82,7 @@
 					}
 
 					if ($capacity >= 0) {
-						// stmt to insert data
+						// Edit booking and re-enter trip data
 						$stmtBooking = $conn->prepare("UPDATE Booking SET date = :date, surcharge = :surcharge, returnBooked = :returnBooked, wheelchairBooked = :wheelchairBooked, reverse = :reverse, cancelled = :cancelled WHERE userID = :id AND bookingID = :bookingID");
 						$stmtBooking->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 						$stmtBooking->bindValue(":bookingID", $bookingID, PDO::PARAM_INT);

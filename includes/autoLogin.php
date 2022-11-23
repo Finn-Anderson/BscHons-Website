@@ -1,8 +1,10 @@
 <?php
+	// Starts session if not already started
 	if (session_status() === PHP_SESSION_NONE) {
 		session_start();
 	}
 	
+	// Checks if the remember me cookie has been set and the user is not logged in
 	if (isset($_COOKIE["AblaCruisesRemember"]) && !isset($_SESSION["authorized"])) {
 		include_once('dbCredentials.php');
 
@@ -19,7 +21,7 @@
 			$stmt->bindValue(':remID', $remID);
 			$stmt->execute();
 
-			// Chcek if stmt statement is valid
+			// Chcek if stmt statement returns a value
 			if ($stmt->rowCount() == 1) {
 				// Sets sessions to be used later on.
 				$result = $stmt->fetchAll();
@@ -38,6 +40,7 @@
 					$_SESSION["bookingTally"] = $stmtCount->rowCount();
 				}
 			} else {
+				// Delete cookie if database returns null
 				setcookie("AblaCruisesRemember", "", time()-3600, "/");
 			}
 		}

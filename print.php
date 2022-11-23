@@ -13,6 +13,7 @@
 					// set the PDO error mode to exception
 					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+					// Checks if this is the 6th booking made
 					$getBookingsTally = $conn->prepare("SELECT bookingID FROM Booking WHERE userID = :id AND cancelled = :cancelled and returnBooked = :return ORDER BY date ASC LIMIT 1 OFFSET 5");
 					$getBookingsTally->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 					$getBookingsTally->bindValue(":cancelled", false, PDO::PARAM_BOOL);
@@ -21,6 +22,7 @@
 
 					$tally = $getBookingsTally->fetch();
 
+					// Gets either the booking id in the url or (if absent) the last known booking made by the user to display
 					if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
 						$id = htmlspecialchars($_GET["id"], ENT_QUOTES);
 						$getBooking = $conn->prepare("SELECT Booking.bookingID, date, surcharge, Route.from, Route.to, numberOfPeople, cost, returnBooked, wheelchairBooked, minAge, maxAge, reverse FROM Booking, Trip, RouteFare, Route, Fare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND RouteFare.fareID = Fare.fareID AND userID = :id AND Booking.bookingID = :bookingID AND cancelled = :cancelled");
@@ -73,6 +75,7 @@
 
 				$conn = null;
 			?>
+			<!-- Checks values before displaying correct and relelvant information -->
 			<div id="printDiv">
 				<div id="printHeader">
 					<?php 

@@ -9,7 +9,7 @@
 
 		session_start();
 
-		// set $username and $password to be used in SELECT
+		// Set variables to be used in SELECT statement
 		$email = htmlspecialchars($_POST["email"], ENT_QUOTES);
 		$pw1 = htmlspecialchars($_POST["password1"], ENT_QUOTES);
 		$pw2 = htmlspecialchars($_POST["password2"], ENT_QUOTES);
@@ -33,7 +33,7 @@
 					break;
 				}
 			} elseif ($i == (Count($tblList) - 1)) {
-				//Check it doesn't alread exist. Output determines whether msg is fail or success (success input register data)
+				// Checks if it doesn't alread exist
 				$checkReg = $conn->prepare("SELECT 1 FROM User WHERE email = :mail");
 				$checkReg->bindValue(":mail", $email, PDO::PARAM_STR);
 				$checkReg->execute();
@@ -61,7 +61,7 @@
 					$stmt->bindValue(":pwd", $pw, PDO::PARAM_STR);
 					$stmt->execute();
 
-					// Chcek if stmt statement is valid (which it should be)
+					// Chcek if stmt statement is valid (it should be)
 					if ($stmt->rowCount() == 1) {
 						// Sets sessions to be used later on.
 						$result = $stmt->fetchAll();

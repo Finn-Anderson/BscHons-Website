@@ -53,6 +53,7 @@
 					</div>
 
 					<?php
+						// Display Ceilidh if the user has made 6 or more bookings
 						if (isset($_SESSION["bookingTally"]) && $_SESSION["bookingTally"] >= 6) {
 							echo "<div id='islandBookCeilidh'>";
 								echo "<a href='/island/ceilidh.php'>";
@@ -70,49 +71,13 @@
 		</main>
 	</body>
 	<?php 
+		// Checks if the user has logged in for later use
 		if (isset($_SESSION["authorized"])) {
 			echo "<script>var loginCheck = '".$_SESSION["authorized"]."'</script>";
 		} else {
 			echo "<script>var loginCheck = false</script>";
 		}
 	?>;
-	<script>
-		function changeStatus(num) {
-			if (loginCheck) {
-				if (num == 1) {
-					document.getElementsByClassName("status")[0].classList.add("valid");
-					document.getElementsByClassName("statusBlurb")[0].classList.remove("focus");
-					document.getElementsByClassName("statusBlurb")[1].classList.add("focus");
-
-					var month;
-					if (document.querySelector("input[name='island']:checked").value == "ceilidh") {
-						month = 9;
-					} else if (document.getElementById("monthHeader").querySelector("button").id) {
-						month = parseInt(document.getElementById("monthHeader").querySelector("button").id);
-					}
-
-					displayCalendarDays(month);
-				} else {
-					var inputs = document.getElementsByClassName("ageSelect");
-					var count = 0;
-					for (var i = 0; i < inputs.length; i++) {
-						if (!isNaN(inputs[i].value) && inputs[i].value) {
-							count += 1;
-						}
-					}
-
-					if (count == 4 && document.getElementsByClassName("status")[1]) {
-						document.getElementsByClassName("status")[1].classList.add("valid");
-						document.getElementsByClassName("statusBlurb")[1].classList.remove("focus");
-					}	
-				}
-				if (window.location.href.split(/[\\/]/).pop() == "booking.php" || window.location.href.split(/[\\/]/).pop() == "booking.php?msg=failed") {
-					document.getElementById("checkoutDiv").classList.add("bookingAnim")
-				}
-			} else {
-				window.location.href = "/login.php";
-			}
-		}
-	</script>
+	<script src="js/bookingStatus.js"></script>
 	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
 </html>

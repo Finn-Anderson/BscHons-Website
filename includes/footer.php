@@ -9,6 +9,8 @@
 	<img src="/img/logoDark.png">
 	<p id="cookieP">This site uses essential cookies only</p>
 </footer>
+
+<!-- On button click, copyEmail() runs. This shows span and it's text above the button for a second before fading away, along with copying the company email to clipboard -->
 <script type="text/javascript">
 	var footerEmail = "theonlyscotiaislandcruisesglencross@gmail.com";
 

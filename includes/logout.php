@@ -1,5 +1,5 @@
 <?php
-	// Destorys all sessions which makes someone log out.
+	// Destory all sessions and cookies, which makes the user log out
 	session_start();
 	if (isset($_COOKIE['AblaCruisesRemember'])) {
 		unset($_COOKIE['AblaCruisesRemember']); 

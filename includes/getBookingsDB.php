@@ -13,6 +13,7 @@
 
 		$values = array();
 
+		// Get 6th booking
 		$getBookingsTally = $conn->prepare("SELECT bookingID FROM Booking WHERE userID = :id AND cancelled = :cancelled and returnBooked = :return ORDER BY date ASC LIMIT 1 OFFSET 5");
 		$getBookingsTally->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 		$getBookingsTally->bindValue(":cancelled", false, PDO::PARAM_BOOL);
@@ -21,6 +22,7 @@
 
 		$tally = $getBookingsTally->fetch();
 
+		// Get all bookings made by this account to be displayed in the booking table
 		$getBookings = $conn->prepare("SELECT Booking.bookingID, SUM(numberOfPeople) AS numPeople, SUM(numberOfPeople * cost) AS sumCost, date, returnBooked, surcharge FROM Booking, Trip, RouteFare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND userID = :id AND cancelled = :cancelled GROUP BY Trip.bookingID ORDER BY date DESC LIMIT 10 OFFSET :offset");
 		$getBookings->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 		$getBookings->bindValue(":offset", $offset, PDO::PARAM_INT);
@@ -29,6 +31,7 @@
 
 		$result = $getBookings->fetchAll();
 
+		// Append data to array. Alter cost if 6th booking and/or if return is not booked
 		foreach( $result as $row ) {
 			if ($tally && $tally["bookingID"] == $row["bookingID"]) {
 				$row["sumCost"] = $row["sumCost"] * 0.5;

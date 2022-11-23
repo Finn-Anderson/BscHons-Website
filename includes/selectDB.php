@@ -37,6 +37,7 @@
 
 				$_SESSION["bookingTally"] = $stmtCount->rowCount();
 
+				// Create remember me cookie if remember me was selected
 				if (isset($_POST["remember"])) {
 					$value = bin2hex(random_bytes(16));
 					setcookie("AblaCruisesRemember", $value, time()+60*60*24*30, "/");

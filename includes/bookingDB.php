@@ -35,12 +35,15 @@
 			}
 
 			$reverse = false;
+
+			// Swap from and to if travelling backwards
 			if ($to == "mallaig" || ($to == "eigg" && $from != "mallaig")) {
 				$from = htmlspecialchars($_POST["island"], ENT_QUOTES);
 				$to = htmlspecialchars($_POST["departure"], ENT_QUOTES);
 				$reverse = true;
 			}
 
+			// Set initial variable values to use later
 			$tally = $baby + $child + $teenager + $adult;
 			$capacity = 30 - $tally;
 			$surcharge = false;
@@ -71,7 +74,7 @@
 					}
 
 					if ($capacity >= 0) {
-						// stmt to insert data
+						// Insert new booking and get it's relevant data to use in the trip table
 						$stmtBooking = $conn->prepare("INSERT INTO Booking (userID, date, surcharge, returnBooked, wheelchairBooked, reverse, cancelled)
 							VALUES (:id, :date, :surcharge, :returnBooked, :wheelchairBooked, :reverse, :cancelled)");
 						$stmtBooking->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
@@ -97,6 +100,7 @@
 						foreach( $result as $row ) {
 							$choice = 0;
 
+							// Sort into choices
 							if ($row["minAge"] == 0 && $row["maxAge"] == 2) {
 								$choice = $baby;
 							} else if ($row["minAge"] == 3 && $row["maxAge"] == 10) {
@@ -107,6 +111,7 @@
 								$choice = $adult;
 							}
 
+							// Insert values into trip table
 							$stmtTrip = $conn->prepare("INSERT INTO Trip (bookingID, routeFareID, numberOfPeople)
 								VALUES (:bookingID, :routeFareID, :numberOfPeople)");
 							$stmtTrip->bindValue(":bookingID", $bookingID, PDO::PARAM_INT);

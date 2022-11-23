@@ -1,7 +1,8 @@
+<!-- Header/nav bar is appended to every file -->
 <?php include "head.php" ?>
 <header>
 	<div>
-		<a class="booking" href="/booking.php">Booking<span class="underline"></span></a>
+		<a class="booking" href="/booking.php">Booking<span class="underline orange-bg"></span></a>
 	</div>
 	<div id="homeDiv">
 		<a class="home" href="/"></a>
@@ -10,13 +11,15 @@
 	<div>
 	<?php 
 		if (isset($_SESSION["authorized"])) {
-			echo "<a class='auth' href='/account.php'>Account<span class='underline'></span></a>";
+			echo "<a class='auth' href='/account.php'>Account<span class='underline orange-bg'></span></a>";
 		} else {
-			echo "<a class='auth' href='/login.php'>Login<span class='underline'></span></a>";
+			echo "<a class='auth' href='/login.php'>Login<span class='underline orange-bg'></span></a>";
 		}
 	?>
 	</div>
 </header>
+
+<!-- Javascript appends class depending on page user is currently in. Classes affect nav bar colour/shows underline if on linked page -->
 <script type="text/javascript">
 	var url = window.location.pathname;
 	switch(url) {

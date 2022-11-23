@@ -12,6 +12,7 @@
 		$admin = filter_var(htmlspecialchars($_POST["admin"], ENT_QUOTES), FILTER_VALIDATE_BOOLEAN);
 		$userID = htmlspecialchars($_POST["userID"], ENT_QUOTES);
 
+		// Sets userID to either admin or user
 		if ($userID != $_SESSION["id"]) {
 			$setAdmin = $conn->prepare("UPDATE User SET admin = :admin WHERE userID = :userID");
 			$setAdmin->bindValue(":admin", $admin, PDO::PARAM_BOOL);

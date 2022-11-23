@@ -11,6 +11,7 @@
 
 		$bookingID = htmlspecialchars($_POST["bookingID"], ENT_QUOTES);
 
+		// Checks if currently logged in user owns submitted booking to be cancelled
 		$checkBooking = $conn->prepare("SELECT date FROM Booking WHERE userID = :id AND bookingID = :bookingID");
 		$checkBooking->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
 		$checkBooking->bindValue(":bookingID", $bookingID, PDO::PARAM_INT);
@@ -19,6 +20,7 @@
 		if ($checkBooking->rowCount() > 0) {
 			$result = $checkBooking->fetchAll();
 
+			// Set booking as cancelled. If the booking is cancelled within 24 hours of it's departure, a surcharge is applied
 			foreach( $result as $row ) {
 				$cancelBooking = $conn->prepare("UPDATE Booking SET cancelled = :cancelled, surcharge = :surcharge WHERE userID = :id AND bookingID = :bookingID");
 				$cancelBooking->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);

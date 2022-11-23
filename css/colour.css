@@ -1,5 +1,5 @@
 /* BACKGROUND COLOURS */
-.underline, .albaButton, #introTxt a, #locationDiv button:not(#ceilidh), .locationLine, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #printDetails table thead, #printCostDiv, footer button:hover, footer span {
+.orange-bg, .albaButton, #authForm:valid button, input[type=checkbox]:checked, #bookingIntro .status.valid, #calendar td.validDate.selectedDate, #calendar td.validDate:hover, .bookingRadio input:checked + label, #companyInfo #wheelchairInfo:target, #bookingCost #priceBtn, #printDetails table thead, #printCostDiv, footer button:hover, footer span {
 	background-color: #ff7f50;
 }
 
@@ -11,7 +11,7 @@ footer {
 	background: linear-gradient(135deg, #ff5079, #7f50ff);
 }
 
-.albaButton:hover, #introTxt a:hover, #authForm:valid button:hover, #bookingCost #priceBtn:hover {
+.albaButton:hover, #authForm:valid button:hover, #bookingCost #priceBtn:hover {
 	background-color: #ff926a;
 }
 
