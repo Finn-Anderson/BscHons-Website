@@ -53,6 +53,9 @@
 			</div>
 		</main>
 	</body>
+	<script type="text/javascript">
+		var pageCount = <?php echo $count ?>
+	</script>
 	<script src="js/accountProfile.js"></script>
 	<script src="js/accountBooking.js"></script>
 	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>

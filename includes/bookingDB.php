@@ -56,7 +56,7 @@
 					header("Location: ../booking.php?msg=failed");
 					break;
 				} elseif ($i == (Count($tblList) - 1)) {
-					// Check if capacity sent is greater than capacity allowed.
+					// Check if capacity sent is greater than capacity allowed
 					$checkCapacity = $conn->prepare("SELECT numberOfPeople FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND Route.from = :froms AND Route.to = :to AND Booking.returnBooked = :return AND Booking.reverse = :reverse");
 					$checkCapacity->bindValue(":date", $date, PDO::PARAM_STR);
 					$checkCapacity->bindValue(":froms", $from, PDO::PARAM_STR);

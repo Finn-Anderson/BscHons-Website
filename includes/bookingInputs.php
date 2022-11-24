@@ -160,4 +160,4 @@
 		</button>
 	</div>
 </div>
-<script src="bookingFilter.js"></script>
+<script src="../js/bookingFilter.js"></script>

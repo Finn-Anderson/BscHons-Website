@@ -23,7 +23,7 @@ function displayBookings(pageNum) {
 
 	document.getElementById("next").style.display = "inline-block";
 	document.getElementById("prev").style.display = "inline-block";
-	if ((offset + 10) >= <?php echo $count ?>) {
+	if ((offset + 10) >= pageCount) {
 		document.getElementById("next").style.display = "none";
 	} 
 
