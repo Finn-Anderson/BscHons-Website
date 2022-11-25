@@ -70,7 +70,7 @@ function displayUsers(pageNum, search) {
 			header.classList.add("adminH2")
 			div.appendChild(header);
 
-			if (response[i][3] != <?php echo $_SESSION["id"] ?>) {
+			if (response[i][3] != selfCheck) {
 				var adminSelect = document.createElement("input");
 				adminSelect.type = "checkbox";
 				adminSelect.name = response[i][3];

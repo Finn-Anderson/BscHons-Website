@@ -1,12 +1,12 @@
 // Set/get intial values to use later or to send into functions
-document.getElementById("toSelect").value = "<?php echo strtolower($values[0][1]) ?>";
+document.getElementById("toSelect").value = editArr[0][1].toLowerCase();
 populateSelect(document.getElementById("toSelect").value);
 
-document.getElementById("fromSelect").value = "<?php echo strtolower($values[0][2]) ?>";
+document.getElementById("fromSelect").value = editArr[0][2].toLowerCase();
 
-var currentBookingDate = new Date(<?php echo date('Y,m,d', strtotime($values[0][3])) ?>);
+var currentBookingDate = new Date(editArr[0][3]);
 var year = currentBookingDate.getFullYear();
-displayCalendarDays(currentBookingDate.getMonth() - 1);
+displayCalendarDays(currentBookingDate.getMonth());
 
 // Set values to values selected from database query
 function editSelectDate() {
@@ -24,25 +24,25 @@ function editSelectDate() {
 	const table = document.getElementById("calendar");
 	inputDate(table.rows[row].cells[cell]);
 
-
-	if (<?php echo $row["wheelchairBooked"]; ?>) {
+	if (editArr[0][4]) {
 		document.getElementById("wheelchairYes").checked = true;
 	}
-	if (<?php echo $row["returnBooked"]; ?>) {
+	if (editArr[0][5]) {
 		document.getElementById("returnYes").checked = true;
 	}
 
 
 	var ageSelects = document.getElementsByClassName("ageSelect");
+	var index = 0;
 	for (var i = 0; i < ageSelects.length; i++) {
 		if (ageSelects[i].name == "baby") {
-			ageSelects[i].value = Number("<?php for ($i = 0; $i < count($values); $i++) { if ($values[$i][7] == '0 - 2') { echo $values[$i][6]; } }?>");
+			ageSelects[i].value = Number(editArr[i][6]);
 		} else if (ageSelects[i].name == "child") {
-			ageSelects[i].value = Number("<?php for ($i = 0; $i < count($values); $i++) { if ($values[$i][7] == '3 - 10') { echo $values[$i][6]; } }?>");
+			ageSelects[i].value = Number(editArr[i][6]);
 		} else if (ageSelects[i].name == "teenager") {
-			ageSelects[i].value = Number("<?php for ($i = 0; $i < count($values); $i++) { if ($values[$i][7] == '11 - 16') { echo $values[$i][6]; } }?>");
+			ageSelects[i].value = Number(editArr[i][6]);
 		} else if (ageSelects[i].name == "adult") {
-			ageSelects[i].value = Number("<?php for ($i = 0; $i < count($values); $i++) { if ($values[$i][7] == '17 - 200') { echo $values[$i][6]; } }?>");
+			ageSelects[i].value = Number(editArr[i][6]);
 		}
 	}
 

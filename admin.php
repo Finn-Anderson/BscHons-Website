@@ -121,6 +121,9 @@
 				</div>
 			</div>
 		</main>
+		<script type="text/javascript">
+			var selfCheck = <?php echo $_SESSION["id"] ?>
+		</script>
 		<script src="js/adminUser.js"></script>
 		<script src="js/adminBooking.js"></script>
 		<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>

@@ -71,6 +71,9 @@
 			<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/bookingInputs.php" ?>
 		</form>
 	</body>
-	<script src="editBooking.js"></script>
+	<script type="text/javascript">
+		var editArr = <?php echo json_encode($values) ?>
+	</script>
+	<script src="../js/editBooking.js"></script>
 	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
 </html>
