@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php $title = "Home Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php"?>
+	<?php $title = "Home Page"; include "includes/header.php"?>
 	<body>
 		<div id="intro">
 			<div id="introTxt">
@@ -11,7 +11,7 @@
 
 			<!-- Intro image spans whole of intro div -->
 			<div id="introImg">
-				<img src="/img/introImg.jpg">
+				<img src="img/introImg.jpg">
 			</div>
 		</div>
 
@@ -31,7 +31,7 @@
 		</div>
 
 		<div id="mapDiv">
-			<img src="/img/map.png">
+			<img src="img/map.png">
 
 			<!-- Location buttons absoulute positions are set in the javascript in accordance to their location on the map image -->
 			<div id="locationDiv">
@@ -68,6 +68,6 @@
 			</div>
 		</div>
 	</body>
-	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
+	<?php include "includes/footer.php" ?>
 	<script src="js/index.js"></script>
 </html>

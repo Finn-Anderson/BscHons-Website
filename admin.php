@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php $title = "Admin Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php"; include $_SERVER["DOCUMENT_ROOT"]."/includes/accountDB.php" ?>
+	<?php $title = "Admin Page"; include "includes/header.php"; include "includes/accountDB.php" ?>
 	<body>
 		<main>
 			<div id="accountDiv">
@@ -126,6 +126,6 @@
 		</script>
 		<script src="js/adminUser.js"></script>
 		<script src="js/adminBooking.js"></script>
-		<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
+		<?php include "includes/footer.php" ?>
 	</body>
 </html>

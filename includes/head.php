@@ -4,11 +4,11 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-	<link rel="icon" type="image/x-icon" href="/img/logo.png">
-	<link rel="stylesheet" href="/css/format.css">
-	<link rel="stylesheet" href="/css/colour.css">
-	<link rel="stylesheet" href="/css/animation.css">
-	<link rel="stylesheet" href="/css/responsive.css">
+	<link rel="icon" type="image/x-icon" href="img/logo.png">
+	<link rel="stylesheet" href="css/format.css">
+	<link rel="stylesheet" href="css/colour.css">
+	<link rel="stylesheet" href="css/animation.css">
+	<link rel="stylesheet" href="css/responsive.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -29,7 +29,7 @@
 
 			for ($x = 0; $x < count($NOTpermList); $x++) {
 				if (basename($_SERVER["PHP_SELF"]) == $NOTpermList[$x]) {
-					header("Location: ../index.php");
+					header("Location: index.php");
 					exit();
 				}
 			}
@@ -38,7 +38,7 @@
 
 			for ($x = 0; $x < count($NOTpermList); $x++) {
 				if (basename($_SERVER["PHP_SELF"]) == $NOTpermList[$x]) {
-					header("Location: ../login.php");
+					header("Location: login.php");
 					exit();
 				}
 			}

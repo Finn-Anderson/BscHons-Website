@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php $title = "Account Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php"; include $_SERVER["DOCUMENT_ROOT"]."/includes/accountDB.php" ?>
+	<?php $title = "Account Page"; include "includes/header.php"; include "includes/accountDB.php" ?>
 	<body>
 		<main>
 			<div id="accountDiv">
@@ -14,12 +14,12 @@
 
 					<p id="name"><?php echo $name ?></p>
 
-					<a class="albaButton" href="/includes/logout.php">Logout</a>
+					<a class="albaButton" href="includes/logout.php">Logout</a>
 
 					<?php 
 						if ($admin) {
 							$_SESSION["admin"] = $admin;
-							echo "<a id='adminLink' href='/admin.php'>ADMIN PAGE<span class='underline orange-bg'></span></a>";
+							echo "<a id='adminLink' href='admin.php'>ADMIN PAGE<span class='underline orange-bg'></span></a>";
 						}
 					?>
 					
@@ -58,5 +58,5 @@
 	</script>
 	<script src="js/accountProfile.js"></script>
 	<script src="js/accountBooking.js"></script>
-	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
+	<?php include "includes/footer.php" ?>
 </html>

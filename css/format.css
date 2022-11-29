@@ -44,7 +44,7 @@ header div {
 .home {
 	height: 64px;
 	width: 64px;
-	background-image: url("/img/logo.png");
+	background-image: url("../img/logo.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -52,7 +52,7 @@ header div {
 }
 
 .home:hover {
-	background-image: url("/img/logoHover.png");
+	background-image: url("../img/logoHover.png");
 }
 
 .booking, .auth {
@@ -135,7 +135,7 @@ footer button {
 	height: 64px;
 	width: 64px;
 	background-color: transparent;
-	background-image: url("/img/contactIcon.svg");
+	background-image: url("../img/contactIcon.svg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 80% 40%;
@@ -765,7 +765,7 @@ label[for="fromSelect"], label[for="toSelect"] {
 	display: inline-block;
 	height: 16px;
 	width: 16px;
-	background: url("/img/clock.svg");
+	background: url("../img/clock.svg");
 	margin-right: 2px;
 }
 

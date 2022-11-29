@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php $title = "Edit Booking Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
+	<?php $title = "Edit Booking Page"; include "includes/header.php" ?>
 	<?php 
-		include $_SERVER["DOCUMENT_ROOT"]."/includes/dbCredentials.php";
+		include "includes/dbCredentials.php";
 
 		try {
 			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $name, $pass);
@@ -16,7 +16,7 @@
 				$getBooking = $conn->prepare("SELECT Booking.bookingID, date, Route.from, Route.to, numberOfPeople, returnBooked, wheelchairBooked, minAge, maxAge FROM Booking, Trip, RouteFare, Route, Fare WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND RouteFare.fareID = Fare.fareID AND userID = :id AND Booking.bookingID = :bookingID AND cancelled = :cancelled");
 				$getBooking->bindValue(":bookingID", $id, PDO::PARAM_INT);
 			} else {
-				header("Location: ../account.php");
+				header("Location: account.php");
 			}
 
 			$getBooking->bindValue(":id", $_SESSION["id"], PDO::PARAM_INT);
@@ -42,11 +42,11 @@
 							array_push($values, array(sprintf("%08d",$row["bookingID"]), $row["to"], $row["from"], $row["date"], $row["wheelchairBooked"], $row["returnBooked"], $row["numberOfPeople"], $ageRange));
 						}
 					} else {
-						header("Location: ../account.php");
+						header("Location: account.php");
 					}
 				}
 			} else {
-				header("Location: ../account.php");
+				header("Location: account.php");
 			}
 		}
 
@@ -74,6 +74,6 @@
 	<script type="text/javascript">
 		var editArr = <?php echo json_encode($values) ?>
 	</script>
-	<script src="../js/editBooking.js"></script>
-	<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
+	<script src="js/editBooking.js"></script>
+	<?php include "includes/footer.php" ?>
 </html>

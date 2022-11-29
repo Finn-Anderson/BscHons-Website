@@ -2,18 +2,18 @@
 <?php include "head.php" ?>
 <header>
 	<div>
-		<a class="booking" href="/booking.php">Booking<span class="underline orange-bg"></span></a>
+		<a class="booking" href="booking.php">Booking<span class="underline orange-bg"></span></a>
 	</div>
 	<div id="homeDiv">
-		<a class="home" href="/"></a>
+		<a class="home" href="index.php"></a>
 	</div>
 
 	<div>
 	<?php 
 		if (isset($_SESSION["authorized"])) {
-			echo "<a class='auth' href='/account.php'>Account<span class='underline orange-bg'></span></a>";
+			echo "<a class='auth' href='account.php'>Account<span class='underline orange-bg'></span></a>";
 		} else {
-			echo "<a class='auth' href='/login.php'>Login<span class='underline orange-bg'></span></a>";
+			echo "<a class='auth' href='login.php'>Login<span class='underline orange-bg'></span></a>";
 		}
 	?>
 	</div>

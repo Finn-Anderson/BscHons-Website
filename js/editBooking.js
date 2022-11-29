@@ -10,11 +10,7 @@ displayCalendarDays(currentBookingDate.getMonth());
 
 // Set values to values selected from database query
 function editSelectDate() {
-	var firstDay = new Date(year, (currentBookingDate.getMonth() - 1), 0).getDay();
-
-	if (firstDay == 0) {
-		firstDay = 7;
-	}
+	var firstDay = new Date(year, currentBookingDate.getMonth(), 0).getDay();
 
 	var tdIndex = currentBookingDate.getDate() + firstDay;
 
@@ -35,14 +31,16 @@ function editSelectDate() {
 	var ageSelects = document.getElementsByClassName("ageSelect");
 	var index = 0;
 	for (var i = 0; i < ageSelects.length; i++) {
-		if (ageSelects[i].name == "baby") {
-			ageSelects[i].value = Number(editArr[i][6]);
-		} else if (ageSelects[i].name == "child") {
-			ageSelects[i].value = Number(editArr[i][6]);
-		} else if (ageSelects[i].name == "teenager") {
-			ageSelects[i].value = Number(editArr[i][6]);
-		} else if (ageSelects[i].name == "adult") {
-			ageSelects[i].value = Number(editArr[i][6]);
+		for (var j = 0; j < editArr.length; j++) {
+			if (ageSelects[i].name == "baby" && editArr[j][7] == "0 - 2") {
+				ageSelects[i].value = Number(editArr[j][6]);
+			} else if (ageSelects[i].name == "child" && editArr[j][7] == "3 - 10") {
+				ageSelects[i].value = Number(editArr[j][6]);
+			} else if (ageSelects[i].name == "teenager" && editArr[j][7] == "11 - 16") {
+				ageSelects[i].value = Number(editArr[j][6]);
+			} else if (ageSelects[i].name == "adult" && editArr[j][7] == "17 - 200") {
+				ageSelects[i].value = Number(editArr[j][6]);
+			}
 		}
 	}
 

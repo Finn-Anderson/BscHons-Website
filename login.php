@@ -1,5 +1,5 @@
 <html lang="en">
-	<?php $title = "Login Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>	
+	<?php $title = "Login Page"; include "includes/header.php" ?>	
 	<body id="bgImg">
 		<div id="authDiv">
 			<!-- Displays login form inputs and submit -->

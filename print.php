@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php $title = "Print Page"; include $_SERVER["DOCUMENT_ROOT"]."/includes/header.php" ?>
+	<?php $title = "Print Page"; include "includes/header.php" ?>
 	<body>
 		<main>
-			<?php  ?>
 			<?php
-				include $_SERVER["DOCUMENT_ROOT"]."/includes/dbCredentials.php";
+				include "includes/dbCredentials.php";
 
 				try {
 					$conn = new PDO("mysql:host=$servername;dbname=$dbname", $name, $pass);
@@ -65,7 +64,7 @@
 							}
 						}
 					} else {
-						header("Location: ../account.php");
+						header("Location: account.php");
 					}
 				}
 
@@ -228,6 +227,6 @@
 				</div>
 			</div>
 		</main>
-		<?php include $_SERVER["DOCUMENT_ROOT"]."/includes/footer.php" ?>
+		<?php include "includes/footer.php" ?>
 	</body>
 </html>

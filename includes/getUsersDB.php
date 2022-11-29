@@ -1,5 +1,5 @@
 <?php
-	include $_SERVER["DOCUMENT_ROOT"]."/includes/dbCredentials.php";
+	include "../includes/dbCredentials.php";
 
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $name, $pass);
