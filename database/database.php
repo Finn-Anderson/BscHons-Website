@@ -306,7 +306,7 @@
 		$admin->bindValue(":address", "Harbour Road", PDO::PARAM_STR);
 		$admin->bindValue(":city", "Mallaig", PDO::PARAM_STR);
 		$admin->bindValue(":post", "PH41 4QD", PDO::PARAM_STR);
-		$admin->bindValue(":avatar", "../img/avatar/default.svg");
+		$admin->bindValue(":avatar", "img/avatar/default.svg");
 		$admin->bindValue(":admin", true);
 			
 		$admin->execute();

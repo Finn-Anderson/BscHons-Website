@@ -1,5 +1,5 @@
 <html lang="en">
-	<?php $title = "Register Page"; "includes/header.php" ?>	
+	<?php $title = "Register Page"; include "includes/header.php" ?>	
 	<body id="bgImg">
 		<!-- Displays register form inputs and submit -->
 		<div id="authDiv">

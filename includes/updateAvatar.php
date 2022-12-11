@@ -10,7 +10,7 @@
 		session_start();
 
 		// Set target directory to save image to so that it can be referenced later on
-		$target_dir = "../img/avatar/";
+		$target_dir = "img/avatar/";
 		$avatar = $target_dir . $_SESSION["id"] . basename($_FILES["avatar"]["name"]);
 
 		// Get inputted image type and create type list
@@ -30,7 +30,7 @@
 				if (basename($img) != "default.svg") {
 					unlink($img);
 				}
-				move_uploaded_file($_FILES["avatar"]["tmp_name"], $avatar);
+				move_uploaded_file($_FILES["avatar"]["tmp_name"], "../" . $avatar);
 
 				$updateAvatar = $conn->prepare("UPDATE User SET avatar = :avatar WHERE userID = :id");
 				$updateAvatar->bindValue(":avatar", $avatar);

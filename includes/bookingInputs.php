@@ -121,7 +121,7 @@
 			<label for="wheelchairNo">No</label>
 		</div>
 
-		<a href="/#wheelchairInfo">Why can't I select wheelchair</a>
+		<a href="<?php echo $WEBSITE_ROOT?>#wheelchairInfo">Why can't I select wheelchair</a>
 	</div>
 
 	<div id="ageDiv">
@@ -160,4 +160,4 @@
 		</button>
 	</div>
 </div>
-<script src="../js/bookingFilter.js"></script>
+<script src="js/bookingFilter.js"></script>

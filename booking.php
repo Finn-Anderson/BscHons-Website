@@ -78,6 +78,11 @@
 			echo "<script>var loginCheck = false</script>";
 		}
 	?>;
+	<script type="text/javascript">
+		function login() {
+			window.location.href = "<?php echo $WEBSITE_ROOT ?>login.php";
+		}
+	</script>
 	<script src="js/bookingStatus.js"></script>
 	<?php include "includes/footer.php" ?>
 </html>

@@ -36,6 +36,6 @@ function changeStatus(num) {
 			document.getElementById("checkoutDiv").classList.add("bookingAnim")
 		}
 	} else {
-		window.location.href = "/login.php";
+		login();
 	}
 }

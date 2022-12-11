@@ -21,7 +21,7 @@
 					
 				<button type="submit">Login</button>
 
-				<a href="register.php">CREATE ACCOUNT<span class="underline"></span></a>
+				<a href="register.php">CREATE ACCOUNT<span class="underline orange-bg"></span></a>
 			</form>
 		</div>
 	</body>
