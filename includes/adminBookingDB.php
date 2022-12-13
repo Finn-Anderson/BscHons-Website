@@ -8,6 +8,7 @@
 
 		// set the PDO error mode to exception and initial values of variables
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$userArray = array();
 		$capacity = 0;
 		$avgCapacity = 0;
 		$reverse = false;
@@ -28,8 +29,8 @@
 			$reverse = true;
 		}
 		
-		// Get capacity of date selected
-		$dayCapacity = $conn->prepare("SELECT numberOfPeople FROM Booking, Trip, RouteFare, Route WHERE Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND Route.from = :froms AND Route.to = :to AND reverse = :reverse");
+		// Get capacity and people of date selected
+		$dayCapacity = $conn->prepare("SELECT numberOfPeople, name FROM User, Booking, Trip, RouteFare, Route WHERE User.userID = Booking.userID AND Booking.bookingID = Trip.bookingID AND Trip.routeFareID = RouteFare.routeFareID AND RouteFare.routeID = Route.routeID AND Booking.date = :date AND Route.from = :froms AND Route.to = :to AND reverse = :reverse");
 		$dayCapacity->bindValue(":froms", $from, PDO::PARAM_STR);
 		$dayCapacity->bindValue(":to", $to, PDO::PARAM_STR);
 		$dayCapacity->bindValue(":date", $sqlDate, PDO::PARAM_STR);
@@ -42,6 +43,19 @@
 			foreach( $result as $row ) {
 				if ($row["numberOfPeople"]) {
 					$capacity += $row["numberOfPeople"];
+
+					$index = null;
+					for ($i = 0; $i < count($userArray); $i++) { 
+						if (in_array($row["name"], $userArray[$i])) {
+							$index = $i;
+						}
+					}
+
+					if (is_numeric($index)) {
+						$userArray[$index][1] += $row["numberOfPeople"];
+					} else {
+						array_push($userArray, array($row["name"], $row["numberOfPeople"]));
+					}
 				}
 			}
 		}
@@ -70,7 +84,7 @@
 			$avgCapacity = ($total / $count);
 		}
 
-		echo json_encode(array($capacity, $avgCapacity));
+		echo json_encode(array($capacity, $avgCapacity, $userArray));
 	}
 
 	catch(PDOException $e) {

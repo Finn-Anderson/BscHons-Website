@@ -1042,3 +1042,9 @@ label[for="fromSelect"], label[for="toSelect"] {
 .adminH2 {
 	margin-top: 32px;
 }
+
+.capacityText.small {
+	font-size: 15px;
+	line-height: 20px;
+	margin-top: 8px;
+}

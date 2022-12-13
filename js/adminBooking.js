@@ -288,7 +288,9 @@ function getStatus() {
 	
 	const p = document.getElementsByClassName("capacityText");
 	p[0].style.opacity = "0";
+	p[0].style.marginBottom = "0px";
 	p[1].style.opacity = "0";
+	p[2].style.opacity = "0";
 
 	$.ajax({
 		type: "POST",
@@ -299,10 +301,16 @@ function getStatus() {
 		setTimeout(
 			function() {
 				p[0].innerHTML = "On Day: " + response[0];
-				p[1].innerHTML = "Seasonal Average: " + response[1];
+				p[1].innerHTML = "";
+				p[2].innerHTML = "Seasonal Average: " + response[1];
+
+				for (var i = 0; i < response[2].length; i++) {
+					p[1].innerHTML += response[2][i][0] + ": " + response[2][i][1] + "<br>";
+				}
 
 				p[0].style.opacity = "1";
 				p[1].style.opacity = "1";	
+				p[2].style.opacity = "1";
 			}, timer
 		);
 	});

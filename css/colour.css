@@ -101,7 +101,7 @@ footer {
 
 
 /* TEXT COLOURS */
-footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .status {
+footer p, #authForm:invalid button, #bookingIntro .statusBlurb, #bookingIntro .status, .capacityText.small {
 	color: #777;
 }
 

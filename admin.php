@@ -117,6 +117,7 @@
 				<div id="capacitySearchDiv">
 					<h1>Capacity</h1>
 					<p class="capacityText"></p>
+					<p class="capacityText small"></p>
 					<p class="capacityText"></p>
 				</div>
 			</div>
