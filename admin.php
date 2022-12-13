@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php $title = "Admin Page"; include "includes/header.php"; include "includes/accountDB.php" ?>
+	<?php $title = "Admin Page"; include "includes/header.php" ?>
 	<body>
 		<main>
 			<div id="accountDiv">
