@@ -28,7 +28,7 @@
 			$img = $row["avatar"];
 			if ($avatar != $img AND !empty($avatar) AND in_array($avatarType, $typeList)) {
 				if (basename($img) != "default.svg") {
-					unlink($img);
+					unlink("../" . $img);
 				}
 				move_uploaded_file($_FILES["avatar"]["tmp_name"], "../" . $avatar);
 
